@@ -1,10 +1,13 @@
+import React from 'react';
+import './App.css';
+import SignInForm from './pages/login/login';
 
 function App() {
-  return (
-     <>hello
-     
-     </>
-  );
+ return (
+    <div className="App">
+     <SignInForm/>
+    </div>
+ );
 }
 
 export default App;

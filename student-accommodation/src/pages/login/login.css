@@ -1,7 +1,6 @@
 .main {
     display: flex;
-    flex-direction: row;
-    gap: 100px;
+    justify-content: space-between;
 }
 
 .main .sign-in-form {
@@ -109,8 +108,8 @@
     height: 590.154px;
     transform: rotate(8.809deg);
     position: absolute;
-    right: -4.856px;
-    bottom: -3.278px;
+    right: 100px;
+    top: 47px;
     background-color: #A3C195;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
@@ -119,8 +118,8 @@
     width: 495px;
     height: 476px;
     position: absolute;
-    right: -5px;
-    bottom: 79px;
+    right: 100px;
+    top: 50px;
     background:  lightgray 50% / cover no-repeat;
      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }

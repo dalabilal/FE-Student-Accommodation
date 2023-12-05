@@ -43,23 +43,6 @@
     margin-top: 31px;
 }
 
-.main .sign-in-form input {
-    width: 300px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-}
-
-.main .sign-in-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-family: sans-serif;
-    font-size: 17px;
-    color: #666;
-    letter-spacing: 0.5px;
-}
-
 .main .sign-in-form .span-text {
     width: 400px;
     margin-top: 40px;

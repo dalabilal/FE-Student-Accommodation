@@ -1,6 +1,7 @@
 import React from 'react'
 import './login.css';
 import { Link } from 'react-router-dom';
+import Input from '../../component/input/input.component';
 const SignInForm = () => {
     return (
         <div className="main">
@@ -8,14 +9,12 @@ const SignInForm = () => {
                 <div className="title">
                     <span>Sign In</span>
                 </div>
-                <label className="name-label">
-                    Name:
-                </label>
-                <input type="text" />
-                <label className="password-label">
-                    <span>Password:</span>
-                </label>
-                <input type="password" />
+                <Input
+                label='name'
+                />
+                <Input
+                label='password'
+                />
                 <div className="forgot-password">
                     <span >
                         forgot password?

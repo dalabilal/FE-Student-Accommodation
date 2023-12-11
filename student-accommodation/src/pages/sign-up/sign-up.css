@@ -1,0 +1,111 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+
+.main .sign-up-form {
+    /* margin-top: 25px; */
+    margin-left: 150px;
+    width: 400px;
+    height: 600px;
+    padding: 35px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 30px;
+    border: 0.5px solid #A3C195;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.main .sign-up-form .forgot-password>span {
+    font-size: small;
+    font-family: sans-serif;
+    margin-left: 190px;
+    color: #a3c195;
+}
+
+.main .sign-up-form .title {
+    width: 300px;
+    height: 55px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    font-size: 33px;
+    font-weight: bold;
+    color: #A3C195;
+}
+
+.main .sign-up-form .span-text {
+    width: 400px;
+    margin-top: 40px;
+}
+
+.main .sign-up-form .span-text .condition {
+    color: #9d9a9a;
+    /* margin-top: 52px; */
+    margin-left: 53px;
+}
+
+.main .sign-up-form .span-text .sign-up>a {
+    color: #a3c195;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.main .sign-up-form .signIn-button {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    justify-content: center;
+    margin-right: 21px;
+
+}
+
+.main .sign-up-form button {
+    width: 35%;
+    align-self: center;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: #A3C195;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.main .sign-up-img {
+    width: 582.977px;
+    height: 590.154px;
+    transform: rotate(8.809deg);
+    position: absolute;
+    right: 100px;
+    top: 47px;
+    background-color: #A3C195;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.main .img-signin {
+    width: 495px;
+    height: 476px;
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    background: lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.main .sign-up>span>a {
+    color: #023E8A;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 8px;
+}

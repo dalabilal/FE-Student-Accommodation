@@ -8,7 +8,7 @@ const HomePage = () => {
     <div>
       home page
       <button onClick={()=> navigate('signin')}>SignIn</button>
-      <button onClick={()=> navigate('SignUp')}>SignUp</button>
+      <button onClick={()=> navigate('signup')}>SignUp</button>
     </div>
   )
 }

@@ -18,11 +18,11 @@ const SignUp = () => {
     const password = e.target.password.value.trim();
 
     if (email && password) {
-      const user = await signUpUser(firstname, lastname, phoneNumber, email, password);
+      const user = await signUpUser(firstname, lastname, email , password, phoneNumber);
 
       // If Successful login, go to view page
       if (user) {
-        navigate('/view', { replace: true });
+        navigate('/', { replace: true });
       } else {
         alert("Email or Password are not correct! Please try again.");
       }
@@ -31,8 +31,8 @@ const SignUp = () => {
 
   return (
     <div className="main">
-      <form className="sign-up-form">
-        <div className="title" onSubmit={handelSubmit}>
+      <form className="sign-up-form" onSubmit={handelSubmit}>
+        <div className="title" >
           <span>Sign Up</span>
         </div>
         <Input

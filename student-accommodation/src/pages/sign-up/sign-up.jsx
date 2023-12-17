@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Input from '../../component/input/input.component'
 import './sign-up.css'
+import { useNavigate } from 'react-router-dom';
 
   
 const SignUp = () => {
@@ -11,6 +12,7 @@ const SignUp = () => {
   const [password , setPassword] = useState();
   const [phoneNumber , setPhoneNumber] = useState();
   const [show , setShow] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +49,7 @@ const SignUp = () => {
     } catch (error) {
       console.error('Error:', error);
     }
+    navigate('/');
   };
 
   return (

@@ -10,10 +10,18 @@ const SignUp = () => {
   const [email , setEmail] = useState();
   const [password , setPassword] = useState();
   const [phoneNumber , setPhoneNumber] = useState();
+  const [show , setShow] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Example: At least 8 characters, 1 letter, and 1 number
+
+    if (passwordRegex.test(password)) {
+      // Password doesn't meet criteria, handle the scenario (e.g., show an error message)
+      alert('Password does not meet the required criteria');
+      return;
+    }
     try {
       const response = await fetch('http://localhost:3004/signup/', {
         method: 'POST',
@@ -80,14 +88,19 @@ const SignUp = () => {
         <Input
         label='password'
         required
-        // Type='text'
+        type={
+          show ? "text" : "password"
+      }
         onChange={(e) => setPassword(e.target.value)}
         />
         <Input
         label='confirm password'
         required
-        // Type='text'
+        type={
+          show ? "text" : "password"
+      }
         />
+        <span style={{ color: '#A3C195' }} onClick={()=>setShow(!show)}>show password?  </span>
         <div className="signIn-button">
           <button>Sign Up</button>
         </div>

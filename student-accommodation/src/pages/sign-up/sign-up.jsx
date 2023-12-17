@@ -5,33 +5,46 @@ import { signUpUser } from '../../service/user.sevice';
 import { useNavigate } from 'react-router';
   
 const SignUp = () => {
-  const navigate = useNavigate();
+
   const [firstname , setFirstname] = useState();
   const [lastname , setLastname] = useState();
   const [email , setEmail] = useState();
   const [password , setPassword] = useState();
   const [phoneNumber , setPhoneNumber] = useState();
 
-  const handelSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = e.target.email.value.trim();
-    const password = e.target.password.value.trim();
 
-    if (email && password) {
-      const user = await signUpUser(firstname, lastname, email , password, phoneNumber);
+    try {
+      const response = await fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          email,
+          password,
+          phoneNumber,
+        }),
+      });
 
-      // If Successful login, go to view page
-      if (user) {
-        navigate('/', { replace: true });
+      if (response.status === 201) {
+        // Successful signup, handle as needed (e.g., redirect)
+        console.log('User signed up successfully!');
       } else {
-        alert("Email or Password are not correct! Please try again.");
+        // Handle error scenario (e.g., display error message)
+        console.error('Failed to sign up');
       }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
   return (
     <div className="main">
-      <form className="sign-up-form" onSubmit={handelSubmit}>
+      <form className="sign-up-form" onSubmit={handleSubmit}>
         <div className="title" >
           <span>Sign Up</span>
         </div>

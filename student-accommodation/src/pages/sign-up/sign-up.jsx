@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import Input from '../../component/input/input.component'
 import './sign-up.css'
-import { signUpUser } from '../../service/user.sevice';
-import { useNavigate } from 'react-router';
+
   
 const SignUp = () => {
 
@@ -16,7 +15,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/signup', {
+      const response = await fetch('http://localhost:3004/signup/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +50,7 @@ const SignUp = () => {
         <Input
         label='first name'
         required
-        Type='textArea'
+        // Type='textArea'
         Radius={15}
         Height={30}
         Width={160}
@@ -60,7 +59,7 @@ const SignUp = () => {
         <Input
         label='last name'
         required
-        Type='textArea'
+        // Type='textArea'
         Radius={15}
         Height={30}
         Width={160}
@@ -69,25 +68,25 @@ const SignUp = () => {
         <Input
         label='email'
         required
-        Type='text'
+        // Type='text'
         onChange={(e) => setEmail(e.target.value)}
         />
         <Input
         label='phone number'
         required
-        Type='number'
+        // Type='number'
         onChange={(e) => setPhoneNumber(e.target.value)}
         />
         <Input
         label='password'
         required
-        Type='text'
+        // Type='text'
         onChange={(e) => setPassword(e.target.value)}
         />
         <Input
         label='confirm password'
         required
-        Type='text'
+        // Type='text'
         />
         <div className="signIn-button">
           <button>Sign Up</button>

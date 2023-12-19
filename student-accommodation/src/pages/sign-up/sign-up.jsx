@@ -11,6 +11,7 @@ const SignUp = () => {
   const [email , setEmail] = useState();
   const [password , setPassword] = useState();
   const [phoneNumber , setPhoneNumber] = useState();
+  const [role , setRole] = useState();
   const [show , setShow] = useState(false);
   const navigate = useNavigate();
 
@@ -36,6 +37,7 @@ const SignUp = () => {
           email,
           password,
           phoneNumber,
+          role
         }),
       });
 
@@ -88,6 +90,13 @@ const SignUp = () => {
         // Type='number'
         onChange={(e) => setPhoneNumber(e.target.value)}
         />
+         <select value={role} onChange={(e) => setRole(e.target.value)}>
+          <option value="" disabled>
+            Role
+          </option>
+          <option value="owner">Owner</option>
+          <option value="student">Student</option>
+        </select>
         <Input
         label='password'
         required

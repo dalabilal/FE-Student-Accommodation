@@ -19,10 +19,4 @@ const Card = ({ title, content, imageUrl }) => {
   );
 };
 
-Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string,
-};
-
 export default Card;

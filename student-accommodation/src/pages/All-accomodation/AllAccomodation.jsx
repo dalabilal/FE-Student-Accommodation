@@ -9,10 +9,7 @@ const AllAccomodation = () => {
     <Card
       title="Hebron Stay"
       content="it is near to ppu....."
-      imageUrl="https://example.com/image1.jpghttps:
-      //www.archdaily.com/982258/yellow-foot-residential
-      -building-oa-lab/6286ac7103d0a70165410bf1-yellow-foot
-      -residential-building-oa-lab-photo"
+      imageUrl="https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"
     />
     </div>
 

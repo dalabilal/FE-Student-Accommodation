@@ -1,19 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Heart,MapPinLine,Phone,DotsThreeOutlineVertical} from "@phosphor-icons/react";
-
+import React from "react";
+import {
+  Heart,
+  MapPinLine,
+  Phone,
+  DotsThreeOutlineVertical,
+} from "@phosphor-icons/react";
+import "./card.css";
 
 const Card = ({ title, content, imageUrl }) => {
   return (
     <div className="card">
+      <h2 className="card-title">{title}</h2>
       {imageUrl && <img src={imageUrl} alt={title} className="card-image" />}
       <div className="card-content">
-        <h2 className="card-title">{title}</h2>
         <p className="card-text">{content}</p>
-        <Heart color="#AE2983" weight="fill" size={32} />
-        <MapPinLine size={32} />
-        <Phone size={32} />
-        <DotsThreeOutlineVertical size={32} />
+        <ul className="card-details">
+          <Heart id="heart" size={25} />
+          <MapPinLine id="MapPinLine" size={25} />
+          <Phone id="Phone" size={25} />
+          <DotsThreeOutlineVertical id="DotsThreeOutlineVertical" size={25} />
+        </ul>
       </div>
     </div>
   );

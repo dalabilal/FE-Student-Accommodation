@@ -1,0 +1,52 @@
+.card {
+    width: 248px;
+    height: 289px;
+    flex-shrink: 0;
+    border-radius: 17px;
+    border: 0.5px solid rgb(189, 189, 189);
+    background: #FFFEFE;
+    box-shadow: 0px 4px 4px 0px #E5F6DD;
+    margin: 20px;
+    align-items: center;
+
+
+}
+
+#heart {
+    margin-left: 0;
+    margin-right: 10px;
+    color: #BFB9B9;
+}
+
+#MapPinLine {
+    margin-right: 10px;
+    color: #BFB9B9;
+}
+
+#Phone {
+    margin-right: 50px;
+    color: #BFB9B9;
+}
+
+#DotsThreeOutlineVertical {
+    color: #BFB9B9;
+}
+
+.card-image {
+    border-radius: 17px;
+    display: block;
+    width: 190px;
+    height: 120px;
+    margin: 20px;
+    align-items: center;
+}
+
+.card-title {
+    text-align: center;
+    color: #86A279;
+}
+
+.card-text {
+    text-align: center;
+    color: #A3C195D4;
+}

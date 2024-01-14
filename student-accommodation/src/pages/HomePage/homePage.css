@@ -1,0 +1,33 @@
+.backGround {
+    background-image: url("D:\FE-security-graduation-project-1\images\homepage.PNG");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    /* margin-bottom: 70px; */
+}
+
+
+.aboutUScontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh; 
+  }
+  
+  .aboutUs {
+    color: #A3C195; /* Adjust text color */
+    font-family: cursive;
+    font-size: 2rem; /* Adjust font size */
+    margin-bottom: 20px; /* Adjust spacing */
+  }
+  
+  .aboutUsParagraph {
+    color: #7C7676;
+    font-family: cursive;
+    width: 80%; /* Adjust width based on your design */
+  }
+
+  

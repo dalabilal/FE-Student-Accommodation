@@ -1,52 +1,68 @@
 .card {
-    width: 248px;
-    height: 289px;
-    flex-shrink: 0;
-    border-radius: 17px;
-    border: 0.5px solid rgb(189, 189, 189);
-    background: #FFFEFE;
+
+    max-width: 280px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card:hover {
     box-shadow: 0px 4px 4px 0px #E5F6DD;
-    margin: 20px;
-    align-items: center;
-
-
-}
-
-#heart {
-    margin-left: 0;
-    margin-right: 10px;
-    color: #BFB9B9;
-}
-
-#MapPinLine {
-    margin-right: 10px;
-    color: #BFB9B9;
-}
-
-#Phone {
-    margin-right: 50px;
-    color: #BFB9B9;
-}
-
-#DotsThreeOutlineVertical {
-    color: #BFB9B9;
-}
-
-.card-image {
-    border-radius: 17px;
-    display: block;
-    width: 190px;
-    height: 120px;
-    margin: 20px;
-    align-items: center;
 }
 
 .card-title {
-    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
     color: #86A279;
 }
 
+.card-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.card-content {
+    color: #86A279;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
 .card-text {
-    text-align: center;
-    color: #A3C195D4;
+    margin-bottom: 10px;
+}
+
+.card-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.card-details li {
+    margin-right: 10px;
+}
+
+#DotsThreeOutlineVertical{
+    margin-left: auto;
+    fill: #BFB9B9;
+}
+
+#heartUnFill,
+#MapPinLine,
+#Phone{
+    fill: #BFB9B9;
+    margin: 5px;
+}
+
+
+@media (max-width: 600px) {
+    .card {
+        max-width: 100%;
+    }
 }

@@ -5,7 +5,7 @@ import { HouseLine, UserCircle } from "@phosphor-icons/react";
 const NavBar = () => {
   return (
     <div className="container">
-      <HouseLine id="houseLine" size={32} />
+      <HouseLine id="houseLine" size={32} weight="bold" />
       <h1 id="sh housing">Hebron Student Housing</h1>
       <ul>
         <li id="allAccommodations">

@@ -1,16 +1,19 @@
-
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
 
 .container {
+    /* top: 0;
+  left: 0; */
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background-color: #D8FBC6;
     color: #fff;
+    position: fixed;
 }
 
 #houseLine {
@@ -20,12 +23,13 @@ body {
 .container h1 {
     margin: 0;
     font-size: 24px;
-    font-family: 'Roboto', sans-serif;
+    font-family:'Times New Roman', Times, serif;
     color: #A3C195;
 }
 
 ul {
     list-style: none;
+    margin-right: 10px;
     margin: 0;
     padding: 0;
     display: flex;

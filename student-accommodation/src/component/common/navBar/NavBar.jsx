@@ -2,14 +2,13 @@ import "./navBar.css";
 import React from "react";
 import { HouseLine, UserCircle } from "@phosphor-icons/react";
 
-
 const NavBar = () => {
   return (
     <div className="container">
       <HouseLine id="houseLine" size={32} />
       <h1 id="sh housing">Hebron Student Housing</h1>
       <ul>
-        <li id='allAccommodations'>
+        <li id="allAccommodations">
           <a href="allAccommodations">All Accommodations</a>
         </li>
         <li id="Favorite">

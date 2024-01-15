@@ -1,16 +1,30 @@
-import React from 'react'
-import './homePage.css'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import "./homePage.css";
+import { useNavigate } from "react-router-dom";
+import {FacebookLogo} from "@phosphor-icons/react"
 
 const HomePage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      home page
-      <button onClick={()=> navigate('signin')}>SignIn</button>
-      <button onClick={()=> navigate('signup')}>SignUp</button>
-    </div>
-  )
-}
+      <div className="backGround"></div>
+      <div className="aboutUScontainer">
+        <h1 className="aboutUs">About Us</h1>
+        <p className="aboutUsParagraph">
+          Our application gathers all the available university accommodations in
+          Hebron, enabling you to easily and quickly find the most suitable
+          housing close to your university. We provide accurate and reliable
+          information about these accommodations, along with various details
+          that matter to you, complemented by photos for each residence.
+        </p>
+        <din className="Line"></din>
+        <FacebookLogo id="FacebookLogo" size={24} weight="light" />
+      </div>
 
-export default HomePage
+      <button onClick={() => navigate("signin")}>SignIn</button>
+      <button onClick={() => navigate("signup")}>SignUp</button>
+    </div>
+  );
+};
+
+export default HomePage;

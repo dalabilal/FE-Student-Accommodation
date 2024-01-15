@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    /* top: 0;
+  left: 0; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #D8FBC6;
+    color: #fff;
+    position: fixed;
+}
+
+#houseLine {
+    color: #A3C195
+}
+
+.container h1 {
+    margin: 0;
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #A3C195;
+}
+
+ul {
+    list-style: none;
+    margin-right: 10px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+}
+
+ul li {
+    margin-right: 20px;
+}
+
+ul li:last-child {
+    margin-right: 20px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #A3C195;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+ul li a:hover {
+    color: #fff;
+}
+
+
+#UserCircle {
+    color: #A3C195;
+}

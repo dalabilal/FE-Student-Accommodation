@@ -23,7 +23,7 @@ body {
 .container h1 {
     margin: 0;
     font-size: 24px;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     color: #A3C195;
 }
 
@@ -42,7 +42,7 @@ ul li {
 }
 
 ul li:last-child {
-    margin-right: 0;
+    margin-right: 20px;
 }
 
 ul li a {

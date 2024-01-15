@@ -1,6 +1,7 @@
 import React from "react";
 import "./homePage.css";
 import { useNavigate } from "react-router-dom";
+import {FacebookLogo} from "@phosphor-icons/react"
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const HomePage = () => {
           information about these accommodations, along with various details
           that matter to you, complemented by photos for each residence.
         </p>
+        <din className="Line"></din>
+        <FacebookLogo id="FacebookLogo" size={24} weight="light" />
       </div>
 
       <button onClick={() => navigate("signin")}>SignIn</button>

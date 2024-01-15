@@ -1,5 +1,5 @@
 .card {
-
+    margin-top: 80px;
     max-width: 280px;
     margin: 20px;
     padding: 20px;
@@ -14,6 +14,7 @@
 }
 
 .card-title {
+    font-family: 'Times New Roman', Times, serif;
     font-size: 24px;
     margin-bottom: 10px;
     color: #86A279;
@@ -48,14 +49,14 @@
     margin-right: 10px;
 }
 
-#DotsThreeOutlineVertical{
+#DotsThreeOutlineVertical {
     margin-left: auto;
     fill: #BFB9B9;
 }
 
 #heartUnFill,
 #MapPinLine,
-#Phone{
+#Phone {
     fill: #BFB9B9;
     margin: 5px;
 }

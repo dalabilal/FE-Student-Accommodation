@@ -1,6 +1,7 @@
 import "./navBar.css";
 import React, { useState } from "react";
 import { HouseLine, UserCircle } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isListVisible, setListVisible] = useState(false);
@@ -16,13 +17,13 @@ const NavBar = () => {
         <h1 id="sh housing">Hebron Student Housing</h1>
         <ul>
           <li id="allAccommodations">
-            <a href="allAccommodations">All Accommodations</a>
+            <Link to="allAccommodations">All Accommodations</Link>
           </li>
           <li id="Favorite">
-            <a href="Favorite">Favorite</a>
+          <Link to="Favorite">Favorite</Link>
           </li>
           <li id="Home">
-            <a href="Home">Home</a>
+          <Link to="/">Home</Link>
           </li>
           <li id="UserCircle">
             <UserCircle size={32} onClick={toggleList} />

@@ -17,7 +17,7 @@ const NavBar = () => {
         <h1 id="sh housing">Hebron Student Housing</h1>
         <ul>
           <li id="allAccommodations">
-            <Link to="allAccommodations">All Accommodations</Link>
+            <Link to="all">All Accommodations</Link>
           </li>
           <li id="Favorite">
           <Link to="Favorite">Favorite</Link>

@@ -4,20 +4,21 @@ body {
 }
 
 .container {
-    /* top: 0;
-  left: 0; */
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* Center vertically */
     padding: 10px;
     background-color: #D8FBC6;
     color: #fff;
+    text-align: left;
     position: fixed;
 }
 
 #houseLine {
-    color: #A3C195
+    color: #A3C195;
+    margin-right: 10px;
 }
 
 .container h1 {
@@ -25,16 +26,19 @@ body {
     font-size: 24px;
     font-family: 'Times New Roman', Times, serif;
     color: #A3C195;
+    text-align: left;
 }
 
 ul {
     list-style: none;
-    margin-right: 10px;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
-
+    justify-content: center;
+    /* Center horizontally */
+    flex-grow: 1;
+    /* Grow to take remaining space */
 }
 
 ul li {
@@ -42,7 +46,8 @@ ul li {
 }
 
 ul li:last-child {
-    margin-right: 20px;
+    margin-right: 0;
+    /* Remove right margin for the last item */
 }
 
 ul li a {
@@ -56,7 +61,11 @@ ul li a:hover {
     color: #fff;
 }
 
-
 #UserCircle {
     color: #A3C195;
+    margin-right: 20px;
+}
+
+#UserCircle:hover {
+    color: #e5e7e4;
 }

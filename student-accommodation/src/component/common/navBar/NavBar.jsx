@@ -14,21 +14,26 @@ const NavBar = () => {
     <>
       <div className="container">
         <HouseLine id="houseLine" size={32} weight="bold" />
-        <h1 id="sh housing">Hebron Student Housing</h1>
+        <h1 id="HShousing">Hebron Student Housing</h1>
         <ul>
           <li id="allAccommodations">
-            <Link to="all">All Accommodations</Link>
+            <Link to="all">Accommodations</Link>
           </li>
           <li id="Favorite">
-          <Link to="Favorite">Favorite</Link>
+            <Link to="Favorite">Favorite</Link>
           </li>
           <li id="Home">
-          <Link to="/">Home</Link>
+            <Link to="/">Home</Link>
           </li>
-          <li id="UserCircle">
-            <UserCircle size={32} onClick={toggleList} />
+          <li id="Home">
+            <Link to="users">Users</Link>
           </li>
         </ul>
+
+        <div id="UserCircle">
+          <UserCircle size={32} onClick={toggleList} />
+        </div>
+
       </div>
 
       <ul className={`nav-list ${isListVisible ? "visible" : ""}`}>

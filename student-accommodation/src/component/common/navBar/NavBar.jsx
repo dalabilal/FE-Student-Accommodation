@@ -11,7 +11,7 @@ const NavBar = () => {
   };
 
   return (
-    <>
+  window.location.pathname !== ('/signup' || '/signin')  &&  <>
       <div className="container">
         <HouseLine id="houseLine" size={32} weight="bold" />
         <h1 id="HShousing">Hebron Student Housing</h1>

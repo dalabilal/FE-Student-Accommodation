@@ -24,11 +24,11 @@ const Card = ({ title, content, imageUrl }) => {
           <Heart
             id="heart"
             size={25}
-            weight={isHeartClicked ? "heart-icon-clicked" : "fill"}
+            weight={isHeartClicked ? "fill" : "bold"}
             onClick={handleHeartClick}
           />
-          <MapPinLine id="MapPinLine" size={25} />
-          <Phone id="Phone" size={25} />
+          <MapPinLine id="MapPinLine" size={25}  weight='bold'/>
+          <Phone id="Phone" size={25} weight='bold'/>
           <DotsThreeOutlineVertical id="DotsThreeOutlineVertical" size={25} />
         </ul>
       </div>

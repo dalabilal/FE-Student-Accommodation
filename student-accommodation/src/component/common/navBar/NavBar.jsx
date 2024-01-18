@@ -16,6 +16,9 @@ const NavBar = () => {
         <HouseLine id="houseLine" size={32} weight="bold" />
         <h1 id="HShousing">Hebron Student Housing</h1>
         <ul>
+          <li id="Home">
+            <Link to="/">Home</Link>
+          </li>
           <li id="allAccommodations">
             <Link to="all">Accommodations</Link>
           </li>
@@ -23,13 +26,9 @@ const NavBar = () => {
             <Link to="Favorite">Favorite</Link>
           </li>
           <li id="Home">
-            <Link to="/">Home</Link>
-          </li>
-          <li id="Home">
-            <Link to="users">Users</Link>
+            <Link to="allusers">Users</Link>
           </li>
         </ul>
-
         <div id="UserCircle">
           <UserCircle size={32} onClick={toggleList} />
         </div>

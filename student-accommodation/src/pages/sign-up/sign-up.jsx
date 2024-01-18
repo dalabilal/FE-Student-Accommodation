@@ -3,6 +3,7 @@ import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext';
 import './sign-up.css';
 import { Link, useNavigate } from 'react-router-dom';
+import StrongPassword from './passwordStrength';
 
 const SignUp = () => {
   const [firstname, setFirstname] = useState();
@@ -11,19 +12,13 @@ const SignUp = () => {
   const [password, setPassword] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [role, setRole] = useState();
-  const [show, setShow] = useState(false);
+
   const navigate = useNavigate();
   const { setUserRole } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-    if (passwordRegex.test(password)) {
-      alert('Password does not meet the required criteria');
-      return;
-    }
     try {
       const response = await fetch('http://localhost:3005/signup/', {
         method: 'POST',
@@ -102,7 +97,7 @@ const SignUp = () => {
             <span className="radio-label">Student</span>
           </label>
         </div>
-        <Input
+        {/* <Input
           label="password"
           required
           type={show ? 'text' : 'password'}
@@ -115,11 +110,12 @@ const SignUp = () => {
         />
         <span style={{ color: '#A3C195' }} onClick={() => setShow(!show)}>
           show password?{' '}
-        </span>
+        </span> */}
+        <StrongPassword/>
         <div className="span-text1">
         <span>already have an account, </span>
         <span className='signin'>
-          <Link to={'/signin'}>Sign in!</Link>
+          <Link to={'/signup'}>Sign in!</Link>
         </span>
         </div>
         <div className="signIn-button">

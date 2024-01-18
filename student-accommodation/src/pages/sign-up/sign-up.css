@@ -7,10 +7,9 @@
 
 
 .main .sign-up-form {
-    /* margin-top: 25px; */
     margin-left: 150px;
     width: 400px;
-    height: 600px;
+    height: 720px;
     padding: 35px;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -64,11 +63,23 @@
     padding: 15px;
     display: flex;
     align-items: center;
-    margin-top: 3px;
+    margin-top: 60px;
     justify-content: center;
     margin-right: 21px;
 
 }
+
+.main .sign-up-form .span-text1 {
+    width: 400px;
+    margin-top: 20px;
+}
+.main .sign-up-form .span-text1 .signin>a {
+    color: #a3c195;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
 
 .main .sign-up-form button {
     width: 35%;
@@ -109,3 +120,46 @@
     font-weight: bold;
     margin-left: 8px;
 }
+
+.main .sign-up-form .role-radio input[type='radio'] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-left: 45px;
+    margin-right: 7px;
+    border: 1px solid #A3C195;
+    border-radius: 50%;
+    outline: none;
+    box-shadow: 0 0 5px #A3C195;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .main .sign-up-form .role-radio input[type='radio']:before {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 60%;
+    margin: 20% auto;
+    border-radius: 50%;
+  }
+  .main .sign-up-form .role-radio label{
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    font-weight: 600;
+    color: #848484;
+  }
+
+  .main .sign-up-form .role-radio input[type='radio']:checked:before {
+    background: #A3C195;
+  }
+
+  .main .sign-up-form .role-radio .role {
+    display: block;
+    margin-bottom: 9px;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    color: #666;
+  }

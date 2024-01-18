@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../component/input/input.component';
-import './login.css'
+import Input from '../../component/common/input/input.component';
+import { useUser } from '../../service/UserContext'
+import './login.css';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setUserRole } = useUser(); // Get setUserRole from the context
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +24,10 @@ const SignInForm = () => {
       });
 
       if (response.ok) {
-        // Login successful - Redirect or perform action
+        // Login successful - Set user role and redirect
+        const userData = await response.json(); // Assuming the server sends user data including the role
+        setUserRole(userData.role); // Set the user role in the context
+
         console.log('Login successful!');
         // Perform actions after successful login, e.g., redirect to a different page
       } else {
@@ -65,7 +70,7 @@ const SignInForm = () => {
           </div>
         </form>
         <div className="span-text">
-          <span className="condition">Don't have an account?</span>
+          <span className="condition">You Don't have an account yet?</span>
           <span className="sign-up">
             <Link to={'/signup'}>Sign up</Link>
           </span>

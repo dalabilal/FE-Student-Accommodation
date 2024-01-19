@@ -3,7 +3,6 @@ import PasswordStrengthMeter from './PasswordStrengthMeter';
 import Input from '../../component/common/input/input.component';
 import { Eye } from '@phosphor-icons/react/dist/ssr';
 import { EyeClosed } from '@phosphor-icons/react';
-import zxcvbn from 'zxcvbn';
 
 const StrongPassword = () => {
   const [password, setPassword] = useState('');

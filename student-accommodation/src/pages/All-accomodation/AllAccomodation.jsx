@@ -20,7 +20,7 @@ const SearchBar = () => {
       </div>
       {toggle && (
         <div className="unis">
-          <ul>
+          <ul className="unisList">
             <li onClick={handleTheClick}>Palestine Polyticnech University</li>
             <li onClick={handleTheClick}>Hebron University</li>
             <li onClick={handleTheClick}>Any University</li>

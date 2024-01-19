@@ -41,26 +41,36 @@
     cursor: pointer;
 }
 
-.unis ul {
+
+
+.unis .unisList {
+    cursor: pointer;
+    list-style-type: none;
     border-left: 1px solid #E1FBD5;
     border-right: 1px solid #E1FBD5;
     border-bottom: 1px solid #E1FBD5;
     box-shadow: 0px 4px 4px 0px #E1FBD5;
     border-radius: 0px 0px 12px 12px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    /* Add transition for background-color and box-shadow */
     display: block;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
+    /* Add this line to set padding to zero */
     z-index: 5;
-
+    align-items: flex-start;
 }
 
-.unis ul li {
+
+.unis .unisList li {
+    left: 0;
     margin: 0px;
     padding: 15px;
     color: rgb(71, 70, 70);
+    list-style: none;
+    margin-left: 0;
+
 }
 
-.unis ul li:hover {
+.unis .unisList li:hover {
     background-color: #E1FBD5;
 }

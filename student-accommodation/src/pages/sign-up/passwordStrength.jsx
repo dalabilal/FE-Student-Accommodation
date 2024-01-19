@@ -4,12 +4,10 @@ import Input from '../../component/common/input/input.component';
 import { Eye } from '@phosphor-icons/react/dist/ssr';
 import { EyeClosed } from '@phosphor-icons/react';
 
-const StrongPassword = () => {
-  const [password, setPassword] = useState('');
-  const [password1, setPassword1] = useState('');
+const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setPasswordsMatch }) => {
+  const [password, setPasswordLocal] = useState('');
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
-  const [passwordsMatch, setPasswordsMatch] = useState(true);
 
   const meetsPasswordCriteria = () => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
@@ -40,12 +38,11 @@ const StrongPassword = () => {
     return '#FFAD00'; // Orange for medium passwords
   };
 
-  const handlePassword1Change = (e) => {
-    const confirmPassword = e.target.value;
-    setPassword1(confirmPassword);
-
-    // Check if passwords match
-    setPasswordsMatch(confirmPassword === password);
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPasswordLocal(newPassword);
+    setPassword(newPassword);
+    setConfirmPassword('');
   };
 
   return (
@@ -55,8 +52,9 @@ const StrongPassword = () => {
           <Input
             className="form-control shadow-none"
             label="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             type={show ? 'text' : 'password'}
+            required
           />
           <span style={{ color: '#A3C195' }} onClick={() => setShow(!show)}>
             {show ? <Eye size={30} color="black" /> : <EyeClosed size={30} color="black" />}
@@ -72,13 +70,17 @@ const StrongPassword = () => {
           <Input
             className={`form-control shadow-none ${!passwordsMatch ? 'password-mismatch' : ''}`}
             label="Confirm Password"
-            onChange={handlePassword1Change}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value)
+              setPasswordsMatch(true)
+            }}
             type={show1 ? 'text' : 'password'}
+            required
           />
           <span style={{ color: '#A3C195' }} onClick={() => setShow1(!show1)}>
             {show1 ? <Eye size={30} color="black" /> : <EyeClosed size={30} color="black" />}
           </span>
-          {!passwordsMatch && <p style={{ color: 'red' }}>Passwords do not match!</p>}
+          {/* {!passwordsMatch && <p style={{ color: 'red' }}>Passwords do not match!</p>} */}
         </div>
       </div>
     </div>

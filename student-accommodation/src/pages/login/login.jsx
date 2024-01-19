@@ -37,7 +37,6 @@ const SignInForm = () => {
     } catch (error) {
       console.error('Error:', error);
     }
-    navigate('/');
   };
 
   return (

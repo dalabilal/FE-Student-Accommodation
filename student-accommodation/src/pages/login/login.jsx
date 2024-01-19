@@ -3,13 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext'
 import './login.css';
+import useNotification from '../../hook/notification.hook';
+import { Eye } from '@phosphor-icons/react/dist/ssr';
+import { EyeClosed } from '@phosphor-icons/react';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const { setUserRole } = useUser(); // Get setUserRole from the context
+  const { setNotification } = useNotification();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,15 +29,13 @@ const SignInForm = () => {
       });
 
       if (response.ok) {
-        // Login successful - Set user role and redirect
-        const userData = await response.json(); // Assuming the server sends user data including the role
-        setUserRole(userData.role); // Set the user role in the context
-
-        console.log('Login successful!');
-        // Perform actions after successful login, e.g., redirect to a different page
+        const userData = await response.json(); 
+        setUserRole(userData.role);
+        setNotification({ message: 'Login successful!', status: 'success' })
+        navigate('/')
       } else {
-        // Login failed - Show error message
         setError('Invalid email or password');
+        setNotification({ message: 'Invalid email or password, Try again', status: 'error' })
       }
     } catch (error) {
       console.error('Error:', error);
@@ -55,12 +58,15 @@ const SignInForm = () => {
           />
           <Input
             label='Password'
-            type='password'
             value={password}
+            placeholder="************"
             onChange={(e) => setPassword(e.target.value)}
+            type={show ? 'text' : 'password'}
             required
           />
-          {error && <p className="error">{error}</p>}
+          <span style={{ color: '#A3C195' }} onClick={() => setShow(!show)}>
+            {show ? <Eye size={30} color="black" /> : <EyeClosed size={30} color="black" />}
+          </span>
           <div className="forgot-password">
             <span>forgot password?</span>
           </div>

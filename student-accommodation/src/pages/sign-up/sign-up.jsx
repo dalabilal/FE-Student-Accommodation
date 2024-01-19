@@ -4,6 +4,7 @@ import { useUser } from '../../service/UserContext';
 import './sign-up.css';
 import { Link } from 'react-router-dom';
 import StrongPassword from './passwordStrength';
+import useNotification from '../../hook/notification.hook';
 
 const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -15,6 +16,7 @@ const SignUp = () => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
+  const { setNotification } = useNotification();
 
   const { setUserRole } = useUser();
 
@@ -47,6 +49,7 @@ const SignUp = () => {
 
       if (response.status === 201) {
         console.log('User signed up successfully!');
+        setNotification({ message: 'User is created successfully', status: 'success' })
         setUserRole(role);
         console.log('role', role);
       } else {
@@ -54,10 +57,13 @@ const SignUp = () => {
         if (responseData.error) {
           if (responseData.error.message === 'Email already exists') {
             setEmailExists(true);
+            setNotification({ message: 'User is not created', status: 'error' })
           } else if (responseData.error.message === 'Passwords do not match') {
+            setNotification({ message: 'User is not created', status: 'error' })
             setPasswordsMatch(false);
           } else {
             console.error('Failed to sign up:', responseData.error.message);
+            setNotification({ message: 'User is not created', status: 'error' })
           }
         }
       }

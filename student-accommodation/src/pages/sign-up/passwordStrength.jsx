@@ -52,6 +52,7 @@ const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setP
           <Input
             className="form-control shadow-none"
             label="Password"
+            placeholder="***************"
             onChange={handlePasswordChange}
             type={show ? 'text' : 'password'}
             required
@@ -70,6 +71,7 @@ const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setP
           <Input
             className={`form-control shadow-none ${!passwordsMatch ? 'password-mismatch' : ''}`}
             label="Confirm Password"
+            placeholder="***************"
             onChange={(e) => {
               setConfirmPassword(e.target.value)
               setPasswordsMatch(true)

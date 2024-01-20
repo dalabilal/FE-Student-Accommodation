@@ -1,4 +1,76 @@
 .display-cards {
-    padding-left: 100px;
-    padding-right: 100px;
+    margin-top: 40px;
+    padding-left: 10px;
+}
+
+.searchContainer {
+    max-width: 280px;
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 80px;
+    align-items: center;
+}
+
+.searchContainer .input-wrapper {
+    background-color: rgb(250, 250, 250);
+    height: 2.5rem;
+    padding: 0 15px;
+    border-radius: 8px;
+    border: 1px solid #E1FBD5;
+    box-shadow: 0px 4px 4px 0px #E1FBD5;
+    display: flex;
+    align-items: center;
+    /* Use align-items instead of align-content */
+
+    /* Center the CaretCircleDown vertically */
+    justify-content: space-between;
+}
+
+.input {
+    border: none;
+    outline: none;
+    /* Remove the default input outline */
+    background-color: transparent;
+    height: 100%;
+    width: 80%;
+    /* Adjust the width as needed */
+}
+
+#CaretCircleDown {
+    color: rgb(114, 110, 110);
+    cursor: pointer;
+}
+
+
+
+.unis .unisList {
+    cursor: pointer;
+    list-style-type: none;
+    border-left: 1px solid #E1FBD5;
+    border-right: 1px solid #E1FBD5;
+    border-bottom: 1px solid #E1FBD5;
+    box-shadow: 0px 4px 4px 0px #E1FBD5;
+    border-radius: 0px 0px 12px 12px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    margin: 0;
+    padding: 0;
+    /* Add this line to set padding to zero */
+    z-index: 5;
+    align-items: flex-start;
+}
+
+
+.unis .unisList li {
+    left: 0;
+    margin: 0px;
+    padding: 15px;
+    color: rgb(71, 70, 70);
+    list-style: none;
+    margin-left: 0;
+
+}
+
+.unis .unisList li:hover {
+    background-color: #E1FBD5;
 }

@@ -5,6 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../../service/UserContext";
 
 const NavBar = () => {
+
+  const [Options, setOptions] = useState(false);
+  const [activeItem, setActiveItem] = useState(null);
+
   const [isListVisible, setListVisible] = useState(false);
   const { setUserRole, userRole } = useUser();
   const navigate = useNavigate();
@@ -28,32 +32,85 @@ const NavBar = () => {
     }
   };
 
-  const toggleList = () => {
-    setListVisible(!isListVisible);
+  const handleOptions = () => {
+    setOptions(false);
+  };
+
+  const handleItemClick = (itemName) => {
+    setActiveItem(itemName);
+    setOptions(false);
   };
 
   return (
-    <>
+    <div className="navBarWithList">
       <div className="container">
         <HouseLine id="houseLine" size={32} weight="bold" />
         <h1 id="HShousing">Hebron Student Housing</h1>
+
+        <ul className="vanBarOptions">
+          <li
+            className={activeItem === "Accommodations" ? "active" : ""}
+            onClick={() => handleItemClick("Accommodations")}
+          >
+
         <ul>
           <li id="Home">
             <Link to="/">Home</Link>
           </li>
           <li id="allAccommodations">
+
             <Link to="all">Accommodations</Link>
           </li>
-          <li id="Favorite">
+          <li
+            className={activeItem === "Favorite" ? "active" : ""}
+            onClick={() => handleItemClick("Favorite")}
+          >
             <Link to="Favorite">Favorite</Link>
           </li>
+
+          <li
+            className={activeItem === "Home" ? "active" : ""}
+            onClick={() => handleItemClick("Home")}
+          >
+            <Link to="/">Home</Link>
+          </li>
+          <li
+            className={activeItem === "Users" ? "active" : ""}
+            onClick={() => handleItemClick("Users")}
+          >
+
           <li id="Home">
+
             <Link to="allusers">Users</Link>
           </li>
         </ul>
         <div id="UserCircle">
-          <UserCircle size={32} onClick={toggleList} />
+          <UserCircle size={32} onClick={() => setOptions(!Options)} />
         </div>
+
+      </div>
+
+      {Options && (
+        <ul className="options">
+          <li onClick={handleOptions}>
+            <Link id="signin" to="signin">
+              Sign In
+            </Link>
+          </li>
+          <li onClick={handleOptions}>
+            <Link id="signup" to="signup">
+              Sign Up
+            </Link>
+          </li>
+          <li onClick={handleOptions}>
+            <Link id="LogOut" to="">
+              Log Out
+            </Link>
+          </li>
+        </ul>
+      )}
+    </div>
+
 
         {userRole ? (
             <button onClick={handleLogout}>Logout</button>

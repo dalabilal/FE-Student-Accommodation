@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext';
 import './sign-up.css';
@@ -47,7 +47,10 @@ const SignUp = () => {
         }),
       });
 
-      if (response.status === 201) {
+      if (response.ok) {
+        const userData = await response.json();
+        const userKey = `token_${userData.email}`;
+        localStorage.setItem(userKey, userData.token);
         console.log('User signed up successfully!');
         setNotification({ message: 'User is created successfully', status: 'success' })
         setUserRole(role);
@@ -71,6 +74,11 @@ const SignUp = () => {
       console.error('Error:', error);
     }
   };
+
+  
+  useEffect(() => {
+    setEmailExists(false); // Reset emailExists state when the email changes
+  }, [email]);
 
   return (
     <div className="main">

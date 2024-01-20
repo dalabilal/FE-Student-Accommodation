@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext'
@@ -18,7 +18,7 @@ const SignInForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:3005/signin/', {
         method: 'POST',
@@ -30,7 +30,10 @@ const SignInForm = () => {
 
       if (response.ok) {
         const userData = await response.json(); 
+        const userKey = `token_${userData.email}`;
+        localStorage.setItem(userKey, userData.token);
         setUserRole(userData.role);
+        localStorage.setItem('token', userData.token);
         setNotification({ message: 'Login successful!', status: 'success' })
         navigate('/')
       } else {
@@ -41,6 +44,11 @@ const SignInForm = () => {
       console.error('Error:', error);
     }
   };
+
+  
+  useEffect(() => {
+    setError(''); // Reset error state when the email or password changes
+  }, [email, password]);
 
   return (
     <div className="main">

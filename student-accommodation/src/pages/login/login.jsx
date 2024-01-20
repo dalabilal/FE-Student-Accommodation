@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../component/input/input.component';
-import './login.css'
+import Input from '../../component/common/input/input.component';
+import { useUser } from '../../service/UserContext'
+import './login.css';
+import useNotification from '../../hook/notification.hook';
+import { Eye } from '@phosphor-icons/react/dist/ssr';
+import { EyeClosed } from '@phosphor-icons/react';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const { setUserRole } = useUser(); // Get setUserRole from the context
+  const { setNotification } = useNotification();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('http://localhost:3005/signin/', {
         method: 'POST',
@@ -22,18 +29,26 @@ const SignInForm = () => {
       });
 
       if (response.ok) {
-        // Login successful - Redirect or perform action
-        console.log('Login successful!');
-        // Perform actions after successful login, e.g., redirect to a different page
+        const userData = await response.json(); 
+        const userKey = `token_${userData.email}`;
+        localStorage.setItem(userKey, userData.token);
+        setUserRole(userData.role);
+        localStorage.setItem('token', userData.token);
+        setNotification({ message: 'Login successful!', status: 'success' })
+        navigate('/')
       } else {
-        // Login failed - Show error message
         setError('Invalid email or password');
+        setNotification({ message: 'Invalid email or password, Try again', status: 'error' })
       }
     } catch (error) {
       console.error('Error:', error);
     }
-    navigate('/');
   };
+
+  
+  useEffect(() => {
+    setError(''); // Reset error state when the email or password changes
+  }, [email, password]);
 
   return (
     <div className="main">
@@ -51,12 +66,15 @@ const SignInForm = () => {
           />
           <Input
             label='Password'
-            type='password'
             value={password}
+            placeholder="************"
             onChange={(e) => setPassword(e.target.value)}
+            type={show ? 'text' : 'password'}
             required
           />
-          {error && <p className="error">{error}</p>}
+          <span style={{ color: '#A3C195' }} onClick={() => setShow(!show)}>
+            {show ? <Eye size={30} color="black" /> : <EyeClosed size={30} color="black" />}
+          </span>
           <div className="forgot-password">
             <span>forgot password?</span>
           </div>
@@ -65,7 +83,7 @@ const SignInForm = () => {
           </div>
         </form>
         <div className="span-text">
-          <span className="condition">Don't have an account?</span>
+          <span className="condition">You Don't have an account yet?</span>
           <span className="sign-up">
             <Link to={'/signup'}>Sign up</Link>
           </span>

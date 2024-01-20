@@ -1,15 +1,21 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { UserProvider } from './service/UserContext';
+
 import AllAccomodation from './pages/All-accomodation/AllAccomodation';
+import ProtectedUsers from './pages/protected/ProtectedUsers';
+import Notification from './notification/notification.component';
 import Favorite from './pages/Favorite/Favorite';
-import HomePage from './pages/HomePage/homePage';
-import SignInForm from './pages/login/login';
-import SignUp from './pages/sign-up/sign-up';
-import Users from './pages/AllUsers/Users';
 import NotFound from './pages/Not-found/NotFound';
+import HomePage from './pages/HomePage/homePage';
+import SignUp from './pages/sign-up/sign-up';
+import SignInForm from './pages/login/login';
+
 import NavBar from './component/common/navBar/NavBar';
+import Guard from './component/guard/guard';
 
 function App() {
  return (
+  <UserProvider>
     <BrowserRouter>
     <NavBar/>
       <Routes>
@@ -18,11 +24,12 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/all' element={<AllAccomodation/>}/>
         <Route path='/favorite' element={<Favorite/>}/>
-        <Route path='/allusers' element={<Users/>}/>
+        <Route path='/allusers' element={<Guard permittedRoles={['owner']}><ProtectedUsers /></Guard>} />
         <Route path='/*' element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
-
+    <Notification/>
+   </UserProvider>
  );
 }
 

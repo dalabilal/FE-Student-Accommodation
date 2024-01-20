@@ -1,30 +1,35 @@
-import { useState } from 'react'
-import Input from '../../component/input/input.component'
-import './sign-up.css'
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import Input from '../../component/common/input/input.component';
+import { useUser } from '../../service/UserContext';
+import './sign-up.css';
+import { Link } from 'react-router-dom';
+import StrongPassword from './passwordStrength';
+import useNotification from '../../hook/notification.hook';
 
-  
 const SignUp = () => {
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [emailExists, setEmailExists] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [password, setPassword] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
+  const { setNotification } = useNotification();
 
-  const [firstname , setFirstname] = useState();
-  const [lastname , setLastname] = useState();
-  const [email , setEmail] = useState();
-  const [password , setPassword] = useState();
-  const [phoneNumber , setPhoneNumber] = useState();
-  const [role , setRole] = useState();
-  const [show , setShow] = useState(false);
-  const navigate = useNavigate();
+  const { setUserRole } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Example: At least 8 characters, 1 letter, and 1 number
-
-    if (passwordRegex.test(password)) {
-      // Password doesn't meet criteria, handle the scenario (e.g., show an error message)
-      alert('Password does not meet the required criteria');
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false);
+      setEmailExists(false); // Reset emailExists state
       return;
     }
+
     try {
       const response = await fetch('http://localhost:3005/signup/', {
         method: 'POST',
@@ -36,94 +41,127 @@ const SignUp = () => {
           lastname,
           email,
           password,
+          confirmPassword,
           phoneNumber,
-          role
+          role,
         }),
       });
 
-      if (response.status === 201) {
-        // Successful signup, handle as needed (e.g., redirect)
+      if (response.ok) {
+        const userData = await response.json();
+        const userKey = `token_${userData.email}`;
+        localStorage.setItem(userKey, userData.token);
         console.log('User signed up successfully!');
+        setNotification({ message: 'User is created successfully', status: 'success' })
+        setUserRole(role);
+        console.log('role', role);
       } else {
-        // Handle error scenario (e.g., display error message)
-        console.error('Failed to sign up');
+        const responseData = await response.json();
+        if (responseData.error) {
+          if (responseData.error.message === 'Email already exists') {
+            setEmailExists(true);
+            setNotification({ message: 'User is not created', status: 'error' })
+          } else if (responseData.error.message === 'Passwords do not match') {
+            setNotification({ message: 'User is not created', status: 'error' })
+            setPasswordsMatch(false);
+          } else {
+            console.error('Failed to sign up:', responseData.error.message);
+            setNotification({ message: 'User is not created', status: 'error' })
+          }
+        }
       }
     } catch (error) {
       console.error('Error:', error);
     }
-    navigate('/');
   };
+
+  
+  useEffect(() => {
+    setEmailExists(false); // Reset emailExists state when the email changes
+  }, [email]);
 
   return (
     <div className="main">
       <form className="sign-up-form" onSubmit={handleSubmit}>
-        <div className="title" >
+        <div className="title">
           <span>Sign Up</span>
         </div>
         <Input
-        label='first name'
-        required
-        // Type='textArea'
-        Radius={15}
-        Height={30}
-        Width={160}
-        onChange={(e) => setFirstname(e.target.value)}
+          label="first name"
+          required
+          radius={15}
+          height={30}
+          width={160}
+          onChange={(e) => setFirstname(e.target.value)}
         />
         <Input
-        label='last name'
-        required
-        // Type='textArea'
-        Radius={15}
-        Height={30}
-        Width={160}
-        onChange={(e) => setLastname(e.target.value)}
+          label="last name"
+          required
+          radius={15}
+          height={30}
+          width={160}
+          onChange={(e) => setLastname(e.target.value)}
         />
+        <Input 
+        label="email"
+        required
+        onChange={(e) =>{
+           setEmail(e.target.value)
+           setEmailExists(false)
+        }
+      } />
+        {emailExists && <span style={{ color: 'red' }}>Email already exists. Please use a different email.</span>}
         <Input
-        label='email'
-        required
-        // Type='text'
-        onChange={(e) => setEmail(e.target.value)}
+          label="phone number"
+          required
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        <Input
-        label='phone number'
-        required
-        // Type='number'
-        onChange={(e) => setPhoneNumber(e.target.value)}
+        <div className="role-radio">
+          <label className="role">Are you : </label>
+          <label>
+            <input
+              type="radio"
+              value="owner"
+              checked={role === 'owner'}
+              onChange={() => setRole('owner')}
+              required
+            />
+            <span className="radiol-label">Owner</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="student"
+              checked={role === 'student'}
+              onChange={() => setRole('student')}
+              required
+            />
+            <span className="radio-label">Student</span>
+          </label>
+        </div>
+        <StrongPassword
+          setPassword={setPassword}
+          setConfirmPassword={setConfirmPassword}
+          passwordsMatch={passwordsMatch}
+          setPasswordsMatch={setPasswordsMatch}
         />
-         <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="" disabled>
-            Role
-          </option>
-          <option value="owner">Owner</option>
-          <option value="student">Student</option>
-        </select>
-        <Input
-        label='password'
-        required
-        type={
-          show ? "text" : "password"
-      }
-        onChange={(e) => setPassword(e.target.value)}
-        />
-        <Input
-        label='confirm password'
-        required
-        type={
-          show ? "text" : "password"
-      }
-        />
-        <span style={{ color: '#A3C195' }} onClick={()=>setShow(!show)}>show password?  </span>
+        {!passwordsMatch && <span style={{ color: 'red' }}>Passwords do not match!</span>}
+        <div className="span-text1">
+          <span>already have an account, </span>
+          <span className='signin'>
+            <Link to={'/signin'}>Sign in!</Link>
+          </span>
+        </div>
         <div className="signIn-button">
           <button>Sign Up</button>
         </div>
-        <div className="sign-in-img">
-        </div>
+        <div className="sign-in-img"></div>
         <div className="img-signin">
           <img src="pic.jpg" alt="" />
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

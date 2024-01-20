@@ -6,7 +6,7 @@ import {FacebookLogo} from "@phosphor-icons/react"
 const HomePage = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <>
       <div className="backGround"></div>
       <div className="aboutUScontainer">
         <h1 className="aboutUs">About Us</h1>
@@ -17,13 +17,13 @@ const HomePage = () => {
           information about these accommodations, along with various details
           that matter to you, complemented by photos for each residence.
         </p>
-        <din className="Line"></din>
+        <div className="Line"></div>
         <FacebookLogo id="FacebookLogo" size={24} weight="light" />
       </div>
 
       <button onClick={() => navigate("signin")}>SignIn</button>
       <button onClick={() => navigate("signup")}>SignUp</button>
-    </div>
+    </>
   );
 };
 

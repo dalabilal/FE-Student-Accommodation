@@ -4,12 +4,12 @@
 }
 
 
-.vanBarOptions li.active > a {
+.navBarWithList .container .vanBarOptions li.active > a {
     background: rgba(185, 230, 165, 0.30);
     color: #fff;
 }
 
-.vanBarOptions li a:hover {
+.navBarWithList .container  .vanBarOptions li a:hover {
     color: #fff;
     background: rgba(185, 230, 165, 0.30);
 }
@@ -48,7 +48,7 @@ body {
     text-align: left;
 }
 
-.vanBarOptions {
+.navBarWithList .container  .vanBarOptions {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -60,16 +60,16 @@ body {
     /* Grow to take remaining space */
 }
 
-.vanBarOptions li {
+.navBarWithList .container .vanBarOptions li {
     margin-right: 20px;
 }
 
-.vanBarOptions li:last-child {
+.navBarWithList .container  .vanBarOptions li:last-child {
     margin-right: 0;
     /* Remove right margin for the last item */
 }
 
-.vanBarOptions li a {
+.navBarWithList .container .vanBarOptions li a {
     text-decoration: none;
     color: #A3C195;
     font-weight: bold;
@@ -91,7 +91,7 @@ body {
 
 .navBarWithList .options {
     /* display: inline-block; */
-    margin-top: 55px;
+    /* margin-top: 55px; */
     position: fixed;
     /* Position below the navbar container along the Y-axis */
     right: 0;

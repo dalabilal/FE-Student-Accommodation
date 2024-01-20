@@ -10,7 +10,7 @@ const NavBar = () => {
   const [activeItem, setActiveItem] = useState(null);
 
   const [isListVisible, setListVisible] = useState(false);
-  const { setUserRole, userRole } = useUser();
+  // const { setUserRole, userRole } = useUser();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -22,7 +22,7 @@ const NavBar = () => {
         },
       });
       if (response.ok) {
-        setUserRole(null);
+        // setUserRole(null);
         navigate('/signin');
       } else {
         console.error('Logout failed');
@@ -51,44 +51,33 @@ const NavBar = () => {
           <li
             className={activeItem === "Accommodations" ? "active" : ""}
             onClick={() => handleItemClick("Accommodations")}
-          >
-
-        <ul>
-          <li id="Home">
-            <Link to="/">Home</Link>
-          </li>
-          <li id="allAccommodations">
-
+            >
             <Link to="all">Accommodations</Link>
           </li>
           <li
             className={activeItem === "Favorite" ? "active" : ""}
             onClick={() => handleItemClick("Favorite")}
-          >
+            >
             <Link to="Favorite">Favorite</Link>
           </li>
 
           <li
             className={activeItem === "Home" ? "active" : ""}
             onClick={() => handleItemClick("Home")}
-          >
+            >
             <Link to="/">Home</Link>
           </li>
           <li
             className={activeItem === "Users" ? "active" : ""}
             onClick={() => handleItemClick("Users")}
-          >
-
-          <li id="Home">
-
+            >
             <Link to="allusers">Users</Link>
           </li>
-        </ul>
+      </ul>
+
         <div id="UserCircle">
           <UserCircle size={32} onClick={() => setOptions(!Options)} />
-        </div>
 
-      </div>
 
       {Options && (
         <ul className="options">
@@ -109,23 +98,24 @@ const NavBar = () => {
           </li>
         </ul>
       )}
-    </div>
-
-
-        {userRole ? (
-            <button onClick={handleLogout}>Logout</button>
-        ) : (
-          <ul className={`nav-list ${isListVisible ? "visible" : ""}`}>
-            <li>
-              <Link to="/signin">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
-          </ul>
-        )}
       </div>
-    </>
+      </div>
+
+{/* 
+      {userRole ? (
+        <button onClick={handleLogout}>Logout</button>
+      ) : (
+        <ul className={`nav-list ${isListVisible ? "visible" : ""}`}>
+          <li>
+            <Link to="/signin">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+        </ul>
+      )} */}
+
+    </div>
   );
 };
 

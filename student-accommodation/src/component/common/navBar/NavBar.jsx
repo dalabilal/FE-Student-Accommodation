@@ -2,34 +2,14 @@ import "./navBar.css";
 import React, { useState } from "react";
 import { HouseLine, UserCircle } from "@phosphor-icons/react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../../service/UserContext";
 // import { useUser } from "../../../service/UserContext";
 
 const NavBar = () => {
 
   const [Options, setOptions] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
-
-  // const { setUserRole, userRole } = useUser();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      const response = await fetch('http://localhost:3005/logout/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (response.ok) {
-        // setUserRole(null);
-        navigate('/signin');
-      } else {
-        console.error('Logout failed');
-      }
-    } catch (error) {
-      console.error('Error during logout:', error);
-    }
-  };
+  const {logoutUser} = useUser();
 
   const handleOptions = () => {
     setOptions(false);
@@ -91,7 +71,7 @@ const NavBar = () => {
             </Link>
           </li>
           <li onClick={handleOptions}>
-            <Link id="LogOut" to="/signin" onClick={handleLogout}>
+            <Link id="LogOut" to="/signin" onClick={logoutUser}>
               Log Out
             </Link>
           </li>

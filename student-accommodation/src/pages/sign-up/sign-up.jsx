@@ -18,7 +18,7 @@ const SignUp = () => {
   const [role, setRole] = useState('');
   const { setNotification } = useNotification();
 
-  const { setUserRole } = useUser();
+  const { userRole ,setUserRole } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,13 +48,13 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        const userData = await response.json();
-        const userKey = `token_${userData.email}`;
-        localStorage.setItem(userKey, userData.token);
+        const userData = await response.json()
+        sessionStorage.setItem('jwtToken', userData.token);
+        sessionStorage.setItem('userRole', role);
         console.log('User signed up successfully!');
         setNotification({ message: 'User is created successfully', status: 'success' })
         setUserRole(role);
-        console.log('role', role);
+        console.log('role',role);
       } else {
         const responseData = await response.json();
         if (responseData.error) {

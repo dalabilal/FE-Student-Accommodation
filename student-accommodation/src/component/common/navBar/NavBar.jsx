@@ -2,14 +2,13 @@ import "./navBar.css";
 import React, { useState } from "react";
 import { HouseLine, UserCircle } from "@phosphor-icons/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../../../service/UserContext";
+// import { useUser } from "../../../service/UserContext";
 
 const NavBar = () => {
 
   const [Options, setOptions] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
 
-  const [isListVisible, setListVisible] = useState(false);
   // const { setUserRole, userRole } = useUser();
   const navigate = useNavigate();
 
@@ -87,12 +86,12 @@ const NavBar = () => {
             </Link>
           </li>
           <li onClick={handleOptions}>
-            <Link id="signup" to="signup">
+            <Link id="signup" to="/signup">
               Sign Up
             </Link>
           </li>
           <li onClick={handleOptions}>
-            <Link id="LogOut" to="">
+            <Link id="LogOut" to="/signin" onClick={handleLogout}>
               Log Out
             </Link>
           </li>
@@ -100,20 +99,6 @@ const NavBar = () => {
       )}
       </div>
       </div>
-
-{/* 
-      {userRole ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <ul className={`nav-list ${isListVisible ? "visible" : ""}`}>
-          <li>
-            <Link to="/signin">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign Up</Link>
-          </li>
-        </ul>
-      )} */}
 
     </div>
   );

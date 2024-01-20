@@ -4,8 +4,9 @@
 }
 
 
-.vanBarOptions li.active {
-    border-bottom: 2px solid #A3C195;
+.vanBarOptions li.active > a {
+    background: rgba(185, 230, 165, 0.30);
+    color: #fff;
 }
 
 .vanBarOptions li a:hover {

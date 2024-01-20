@@ -44,7 +44,7 @@ const NavBar = () => {
             className={activeItem === "Users" ? "active" : ""}
             onClick={() => handleItemClick("Users")}
           >
-            <Link to="users">Users</Link>
+            <Link to="allusers">Users</Link>
           </li>
         </ul>
 

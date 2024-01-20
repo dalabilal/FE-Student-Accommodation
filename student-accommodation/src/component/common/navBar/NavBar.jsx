@@ -56,7 +56,7 @@ const NavBar = () => {
         </div>
 
         {userRole ? (
-          <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
         ) : (
           <ul className={`nav-list ${isListVisible ? "visible" : ""}`}>
             <li>

@@ -40,7 +40,7 @@ const AllAccomodation = () => {
   const [popup, setPopup] = useState(false);
 
   return (
-    <>
+    <div className="all-acc">
       <div className="bar">
         <SearchBar />
         {(noUser && userRole === 'owner') &&
@@ -65,7 +65,7 @@ const AllAccomodation = () => {
           imageUrl="https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"
         />
       </div>
-    </>
+    </div>
   );
 };
 

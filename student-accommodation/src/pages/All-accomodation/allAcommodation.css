@@ -2,7 +2,6 @@
     margin-top: 40px;
     padding-left: 10px;
 }
-
 .searchContainer {
     max-width: 280px;
     width: 100%;
@@ -86,4 +85,5 @@
     color: #ffffff;
     margin-top: 74px;
     font-size: 19px;
+    margin-right: 50px;
 }

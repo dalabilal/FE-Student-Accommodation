@@ -20,9 +20,6 @@ const HomePage = () => {
         <div className="Line"></div>
         <FacebookLogo id="FacebookLogo" size={24} weight="light" />
       </div>
-
-      <button onClick={() => navigate("signin")}>SignIn</button>
-      <button onClick={() => navigate("signup")}>SignUp</button>
     </>
   );
 };

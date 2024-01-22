@@ -8,7 +8,7 @@ const NavBar = () => {
 
   const [activeItem, setActiveItem] = useState(null);
   const [Options, setOptions] = useState(false);
-  const { logoutUser,noUser } = useUser();
+  const { logoutUser, noUser, userRole } = useUser();
 
 
   const handleOptions = () => {
@@ -46,12 +46,12 @@ const NavBar = () => {
           >
             <Link to="/">Home</Link>
           </li>
-          <li
+          {(userRole == 'owner' && noUser) && <li
             className={activeItem === "Users" ? "active" : ""}
             onClick={() => handleItemClick("Users")}
           >
             <Link to="allusers">Users</Link>
-          </li>
+          </li>}
         </ul>
 
         <div id="UserCircle">

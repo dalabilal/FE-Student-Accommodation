@@ -20,20 +20,15 @@
     box-shadow: 0px 4px 4px 0px #E1FBD5;
     display: flex;
     align-items: center;
-    /* Use align-items instead of align-content */
-
-    /* Center the CaretCircleDown vertically */
     justify-content: space-between;
 }
 
 .input {
     border: none;
     outline: none;
-    /* Remove the default input outline */
     background-color: transparent;
     height: 100%;
     width: 80%;
-    /* Adjust the width as needed */
 }
 
 #CaretCircleDown {

@@ -1,0 +1,30 @@
+.plur-popup {
+    width: 100%;
+    background-color: #e1fbd56b;
+    position: fixed;
+    height: 1000vh;
+    top : 0;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.popup-container {
+    display: none;
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popup-container.show,
+  .overlay.show {
+    display: block;
+  }

@@ -13,7 +13,7 @@ const SignInForm = () => {
   const [error, setError] = useState('');
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const { setUserRole } = useUser(); // Get setUserRole from the context
+  const { setUserRole,setNoUser } = useUser(); // Get setUserRole from the context
   const { setNotification } = useNotification();
 
   const handleSubmit = async (e) => {
@@ -42,6 +42,7 @@ const SignInForm = () => {
     } catch (error) {
       console.error('Error:', error);
     }
+    setNoUser(true);
   };
 
   

@@ -18,7 +18,7 @@ const SignUp = () => {
   const [role, setRole] = useState('');
   const { setNotification } = useNotification();
 
-  const { userRole ,setUserRole } = useUser();
+  const { setNoUser ,setUserRole } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,6 +73,7 @@ const SignUp = () => {
     } catch (error) {
       console.error('Error:', error);
     }
+    setNoUser(true);
   };
 
   

@@ -4,6 +4,8 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userRole, setUserRole] = useState(null);
+  const token = sessionStorage.getItem('jwtToken');
+  const [noUser, setNoUser] = useState(token ? true : false);
 
   useEffect(() => {
     const token = sessionStorage.getItem('jwtToken');
@@ -12,17 +14,17 @@ export const UserProvider = ({ children }) => {
       setUserRole(userrole); 
     }
   }, [userRole]);
-
-
+  
   const logoutUser = () => {
     setUserRole(null);
+    setNoUser(false)
     sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('userRole');
     document.cookie = 'jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   };
 
   return (
-    <UserContext.Provider value={{ userRole, logoutUser ,setUserRole}}>
+    <UserContext.Provider value={{noUser, userRole, logoutUser ,setUserRole}}>
       {children}
     </UserContext.Provider>
   );

@@ -15,22 +15,12 @@ const SearchBar = () => {
   return (
     <div className="searchContainer">
       <div className="input-wrapper">
-        <input className="input" placeholder="search for university"></input>
-        <CaretCircleDown
-          id="CaretCircleDown"
-          size={24}
-          onClick={() => setToggle(!toggle)}
-        />
+      <select className="unisList">
+          <option>Palestine Polyticnech University</option>
+          <option>Hebron University</option>
+          <option>University</option>
+        </select>
       </div>
-      {toggle && (
-        <div className="unis">
-          <ul className="unisList">
-            <li onClick={handleTheClick}>Palestine Polyticnech University</li>
-            <li onClick={handleTheClick}>Hebron University</li>
-            <li onClick={handleTheClick}>Any University</li>
-          </ul>
-        </div>
-      )}
     </div>
   );
 };

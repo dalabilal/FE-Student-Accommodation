@@ -28,30 +28,49 @@ const NavBar = () => {
 
         <ul className="vanBarOptions">
           <li
-            className={activeItem === "Accommodations" ? "active" : ""}
+            className={
+              (window.location.pathname === '/all' || activeItem === "Accommodations")
+                ? "active"
+                : ""
+            }
             onClick={() => handleItemClick("Accommodations")}
           >
             <Link to="all">Accommodations</Link>
           </li>
+
           <li
-            className={activeItem === "Favorite" ? "active" : ""}
+            className={
+              (window.location.pathname === '/favorite' | activeItem === "Favorite")
+                ? "active"
+                : ""
+            }
             onClick={() => handleItemClick("Favorite")}
           >
-            <Link to="Favorite">Favorite</Link>
+            <Link to="/favorite">Favorite</Link>
           </li>
 
           <li
-            className={activeItem === "Home" ? "active" : ""}
+            className={
+              (window.location.pathname === '/' | activeItem === "Home")
+                ? "active"
+                : ""}
             onClick={() => handleItemClick("Home")}
           >
             <Link to="/">Home</Link>
           </li>
-          {(userRole == 'owner' && noUser) && <li
-            className={activeItem === "Users" ? "active" : ""}
-            onClick={() => handleItemClick("Users")}
-          >
-            <Link to="allusers">Users</Link>
-          </li>}
+
+          {(userRole == 'owner' && noUser) &&
+            <li
+              className={
+                (window.location.pathname === '/allusers' | activeItem === "Users")
+                  ? "active"
+                  : ""
+              }
+              onClick={() => handleItemClick("Users")}
+            >
+              <Link to="allusers">Users</Link>
+            </li>
+          }
         </ul>
 
         <div id="UserCircle">
@@ -61,7 +80,7 @@ const NavBar = () => {
           {Options && (
             <ul className="options">
               <li onClick={handleOptions}>
-                <Link id="signin" to="signin">
+                <Link id="signin" to="/signin">
                   Sign In
                 </Link>
               </li>
@@ -71,7 +90,7 @@ const NavBar = () => {
                 </Link>
               </li>
               {noUser && <li onClick={handleOptions}>
-                <Link id="LogOut" to="/signin" onClick={logoutUser}>
+                <Link id="LogOut" to="/" onClick={logoutUser}>
                   Log Out
                 </Link>
               </li>}

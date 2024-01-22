@@ -1,10 +1,8 @@
 import React from "react";
 import "./homePage.css";
-import { useNavigate } from "react-router-dom";
 import {FacebookLogo} from "@phosphor-icons/react"
 
 const HomePage = () => {
-  const navigate = useNavigate();
   return (
     <>
       <div className="backGround"></div>

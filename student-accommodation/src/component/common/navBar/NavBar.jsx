@@ -2,8 +2,7 @@ import "./navBar.css";
 import React, { useState } from "react";
 import { HouseLine, UserCircle } from "@phosphor-icons/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../../../service/UserContext";
-// import { useUser } from "../../../service/UserContext";
+import { useUser } from "../../../service/UserContext"
 
 const NavBar = () => {
 

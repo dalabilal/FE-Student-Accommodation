@@ -30,6 +30,15 @@ const NavBar = () => {
         <ul className="vanBarOptions">
           <li
             className={
+              (window.location.pathname === '/' | activeItem === "Home")
+                ? "active"
+                : ""}
+            onClick={() => handleItemClick("Home")}
+          >
+            <Link to="/">Home</Link>
+          </li>
+          <li
+            className={
               (window.location.pathname === '/all' || activeItem === "Accommodations")
                 ? "active"
                 : ""
@@ -50,15 +59,6 @@ const NavBar = () => {
             <Link to="/favorite">Favorite</Link>
           </li>
 
-          <li
-            className={
-              (window.location.pathname === '/' | activeItem === "Home")
-                ? "active"
-                : ""}
-            onClick={() => handleItemClick("Home")}
-          >
-            <Link to="/">Home</Link>
-          </li>
 
           {(userRole === 'owner' && noUser) &&
             <li

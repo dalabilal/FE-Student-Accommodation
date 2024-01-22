@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
     setNoUser(false)
     sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('userRole');
-    sessionStorage.removeItem('usename');
+    sessionStorage.removeItem('username');
     document.cookie = 'jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   };
 

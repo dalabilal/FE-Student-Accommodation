@@ -46,7 +46,7 @@ const SignUp = () => {
           role,
         }),
       });
-
+    
       if (response.ok) {
         const userData = await response.json()
         sessionStorage.setItem('jwtToken', userData.token);
@@ -72,9 +72,11 @@ const SignUp = () => {
         }
       }
     } catch (error) {
+      setNotification({ message: 'Server Error', status: 'warning' })
       console.error('Error:', error);
     }
     setNoUser(true);
+    
   };
 
   

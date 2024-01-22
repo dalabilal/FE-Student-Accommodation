@@ -42,6 +42,7 @@ const SignInForm = () => {
       }
     } catch (error) {
       console.error('Error:', error);
+      setNotification({ message: 'Server Error', status: 'warning' })
     }
     setNoUser(true);
   };

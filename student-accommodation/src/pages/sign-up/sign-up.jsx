@@ -51,6 +51,7 @@ const SignUp = () => {
         const userData = await response.json()
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('userRole', role);
+        sessionStorage.setItem('username', userData.firstname);
         console.log('User signed up successfully!');
         setNotification({ message: 'User is created successfully', status: 'success' })
         setUserRole(role);

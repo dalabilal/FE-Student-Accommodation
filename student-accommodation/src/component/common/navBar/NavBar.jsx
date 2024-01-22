@@ -9,6 +9,7 @@ const NavBar = () => {
   const [activeItem, setActiveItem] = useState(null);
   const [Options, setOptions] = useState(false);
   const { logoutUser, noUser, userRole } = useUser();
+  const username = sessionStorage.getItem('username');
 
 
   const handleOptions = () => {
@@ -73,10 +74,9 @@ const NavBar = () => {
           }
         </ul>
 
+        <span>{username}</span>
         <div id="UserCircle">
           <UserCircle size={32} onClick={() => setOptions(!Options)} />
-
-
           {Options && (
             <ul className="options">
               <li onClick={handleOptions}>

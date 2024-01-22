@@ -80,20 +80,15 @@ const NavBar = () => {
           {Options && (
             <ul className="options">
               <li onClick={handleOptions}>
-                <Link id="signin" to="/signin">
-                  Sign In
+                <Link id="YourAccount" to="/profile">
+                  Your Profile
                 </Link>
               </li>
               <li onClick={handleOptions}>
-                <Link id="signup" to="/signup">
-                  Sign Up
-                </Link>
-              </li>
-              {noUser && <li onClick={handleOptions}>
-                <Link id="LogOut" to="/" onClick={logoutUser}>
+                <Link id="LogOut" to="/signin" onClick={logoutUser}>
                   Log Out
                 </Link>
-              </li>}
+              </li>
             </ul>
           )}
         </div>

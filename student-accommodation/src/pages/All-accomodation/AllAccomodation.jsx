@@ -1,7 +1,10 @@
+
+import { Plus } from "@phosphor-icons/react/dist/ssr";
 import Card from "../../component/Card/card";
 import "./allAcommodation.css";
 import { CaretCircleDown } from "@phosphor-icons/react";
 import { useState } from "react";
+import { useUser } from "../../service/UserContext";
 
 const SearchBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -16,7 +19,7 @@ const SearchBar = () => {
           id="CaretCircleDown"
           size={24}
           onClick={() => setToggle(!toggle)}
-        />
+          />
       </div>
       {toggle && (
         <div className="unis">
@@ -32,9 +35,16 @@ const SearchBar = () => {
 };
 
 const AllAccomodation = () => {
+  const {noUser , userRole} = useUser();
   return (
     <>
-      <SearchBar />
+      <div className="bar">
+        <SearchBar />
+      {(noUser && userRole === 'owner') &&  <button className="add-housing">
+          <Plus size={40} color="white"/> 
+          <span>Add Housing</span>
+        </button>}
+      </div>
       <div className="display-cards">
         <Card
           title="Hebron Stay"

@@ -74,3 +74,21 @@
 .unis .unisList li:hover {
     background-color: #E1FBD5;
 }
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.bar .add-housing {
+    background-color: #D8FBC6;
+    border: none;
+    border-radius: 5px;
+    width: 171px;
+    height: 47px;
+    flex-shrink: 0;
+    color: #ffffff;
+    margin-top: 74px;
+    font-size: 19px;
+}

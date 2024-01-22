@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
       setUserRole(userrole); 
     }
   }, [userRole]);
-  
+
   const logoutUser = () => {
     setUserRole(null);
     setNoUser(false)
@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{noUser, userRole, logoutUser ,setUserRole ,setNoUser}}>
+    <UserContext.Provider value={{noUser, userRole, logoutUser ,setUserRole ,setNoUser }}>
       {children}
     </UserContext.Provider>
   );

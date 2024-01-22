@@ -18,7 +18,7 @@ const SignUp = () => {
   const [role, setRole] = useState('');
   const { setNotification } = useNotification();
 
-  const { setNoUser ,setUserRole } = useUser();
+  const { setNoUser, setUserRole } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const SignUp = () => {
           role,
         }),
       });
-    
+
       if (response.ok) {
         const userData = await response.json()
         sessionStorage.setItem('jwtToken', userData.token);
@@ -55,7 +55,7 @@ const SignUp = () => {
         console.log('User signed up successfully!');
         setNotification({ message: 'User is created successfully', status: 'success' })
         setUserRole(role);
-        console.log('role',role);
+        console.log('role', role);
       } else {
         const responseData = await response.json();
         if (responseData.error) {
@@ -76,10 +76,10 @@ const SignUp = () => {
       console.error('Error:', error);
     }
     setNoUser(true);
-    
+
   };
 
-  
+
   useEffect(() => {
     setEmailExists(false); // Reset emailExists state when the email changes
   }, [email]);
@@ -90,31 +90,36 @@ const SignUp = () => {
         <div className="title">
           <span>Sign Up</span>
         </div>
+        <div className="name">
+          <Input
+            label="first name"
+            required
+            radius={15}
+            height={30}
+            width={160}
+            onChange={(e) => setFirstname(e.target.value)}
+          />
+          <Input
+            label="last name"
+            required
+            radius={15}
+            height={30}
+            width={160}
+            onChange={(e) => setLastname(e.target.value)}
+          />
+        </div>
         <Input
-          label="first name"
+          label="email"
           required
-          radius={15}
-          height={30}
-          width={160}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-        <Input
-          label="last name"
-          required
-          radius={15}
-          height={30}
-          width={160}
-          onChange={(e) => setLastname(e.target.value)}
-        />
-        <Input 
-        label="email"
-        required
-        onChange={(e) =>{
-           setEmail(e.target.value)
-           setEmailExists(false)
-        }
-      } />
-        {emailExists && <span style={{ color: 'red' }}>Email already exists. Please use a different email.</span>}
+          onChange={(e) => {
+            setEmail(e.target.value)
+            setEmailExists(false)
+          }
+          } />
+        {emailExists &&
+          <span style={{ color: 'red' }}>
+            Email already exists. Please use a different email.
+          </span>}
         <Input
           label="phone number"
           required
@@ -151,7 +156,7 @@ const SignUp = () => {
         />
         {!passwordsMatch && <span style={{ color: 'red' }}>Passwords do not match!</span>}
         <div className="span-text1">
-          <span>already have an account, </span>
+          <span className="condition">already have an account, </span>
           <span className='signin'>
             <Link to={'/signin'}>Sign in!</Link>
           </span>
@@ -159,10 +164,10 @@ const SignUp = () => {
         <div className="signIn-button">
           <button>Sign Up</button>
         </div>
-        <div className="sign-in-img"></div>
+        {/* <div className="sign-in-img"></div>
         <div className="img-signin">
           <img src="pic.jpg" alt="" />
-        </div>
+        </div> */}
       </form>
     </div>
   );

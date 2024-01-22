@@ -74,21 +74,21 @@ const SignInForm = () => {
           <div className="forgot-password">
             <span>forgot password?</span>
           </div>
-          <div className="signIn-button">
-            <button type="submit">Sign In</button>
-          </div>
-        </form>
         <div className="span-text">
           <span className="condition">You Don't have an account yet?</span>
           <span className="sign-up">
             <Link to={'/signup'}>Sign up</Link>
           </span>
         </div>
+          <div className="signIn-button">
+            <button type="submit">Sign In</button>
+          </div>
+        </form>
       </div>
-      <div className="sign-in-img"></div>
+      {/* <div className="sign-in-img"></div>
       <div className="img-signin">
         <img src="pic.jpg" alt="" />
-      </div>
+      </div> */}
     </div>
   );
 };

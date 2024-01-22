@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './sign-up.css'
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 import Input from '../../component/common/input/input.component';
 import { Eye } from '@phosphor-icons/react/dist/ssr';
@@ -50,7 +51,7 @@ const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setP
       <div className="col-md-6 mx-auto text-right">
         <div className="form-group mb-1">
           <Input
-            className="form-control shadow-none"
+            className="form-control-shadow-none"
             label="Password"
             placeholder="***************"
             onChange={handlePasswordChange}

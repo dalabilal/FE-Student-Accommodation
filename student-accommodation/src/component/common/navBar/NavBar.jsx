@@ -1,5 +1,5 @@
 import "./navBar.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { HouseLine, UserCircle } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../service/UserContext"
@@ -60,7 +60,7 @@ const NavBar = () => {
             <Link to="/">Home</Link>
           </li>
 
-          {(userRole == 'owner' && noUser) &&
+          {(userRole === 'owner' && noUser) &&
             <li
               className={
                 (window.location.pathname === '/allusers' | activeItem === "Users")

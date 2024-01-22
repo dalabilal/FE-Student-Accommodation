@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext'
@@ -10,7 +10,6 @@ import { EyeClosed } from '@phosphor-icons/react';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const { setUserRole,setNoUser } = useUser(); // Get setUserRole from the context
@@ -37,7 +36,6 @@ const SignInForm = () => {
         setNotification({ message: 'Login successful!', status: 'success' })
         navigate('/')
       } else {
-        setError('Invalid email or password');
         setNotification({ message: 'Invalid email or password, Try again', status: 'error' })
       }
     } catch (error) {
@@ -47,10 +45,6 @@ const SignInForm = () => {
     setNoUser(true);
   };
 
-  
-  useEffect(() => {
-    setError(''); // Reset error state when the email or password changes
-  }, [email, password]);
 
   return (
     <div className="main">

@@ -5,6 +5,7 @@ import './login.css';
 import useNotification from '../../hook/notification.hook';
 import InputPassword from '../../component/common/input-password/inputpassword.component';
 import logo from '../../assests/logo.jpg'
+import Input from '../../component/common/input/input.component';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
@@ -51,7 +52,7 @@ const SignInForm = () => {
           <span>Sign In</span>
         </div>
         <form onSubmit={handleSubmit}>
-          <InputPassword
+          <Input
             label='Email'
             type='email'
             value={email}

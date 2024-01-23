@@ -89,7 +89,7 @@ const SignUp = () => {
 
   return (
     <div className="main1">
-        <img src={Home} alt='homepage' className='img-sign' onClick={()=> navigate('/')}/>
+            <img src={Home} alt='homepage' className='img-sign' onClick={() => navigate('/')} />
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <div className="title">
           <span>Sign Up</span>
@@ -169,7 +169,7 @@ const SignUp = () => {
           <button>Sign Up</button>
         </div>
       </form>
-          <img src={logo} alt="" className='img-log'/>
+      <img src={logo} alt="" className='img-log'/>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const PasswordStrengthMeter = ({ label, color }) => {
       widthPercentage = '60%';
       break;
     case 'Strong':
-      widthPercentage = '100%';
+      widthPercentage = '88%';
       break;
     default:
       widthPercentage = '0%';
@@ -21,6 +21,7 @@ const PasswordStrengthMeter = ({ label, color }) => {
     width: widthPercentage,
     background: color,
     height: '7px',
+    margin_left: '2px',
   };
 
   return (

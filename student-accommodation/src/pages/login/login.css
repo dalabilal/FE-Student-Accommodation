@@ -39,9 +39,8 @@
 }
 
 .main .sign-in-form .forgot-password>span {
-    font-size: small;
     font-family: sans-serif;
-    margin-left: 190px;
+    margin-left: 177px;
     color: #a3c195;
 }
 
@@ -63,7 +62,7 @@
 
 .main .sign-in-form .span-text {
     width: 400px;
-    margin-top: 50px;
+    margin-top: 99px;
     align-self: center;
 }
 
@@ -83,9 +82,9 @@
     padding: 15px;
     display: flex;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 21px;
     justify-content: center;
-    margin-right: 40px;
+    margin-right: -5px;
 
 }
 
@@ -107,27 +106,6 @@
     cursor: pointer;
 }
 
-/* .main .sign-in-img {
-    width: 582.977px;
-    height: 590.154px;
-    transform: rotate(8.809deg);
-    position: absolute;
-    right: 100px;
-    top: 47px;
-    background-color: #A3C195;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.main .img-signin {
-    width: 495px;
-    height: 476px;
-    position: absolute;
-    right: 100px;
-    top: 50px;
-    background: lightgray 50% / cover no-repeat;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-} */
-
 .main .sign-up>span>a {
     color: #023E8A;
     text-decoration: none;
@@ -147,5 +125,10 @@
 
 #forgot-password {
     display: flex;
+    position: relative;
+    top: -18px;
+    font-weight: 700;
+    text-transform: uppercase;
     align-self: center;
+    font-size: 11px;
 }

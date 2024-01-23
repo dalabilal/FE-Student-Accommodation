@@ -25,14 +25,14 @@ const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setP
 
   const getPasswordStrengthColor = () => {
     if (password.length < 8) {
-      return '#EA1111'; // Red for weak passwords
+      return 'rgb(234 17 17 / 51%)'; // Red for weak passwords
     }
 
     if (meetsPasswordCriteria()) {
-      return '#00b500'; // Green for strong passwords
+      return 'rgb(0 181 0 / 49%)'; // Green for strong passwords
     }
 
-    return '#FFAD00'; // Orange for medium passwords
+    return 'rgb(255 173 0 / 48%)'; // Orange for medium passwords
   };
 
   const handlePasswordChange = (e) => {

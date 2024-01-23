@@ -1,10 +1,12 @@
 import React from "react";
 import "./homePage.css";
 import {FacebookLogo} from "@phosphor-icons/react"
+import NavBar from "../../component/common/navBar/NavBar";
 
 const HomePage = () => {
   return (
     <>
+        <NavBar/>
       <div className="backGround"></div>
       <div className="aboutUScontainer">
         <h1 className="aboutUs">About Us</h1>

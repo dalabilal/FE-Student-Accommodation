@@ -8,10 +8,11 @@ import { useNavigate } from 'react-router-dom';
 const ProtectedUsers = () => {
   const { userRole , noUser} = useUser();
   const navigate = useNavigate();
+  console.log(userRole);
 
   useEffect(() => {
     if (userRole !== 'owner') {
-      navigate('/*');
+      navigate('*');
     }
   }, [userRole, navigate]);
 

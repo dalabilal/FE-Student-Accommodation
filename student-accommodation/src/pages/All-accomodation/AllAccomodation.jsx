@@ -6,6 +6,7 @@ import { CaretCircleDown } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useUser } from "../../service/UserContext";
 import AddHousingForm from "../../component/common/add-housing-form/AddHousing";
+import NavBar from "../../component/common/navBar/NavBar";
 
 const SearchBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -15,7 +16,7 @@ const SearchBar = () => {
   return (
     <div className="searchContainer">
       <div className="input-wrapper">
-      <select className="unisList">
+        <select className="unisList">
           <option>Palestine Polyticnech University</option>
           <option>Hebron University</option>
           <option>University</option>
@@ -31,6 +32,7 @@ const AllAccomodation = () => {
 
   return (
     <div className="all-acc">
+      <NavBar />
       <div className="bar">
         <SearchBar />
         {(noUser && userRole === 'owner') &&
@@ -45,7 +47,7 @@ const AllAccomodation = () => {
       </div>
       {popup &&
         <AddHousingForm
-        setPopup={setPopup}
+          setPopup={setPopup}
         />
       }
       <div className="display-cards">

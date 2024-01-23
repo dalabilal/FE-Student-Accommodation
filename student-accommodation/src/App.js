@@ -18,7 +18,6 @@ function App() {
  return (
   <UserProvider>
     <BrowserRouter>
-    <NavBar/>
       <Routes>
         <Route path='/' element={<HomePage/>}/>
         <Route path='/signin' element={<SignInForm/>}/>

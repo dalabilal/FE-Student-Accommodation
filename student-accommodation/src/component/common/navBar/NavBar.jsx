@@ -1,15 +1,15 @@
 import "./navBar.css";
 import React, { useState } from "react";
 import { HouseLine, UserCircle } from "@phosphor-icons/react";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../../../service/UserContext";
-// import { useUser } from "../../../service/UserContext";
+import { Link } from "react-router-dom";
+import { useUser } from "../../../service/UserContext"
 
 const NavBar = () => {
 
-  const [Options, setOptions] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
-  const {logoutUser} = useUser();
+  const [Options, setOptions] = useState(false);
+  const { logoutUser, noUser, userRole } = useUser();
+  const username = sessionStorage.getItem('username');
 
   const handleOptions = () => {
     setOptions(false);
@@ -20,6 +20,7 @@ const NavBar = () => {
     setOptions(false);
   };
 
+
   return (
     <div className="navBarWithList">
       <div className="container">
@@ -28,60 +29,86 @@ const NavBar = () => {
 
         <ul className="vanBarOptions">
           <li
-            className={activeItem === "Accommodations" ? "active" : ""}
-            onClick={() => handleItemClick("Accommodations")}
-            >
-            <Link to="all">Accommodations</Link>
-          </li>
-          <li
-            className={activeItem === "Favorite" ? "active" : ""}
-            onClick={() => handleItemClick("Favorite")}
-            >
-            <Link to="Favorite">Favorite</Link>
-          </li>
-
-          <li
-            className={activeItem === "Home" ? "active" : ""}
+            className={
+              (window.location.pathname === '/' | activeItem === "Home")
+                ? "active"
+                : ""}
             onClick={() => handleItemClick("Home")}
-            >
+          >
             <Link to="/">Home</Link>
           </li>
           <li
-            className={activeItem === "Users" ? "active" : ""}
-            onClick={() => handleItemClick("Users")}
-            >
-            <Link to="allusers">Users</Link>
+            className={
+              (window.location.pathname === '/all' || activeItem === "Accommodations")
+                ? "active"
+                : ""
+            }
+            onClick={() => handleItemClick("Accommodations")}
+          >
+            <Link to="all">Accommodations</Link>
           </li>
-      </ul>
 
+          <li
+            className={
+              (window.location.pathname === '/favorite' | activeItem === "Favorite")
+                ? "active"
+                : ""
+            }
+            onClick={() => handleItemClick("Favorite")}
+          >
+            <Link to="/favorite">Favorite</Link>
+          </li>
+
+
+          {(userRole === 'owner' && noUser) &&
+            <li
+              className={
+                (window.location.pathname === '/allusers' | activeItem === "Users")
+                  ? "active"
+                  : ""
+              }
+              onClick={() => handleItemClick("Users")}
+            >
+              <Link to="allusers">Users</Link>
+            </li>
+          }
+        </ul>
+
+        <span>{username}</span>
         <div id="UserCircle">
           <UserCircle size={32} onClick={() => setOptions(!Options)} />
-
-
-      {Options && (
-        <ul className="options">
-          <li onClick={handleOptions}>
-            <Link id="signin" to="signin">
-              Sign In
-            </Link>
-          </li>
-          <li onClick={handleOptions}>
-            <Link id="signup" to="/signup">
-              Sign Up
-            </Link>
-          </li>
-          <li onClick={handleOptions}>
-            <Link id="LogOut" to="/signin" onClick={logoutUser}>
-              Log Out
-            </Link>
-          </li>
-        </ul>
-      )}
+          {Options && (
+            <ul className="options">
+              {!noUser && <><li>
+                <Link id="signin" to="/signin">
+                  sign in
+                </Link>
+              </li>
+                <li>
+                  <Link id="signup" to="/signup">
+                    sign up
+                  </Link>
+                </li>
+              </>
+              }
+              {noUser && <li onClick={handleOptions}>
+                <Link id="YourAccount" to="/profile">
+                  Your Profile
+                </Link>
+              </li>}
+              {noUser &&
+                <li onClick={handleOptions}>
+                  <Link id="LogOut" to="/signin" onClick={logoutUser}>
+                    Log Out
+                  </Link>
+                </li>
+              }
+            </ul>
+          )}
+        </div>
       </div>
-      </div>
 
-    </div>
-  );
+    </div>);
 };
 
 export default NavBar;

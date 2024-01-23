@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext'
 import './login.css';
 import useNotification from '../../hook/notification.hook';
-import { Eye } from '@phosphor-icons/react/dist/ssr';
-import { EyeClosed } from '@phosphor-icons/react';
+import InputPassword from '../../component/common/input-password/inputpassword.component';
+import logo from '../../assests/logo.jpg'
+import Input from '../../component/common/input/input.component';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const { setUserRole } = useUser(); // Get setUserRole from the context
+  const { setUserRole,setNoUser } = useUser(); // Get setUserRole from the context
   const { setNotification } = useNotification();
 
   const handleSubmit = async (e) => {
@@ -31,23 +29,21 @@ const SignInForm = () => {
       if (response.ok) {
         const userData = await response.json(); 
         sessionStorage.setItem('jwtToken', userData.token);
+        sessionStorage.setItem('username', userData.firstname);
         sessionStorage.setItem('userRole', userData.role);
         setUserRole(userData.role);
         setNotification({ message: 'Login successful!', status: 'success' })
         navigate('/')
       } else {
-        setError('Invalid email or password');
         setNotification({ message: 'Invalid email or password, Try again', status: 'error' })
       }
     } catch (error) {
       console.error('Error:', error);
+      setNotification({ message: 'Server Error', status: 'warning' })
     }
+    setNoUser(true);
   };
 
-  
-  useEffect(() => {
-    setError(''); // Reset error state when the email or password changes
-  }, [email, password]);
 
   return (
     <div className="main">
@@ -63,35 +59,28 @@ const SignInForm = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <Input
+          <InputPassword
             label='Password'
             value={password}
             placeholder="************"
             onChange={(e) => setPassword(e.target.value)}
-            type={show ? 'text' : 'password'}
             required
           />
-          <span style={{ color: '#A3C195' }} onClick={() => setShow(!show)}>
-            {show ? <Eye size={30} color="black" /> : <EyeClosed size={30} color="black" />}
-          </span>
           <div className="forgot-password">
             <span>forgot password?</span>
           </div>
-          <div className="signIn-button">
-            <button type="submit">Sign In</button>
-          </div>
-        </form>
         <div className="span-text">
           <span className="condition">You Don't have an account yet?</span>
           <span className="sign-up">
             <Link to={'/signup'}>Sign up</Link>
           </span>
         </div>
+          <div className="signIn-button">
+            <button type="submit">Sign In</button>
+          </div>
+        </form>
       </div>
-      <div className="sign-in-img"></div>
-      <div className="img-signin">
-        <img src="pic.jpg" alt="" />
-      </div>
+      <img src={logo} alt="" className='img-log'/>
     </div>
   );
 };

@@ -26,13 +26,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Center vertically */
     padding: 10px;
     background-color: #D8FBC6;
     color: #fff;
     text-align: left;
     position: fixed;
-    z-index: 2;
 }
 
 #houseLine {
@@ -122,8 +120,8 @@ body {
 }
 
 #LogOut,
-#signup,
-#signin {
+#YourAccount ,
+#signin , #signup{
     text-decoration: none;
     color: rgb(64, 64, 64);
 }

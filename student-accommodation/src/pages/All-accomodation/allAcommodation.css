@@ -2,7 +2,6 @@
     margin-top: 40px;
     padding-left: 10px;
 }
-
 .searchContainer {
     max-width: 280px;
     width: 100%;
@@ -20,20 +19,15 @@
     box-shadow: 0px 4px 4px 0px #E1FBD5;
     display: flex;
     align-items: center;
-    /* Use align-items instead of align-content */
-
-    /* Center the CaretCircleDown vertically */
     justify-content: space-between;
 }
 
 .input {
     border: none;
     outline: none;
-    /* Remove the default input outline */
     background-color: transparent;
     height: 100%;
     width: 80%;
-    /* Adjust the width as needed */
 }
 
 #CaretCircleDown {
@@ -43,34 +37,33 @@
 
 
 
-.unis .unisList {
-    cursor: pointer;
-    list-style-type: none;
-    border-left: 1px solid #E1FBD5;
-    border-right: 1px solid #E1FBD5;
-    border-bottom: 1px solid #E1FBD5;
-    box-shadow: 0px 4px 4px 0px #E1FBD5;
-    border-radius: 0px 0px 12px 12px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    display: block;
-    margin: 0;
-    padding: 0;
-    /* Add this line to set padding to zero */
-    z-index: 5;
-    align-items: flex-start;
+select {
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: rgb(104, 101, 101);
 }
 
-
-.unis .unisList li {
-    left: 0;
-    margin: 0px;
-    padding: 15px;
-    color: rgb(71, 70, 70);
-    list-style: none;
-    margin-left: 0;
-
+select:focus {
+    border: none;
 }
 
-.unis .unisList li:hover {
-    background-color: #E1FBD5;
+.bar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.bar .add-housing {
+    background-color: #D8FBC6;
+    border: none;
+    border-radius: 5px;
+    width: 171px;
+    height: 47px;
+    flex-shrink: 0;
+    color: #ffffff;
+    margin-top: 74px;
+    font-size: 19px;
+    margin-right: 50px;
 }

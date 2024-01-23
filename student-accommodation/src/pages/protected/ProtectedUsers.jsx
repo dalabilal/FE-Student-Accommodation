@@ -6,21 +6,19 @@ import Users from '../AllUsers/Users';
 import { useNavigate } from 'react-router-dom';
 
 const ProtectedUsers = () => {
-  const { userRole } = useUser();
+  const { userRole , noUser} = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (userRole !== 'owner') {
-      navigate('/');
+      navigate('/*');
     }
   }, [userRole, navigate]);
-  // Check if the user has the required role
-  if (userRole !== 'owner') {
-    // Redirect to another page or show an error message
+
+  if (userRole !== 'owner' && noUser) {
     return null;
   }
-
-  return <Users />;
+  return <Users />
 };
 
 export default ProtectedUsers;

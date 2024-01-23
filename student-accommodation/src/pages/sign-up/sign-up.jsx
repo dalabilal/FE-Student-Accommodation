@@ -155,7 +155,7 @@ const SignUp = () => {
           passwordsMatch={passwordsMatch}
           setPasswordsMatch={setPasswordsMatch}
         />
-        {!passwordsMatch && <span style={{ color: 'red' }}>Passwords do not match!</span>}
+        {!passwordsMatch && <span id='notMatch' style={{ color: 'red' }}>Passwords do not match!</span>}
         <div className="span-text1">
           <span className="condition">already have an account, </span>
           <span className='signin'>
@@ -165,8 +165,8 @@ const SignUp = () => {
         <div className="signIn-button">
           <button>Sign Up</button>
         </div>
-          <img src={logo} alt="" className='img-log'/>
       </form>
+      <img src={logo} alt="" className='img-log'/>
     </div>
   );
 };

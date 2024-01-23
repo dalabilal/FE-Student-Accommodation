@@ -53,6 +53,7 @@ const SignInForm = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <Input
+            id='email'
             label='Email'
             type='email'
             value={email}
@@ -67,7 +68,7 @@ const SignInForm = () => {
             required
           />
           <div className="forgot-password">
-            <span>forgot password?</span>
+            <span id='forgot-password'>forgot password?</span>
           </div>
         <div className="span-text">
           <span className="condition">You Don't have an account yet?</span>

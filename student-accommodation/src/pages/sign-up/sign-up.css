@@ -7,15 +7,6 @@
 }
 
 
-.backgroundDiv {
-    width: 500px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-}
 .form-control-shadow-none {
     border: none;
     box-shadow: none;
@@ -25,6 +16,7 @@
     display: flex;
     justify-content: space-between;
 }
+
 .main1 .sign-up-form {
     margin-left: 189px;
     margin-top: 55px;
@@ -93,6 +85,7 @@
     margin-top: 20px;
     align-self: right;
 }
+
 .main1 .sign-up-form .span-text1 .signin>a {
     color: #a3c195;
     text-decoration: none;
@@ -111,6 +104,7 @@
     border: none;
     border-radius: 30px;
     cursor: pointer;
+    margin-bottom: 2px;
 }
 
 /* .main .sign-up-img {
@@ -129,8 +123,9 @@
     width: 436px;
     height: 613px;
     position: fixed;
-    left: 800px;
+    left: 600px;
 }
+
 /* .main .img-signin {
     width: 100px;
     height: 476px;
@@ -159,29 +154,30 @@
     outline: none;
     box-shadow: 0 0 5px #A3C195;
     transition: box-shadow 0.3s ease;
-  }
+}
 
-  .main1 .sign-up-form .role-radio input[type='radio']:before {
+.main1 .sign-up-form .role-radio input[type='radio']:before {
     content: '';
     display: block;
     width: 60%;
     height: 60%;
     margin: 20% auto;
     border-radius: 50%;
-  }
-  .main1 .sign-up-form .role-radio label{
+}
+
+.main1 .sign-up-form .role-radio label {
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 0.7px;
     font-weight: 600;
     color: #848484;
-  }
+}
 
-  .main1 .sign-up-form .role-radio input[type='radio']:checked:before {
+.main1 .sign-up-form .role-radio input[type='radio']:checked:before {
     background: #A3C195;
-  }
+}
 
-  .main1 .sign-up-form .role-radio .role {
+.main1 .sign-up-form .role-radio .role {
     display: block;
     margin-bottom: 9px;
     text-transform: uppercase;
@@ -189,4 +185,19 @@
     letter-spacing: 0.5px;
     font-weight: bold;
     color: #666;
-  }
+}
+
+#notMatch {
+    margin-top: 0px;
+    align-self: center;
+}
+
+.progress{
+    margin-top: 0;
+}
+
+.progress-bar {
+    margin-top: 0;
+    border-radius: 5px;
+}
+

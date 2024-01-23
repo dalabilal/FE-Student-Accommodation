@@ -1,4 +1,4 @@
-import React from 'react';
+import './sign-up.css';
 
 const PasswordStrengthMeter = ({ label, color }) => {
   let widthPercentage;
@@ -28,7 +28,6 @@ const PasswordStrengthMeter = ({ label, color }) => {
       <div className="progress" style={{ height: '2px' }}>
         <div className="progress-bar" style={progressStyle}></div>
       </div>
-      <p style={{ color }}>{label}</p>
     </>
   );
 };

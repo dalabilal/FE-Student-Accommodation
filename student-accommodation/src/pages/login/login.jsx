@@ -12,12 +12,12 @@ const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { setUserRole,setNoUser } = useUser(); // Get setUserRole from the context
+  const { setUserRole, setNoUser } = useUser(); // Get setUserRole from the context
   const { setNotification } = useNotification();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch('http://localhost:3005/signin/', {
         method: 'POST',
@@ -28,7 +28,7 @@ const SignInForm = () => {
       });
 
       if (response.ok) {
-        const userData = await response.json(); 
+        const userData = await response.json();
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('username', userData.firstname);
         sessionStorage.setItem('userRole', userData.role);
@@ -48,13 +48,14 @@ const SignInForm = () => {
 
   return (
     <div className="main">
-        <img src={Home} alt='homepage' className='img-sign' onClick={()=> navigate('/')}/>
+      <img src={Home} alt='homepage' className='img-sign' onClick={() => navigate('/')} />
       <div className="sign-in-form">
         <div className="title">
           <span>Sign In</span>
         </div>
         <form onSubmit={handleSubmit}>
           <Input
+            id='email'
             label='Email'
             type='email'
             value={email}
@@ -69,20 +70,20 @@ const SignInForm = () => {
             required
           />
           <div className="forgot-password">
-            <span>forgot password?</span>
+            <span id='forgot-password'>forgot password?</span>
           </div>
-        <div className="span-text">
-          <span className="condition">You Don't have an account yet?</span>
-          <span className="sign-up">
-            <Link to={'/signup'}>Sign up</Link>
-          </span>
-        </div>
+          <div className="span-text">
+            <span className="condition">You Don't have an account yet?</span>
+            <span className="sign-up">
+              <Link to={'/signup'}>Sign up</Link>
+            </span>
+          </div>
           <div className="signIn-button">
             <button type="submit">Sign In</button>
           </div>
         </form>
       </div>
-      <img src={logo} alt="" className='img-log'/>
+      <img src={logo} alt="" className='img-log' />
     </div>
   );
 };

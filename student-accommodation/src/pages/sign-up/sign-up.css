@@ -116,6 +116,7 @@
     border: none;
     border-radius: 30px;
     cursor: pointer;
+    margin-bottom: 2px;
 }
 
 /* .main .sign-up-img {
@@ -195,3 +196,17 @@
     font-weight: bold;
     color: #666;
   }
+
+  #notMatch {
+    margin-top: 0px;
+    align-self: center;
+}
+
+.progress{
+    margin-top: 0;
+}
+
+.progress-bar {
+    margin-top: 0;
+    border-radius: 5px;
+}

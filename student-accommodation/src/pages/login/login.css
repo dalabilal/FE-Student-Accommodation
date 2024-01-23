@@ -49,7 +49,7 @@
     width: 300px;
     height: 116px;
     display: flex;
-    margin-top: 55px;
+    margin-top: 15px;
     align-self: center;
     justify-content: center;
     font-size: 36px;
@@ -63,7 +63,8 @@
 
 .main .sign-in-form .span-text {
     width: 400px;
-    margin-top: 40px;
+    margin-top: 50px;
+    align-self: center;
 }
 
 .main .sign-in-form .span-text .condition {
@@ -82,7 +83,7 @@
     padding: 15px;
     display: flex;
     align-items: center;
-    margin-top: 34px;
+    margin-top: 50px;
     justify-content: center;
     margin-right: 40px;
 
@@ -132,4 +133,19 @@
     text-decoration: none;
     font-weight: bold;
     margin-left: 8px;
+}
+
+#email {
+    margin-bottom: 30px;
+}
+
+.forgot-password {
+    width: 100%;
+    display: flex;
+    align-content: left;
+}
+
+#forgot-password {
+    display: flex;
+    align-self: center;
 }

@@ -120,7 +120,8 @@ body {
 }
 
 #LogOut,
-#YourAccount {
+#YourAccount ,
+#signin , #signup{
     text-decoration: none;
     color: rgb(64, 64, 64);
 }

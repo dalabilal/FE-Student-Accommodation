@@ -1,6 +1,9 @@
-.main {
+.main1 {
     display: flex;
     height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 
@@ -22,8 +25,8 @@
     display: flex;
     justify-content: space-between;
 }
-.main .sign-up-form {
-    /* margin-left: 100px; */
+.main1 .sign-up-form {
+    margin-left: 189px;
     margin-top: 55px;
     max-width: 400px;
     max-height: 650px;
@@ -40,14 +43,14 @@
     z-index: 3;
 }
 
-.main .sign-up-form .forgot-password>span {
+.main1 .sign-up-form .forgot-password>span {
     font-size: small;
     font-family: sans-serif;
     margin-left: 190px;
     color: #a3c195;
 }
 
-.main .sign-up-form .title {
+.main1 .sign-up-form .title {
     width: 300px;
     height: 55px;
     display: flex;
@@ -58,24 +61,24 @@
     color: #A3C195;
 }
 
-.main .sign-up-form .span-text1 {
+.main1 .sign-up-form .span-text1 {
     width: 400px;
     margin-top: 40px;
 }
 
-.main .sign-up-form .span-text1 .condition {
+.main1 .sign-up-form .span-text1 .condition {
     color: #9d9a9a;
     margin-left: 25px;
 }
 
-.main .sign-up-form .span-text .sign-up>a {
+.main1 .sign-up-form .span-text .sign-up>a {
     color: #a3c195;
     text-decoration: none;
     font-weight: bold;
     margin-left: 8px;
 }
 
-.main .sign-up-form .signIn-button {
+.main1 .sign-up-form .signIn-button {
     padding: 15px;
     display: flex;
     align-items: center;
@@ -85,12 +88,12 @@
 
 }
 
-.main .sign-up-form .span-text1 {
+.main1 .sign-up-form .span-text1 {
     width: 400px;
     margin-top: 20px;
     align-self: right;
 }
-.main .sign-up-form .span-text1 .signin>a {
+.main1 .sign-up-form .span-text1 .signin>a {
     color: #a3c195;
     text-decoration: none;
     font-weight: bold;
@@ -98,7 +101,7 @@
 }
 
 
-.main .sign-up-form button {
+.main1 .sign-up-form button {
     width: 35%;
     align-self: center;
     padding: 12px;
@@ -110,7 +113,7 @@
     cursor: pointer;
 }
 
-.main .sign-up-img {
+/* .main .sign-up-img {
     width: 582.977px;
     height: 590.154px;
     transform: rotate(8.809deg);
@@ -119,26 +122,33 @@
     top: 47px;
     background-color: #A3C195;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
+} */
 
-.main .img-signin {
-    width: 495px;
+img {
+    top: 60px;
+    width: 436px;
+    height: 613px;
+    position: fixed;
+    left: 800px;
+}
+/* .main .img-signin {
+    width: 100px;
     height: 476px;
     position: absolute;
     right: 100px;
     top: 50px;
     background: lightgray 50% / cover no-repeat;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
+} */
 
-.main .sign-up>span>a {
+.main1 .sign-up>span>a {
     color: #023E8A;
     text-decoration: none;
     font-weight: bold;
     margin-left: 8px;
 }
 
-.main .sign-up-form .role-radio input[type='radio'] {
+.main1 .sign-up-form .role-radio input[type='radio'] {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -151,7 +161,7 @@
     transition: box-shadow 0.3s ease;
   }
 
-  .main .sign-up-form .role-radio input[type='radio']:before {
+  .main1 .sign-up-form .role-radio input[type='radio']:before {
     content: '';
     display: block;
     width: 60%;
@@ -159,7 +169,7 @@
     margin: 20% auto;
     border-radius: 50%;
   }
-  .main .sign-up-form .role-radio label{
+  .main1 .sign-up-form .role-radio label{
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 0.7px;
@@ -167,11 +177,11 @@
     color: #848484;
   }
 
-  .main .sign-up-form .role-radio input[type='radio']:checked:before {
+  .main1 .sign-up-form .role-radio input[type='radio']:checked:before {
     background: #A3C195;
   }
 
-  .main .sign-up-form .role-radio .role {
+  .main1 .sign-up-form .role-radio .role {
     display: block;
     margin-bottom: 9px;
     text-transform: uppercase;

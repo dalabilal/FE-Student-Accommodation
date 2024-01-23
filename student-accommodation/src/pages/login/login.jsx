@@ -4,6 +4,7 @@ import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext'
 import './login.css';
 import useNotification from '../../hook/notification.hook';
+import logo from '../../assests/logo.jpg'
 import { Eye } from '@phosphor-icons/react/dist/ssr';
 import { EyeClosed } from '@phosphor-icons/react';
 
@@ -85,10 +86,7 @@ const SignInForm = () => {
           </div>
         </form>
       </div>
-      {/* <div className="sign-in-img"></div>
-      <div className="img-signin">
-        <img src="pic.jpg" alt="" />
-      </div> */}
+      <img src={logo} alt="" />
     </div>
   );
 };

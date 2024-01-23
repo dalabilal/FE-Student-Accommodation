@@ -3,6 +3,7 @@ import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext';
 import './sign-up.css';
 import { Link } from 'react-router-dom';
+import logo from '../../assests/logo.jpg'
 import StrongPassword from './passwordStrength';
 import useNotification from '../../hook/notification.hook';
 
@@ -85,7 +86,7 @@ const SignUp = () => {
   }, [email]);
 
   return (
-    <div className="main">
+    <div className="main1">
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <div className="title">
           <span>Sign Up</span>
@@ -164,10 +165,10 @@ const SignUp = () => {
         <div className="signIn-button">
           <button>Sign Up</button>
         </div>
-        {/* <div className="sign-in-img"></div>
-        <div className="img-signin">
-          <img src="pic.jpg" alt="" />
-        </div> */}
+        {/* <div className="sign-in-img"></div> */}
+        
+          <img src={logo} alt="" />
+    
       </form>
     </div>
   );

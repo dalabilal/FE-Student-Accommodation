@@ -165,10 +165,7 @@ const SignUp = () => {
         <div className="signIn-button">
           <button>Sign Up</button>
         </div>
-        {/* <div className="sign-in-img"></div> */}
-        
           <img src={logo} alt="" className='img-log'/>
-    
       </form>
     </div>
   );

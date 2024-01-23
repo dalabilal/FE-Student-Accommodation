@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext'
 import './login.css';
 import useNotification from '../../hook/notification.hook';
+import InputPassword from '../../component/common/input-password/inputpassword.component';
 import logo from '../../assests/logo.jpg'
-import { Eye } from '@phosphor-icons/react/dist/ssr';
-import { EyeClosed } from '@phosphor-icons/react';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const { setUserRole,setNoUser } = useUser(); // Get setUserRole from the context
   const { setNotification } = useNotification();
@@ -54,24 +51,20 @@ const SignInForm = () => {
           <span>Sign In</span>
         </div>
         <form onSubmit={handleSubmit}>
-          <Input
+          <InputPassword
             label='Email'
             type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <Input
+          <InputPassword
             label='Password'
             value={password}
             placeholder="************"
             onChange={(e) => setPassword(e.target.value)}
-            type={show ? 'text' : 'password'}
             required
           />
-          <span style={{ color: '#A3C195' }} onClick={() => setShow(!show)}>
-            {show ? <Eye size={30} color="black" /> : <EyeClosed size={30} color="black" />}
-          </span>
           <div className="forgot-password">
             <span>forgot password?</span>
           </div>

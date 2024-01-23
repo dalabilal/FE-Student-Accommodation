@@ -2,11 +2,16 @@
     display: flex;
     height: 100vh;
     flex-direction: column;
-    justify-content: space-between;
     gap: 10px;
 }
 
-
+.main1 .img-sign {
+    width: 44px;
+    height: 41px;
+    margin-right: 25px;
+    margin-top: 20px;
+    align-self: flex-end;
+}
 .backgroundDiv {
     width: 500px;
     height: 100%;
@@ -27,7 +32,7 @@
 }
 .main1 .sign-up-form {
     margin-left: 189px;
-    margin-top: 55px;
+    /* margin-top: 18px; */
     max-width: 400px;
     max-height: 650px;
     padding: 35px;

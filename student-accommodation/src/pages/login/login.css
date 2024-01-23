@@ -5,10 +5,16 @@
     gap: 10px;
 }
     
-
+.main .img-sign {
+    width: 44px;
+    height: 41px;
+    margin-right: 25px;
+    margin-top: 20px;
+    align-self: flex-end;
+}
 .main .sign-in-form {
     margin-left: 189px;
-    margin-top: 60px;
+    /* margin-top: 60px; */
     max-width: 400px;
     height: 630px;
     padding: 35px;

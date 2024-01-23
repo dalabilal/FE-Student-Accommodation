@@ -6,6 +6,7 @@ import useNotification from '../../hook/notification.hook';
 import InputPassword from '../../component/common/input-password/inputpassword.component';
 import logo from '../../assests/logo.jpg'
 import Input from '../../component/common/input/input.component';
+import Home from '../../assests/home.png'
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
@@ -47,6 +48,7 @@ const SignInForm = () => {
 
   return (
     <div className="main">
+        <img src={Home} className='img-sign' onClick={()=> navigate('/')}/>
       <div className="sign-in-form">
         <div className="title">
           <span>Sign In</span>

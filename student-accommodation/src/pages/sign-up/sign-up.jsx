@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Input from '../../component/common/input/input.component';
 import { useUser } from '../../service/UserContext';
 import './sign-up.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assests/logo.jpg'
 import StrongPassword from './passwordStrength';
 import useNotification from '../../hook/notification.hook';
+import Home from '../../assests/home.png'
 
 const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,6 +19,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const { setNotification } = useNotification();
+  const navigate = useNavigate();
 
   const { setNoUser, setUserRole } = useUser();
 
@@ -87,6 +89,7 @@ const SignUp = () => {
 
   return (
     <div className="main1">
+        <img src={Home} className='img-sign' onClick={()=> navigate('/')}/>
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <div className="title">
           <span>Sign Up</span>

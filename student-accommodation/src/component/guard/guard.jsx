@@ -6,10 +6,11 @@ import { UserContext } from '../../service/UserContext';
 
 const Guard = ({ children, permittedRoles }) => {
   const { userRole } = useContext(UserContext);
+  console.log("user" , userRole);
   if (!userRole) {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/*" />;
   } else if (permittedRoles && !permittedRoles.includes(userRole)) {
-    return <Navigate to="/" />; // Redirect to home page or another suitable page
+    return <Navigate to="/" />;
   } else {
     return children;
   }

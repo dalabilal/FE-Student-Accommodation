@@ -1,8 +1,9 @@
 import "./navBar.css";
 import React, { useState } from "react";
-import { HouseLine, UserCircle } from "@phosphor-icons/react";
+import { HouseLine, SignOut, UserCircle } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../service/UserContext"
+import { User } from "@phosphor-icons/react/dist/ssr";
 
 const NavBar = () => {
 
@@ -80,25 +81,30 @@ const NavBar = () => {
           {Options && (
             <ul className="options">
               {!noUser && <><li>
-                <Link id="signin" to="/signin">
+                <Link id="signin" to="/signin" style={{color : "#848488"}}>
                   sign in
                 </Link>
               </li>
                 <li>
-                  <Link id="signup" to="/signup">
+                  <Link id="signup" to="/signup" style={{color : "#848488"}}>
                     sign up
                   </Link>
                 </li>
               </>
               }
-              {noUser && <li onClick={handleOptions}>
-                <Link id="YourAccount" to="/profile">
+              {noUser && <li
+               onClick={handleOptions}
+             
+               >
+                <Link id="YourAccount" to="/profile"  style={{color : "#848488"}}>
+                <User color="#848484" size={20} weight="bold"/>
                   Your Profile
                 </Link>
               </li>}
               {noUser &&
                 <li onClick={handleOptions}>
-                  <Link id="LogOut" to="/signin" onClick={logoutUser}>
+                  <Link id="LogOut" to="/signin" onClick={logoutUser}  style={{color : "#848484"}}>
+                  <SignOut color="#848484" size={20} weight="bold"/>
                     Log Out
                   </Link>
                 </li>

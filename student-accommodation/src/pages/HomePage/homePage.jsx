@@ -1,7 +1,6 @@
 import React from "react";
 import "./homePage.css";
 import {FacebookLogo} from "@phosphor-icons/react"
-import NavBar from "../../component/common/navBar/NavBar";
 
 const HomePage = () => {
   return (

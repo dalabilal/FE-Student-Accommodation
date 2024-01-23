@@ -8,10 +8,7 @@ import AddHousingForm from "../../component/common/add-housing-form/AddHousing";
 
 
 const SearchBar = () => {
-  const [toggle, setToggle] = useState(false);
-  const handleTheClick = () => {
-    setToggle(false);
-  };
+
   return (
     <div className="searchContainer">
       <div className="input-wrapper">

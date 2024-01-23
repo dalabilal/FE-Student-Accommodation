@@ -48,7 +48,7 @@ const SignInForm = () => {
 
   return (
     <div className="main">
-        <img src={Home} className='img-sign' onClick={()=> navigate('/')}/>
+        <img src={Home} alt='homepage' className='img-sign' onClick={()=> navigate('/')}/>
       <div className="sign-in-form">
         <div className="title">
           <span>Sign In</span>

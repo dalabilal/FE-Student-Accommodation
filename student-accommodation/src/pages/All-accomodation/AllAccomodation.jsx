@@ -2,11 +2,10 @@
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import Card from "../../component/Card/card";
 import "./allAcommodation.css";
-import { CaretCircleDown } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useUser } from "../../service/UserContext";
 import AddHousingForm from "../../component/common/add-housing-form/AddHousing";
-import NavBar from "../../component/common/navBar/NavBar";
+
 
 const SearchBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -32,7 +31,6 @@ const AllAccomodation = () => {
 
   return (
     <div className="all-acc">
-      <NavBar />
       <div className="bar">
         <SearchBar />
         {(noUser && userRole === 'owner') &&

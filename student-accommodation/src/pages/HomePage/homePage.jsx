@@ -6,7 +6,6 @@ import NavBar from "../../component/common/navBar/NavBar";
 const HomePage = () => {
   return (
     <>
-        <NavBar/>
       <div className="backGround"></div>
       <div className="aboutUScontainer">
         <h1 className="aboutUs">About Us</h1>

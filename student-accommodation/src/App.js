@@ -10,8 +10,9 @@ import NotFound from './pages/Not-found/NotFound';
 import HomePage from './pages/HomePage/homePage';
 import SignUp from './pages/sign-up/sign-up';
 import SignInForm from './pages/login/login';
-import Guard from './component/guard/guard';
+
 import NavBar from './component/common/navBar/NavBar';
+import Guard from './component/guard/guard';
 
 function App() {
  return (

@@ -1,7 +1,7 @@
 import "./navBar.css";
 import React, { useState } from "react";
 import { HouseLine, SignOut, UserCircle } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../../service/UserContext"
 import { User } from "@phosphor-icons/react/dist/ssr";
 
@@ -11,6 +11,10 @@ const NavBar = () => {
   const [Options, setOptions] = useState(false);
   const { logoutUser, noUser, userRole } = useUser();
   const username = sessionStorage.getItem('username');
+  const location = useLocation();
+  const hideNavBarRoutes = ['/signin', '/signup'];
+  const shouldShowNavBar = !hideNavBarRoutes.includes(location.pathname);
+
 
   const handleOptions = () => {
     setOptions(false);
@@ -23,7 +27,7 @@ const NavBar = () => {
 
 
   return (
-    <div className="navBarWithList">
+   <>{shouldShowNavBar && <div className="navBarWithList">
       <div className="container">
         <HouseLine id="houseLine" size={32} weight="bold" />
         <h1 id="HShousing">Hebron Student Housing</h1>
@@ -114,7 +118,7 @@ const NavBar = () => {
         </div>
       </div>
 
-    </div>);
+    </div>}</>);
 };
 
 export default NavBar;

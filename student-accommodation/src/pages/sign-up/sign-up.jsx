@@ -184,11 +184,15 @@ const SignUp = () => {
         <div className="signIn-button">
           <button disabled={!capVal}>Sign Up</button>
         </div>
-        <ReCAPTCHA
-          sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
-          onChange={(val) => setCapval(val)}
-        />
       </form>
+
+      <ReCAPTCHA
+        id="capcha"
+        sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
+        onChange={(val) => setCapval(val)}
+        style={{ float: 'right', marginRight: '10px' }}
+      />
+
       <img src={logo} alt="" className="img-log" />
     </div>
   );

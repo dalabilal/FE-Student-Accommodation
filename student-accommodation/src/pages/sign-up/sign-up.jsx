@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import Input from '../../component/common/input/input.component';
-import { useUser } from '../../service/UserContext';
-import './sign-up.css';
-import { Link } from 'react-router-dom';
-import logo from '../../assests/logo.jpg'
-import StrongPassword from './passwordStrength';
-import useNotification from '../../hook/notification.hook';
+import React, { useState, useEffect } from "react";
+import Input from "../../component/common/input/input.component";
+import { useUser } from "../../service/UserContext";
+import "./sign-up.css";
+import { Link } from "react-router-dom";
+import logo from "../../assests/logo.jpg";
+import StrongPassword from "./passwordStrength";
+import useNotification from "../../hook/notification.hook";
+import ReCAPTCHA from "react-google-recaptcha";
+
+// 6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b
 
 const SignUp = () => {
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [emailExists, setEmailExists] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [password, setPassword] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [password, setPassword] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
   const { setNotification } = useNotification();
+  const [capVal, setCapval] = useState(null);
 
   const { setNoUser, setUserRole } = useUser();
 
@@ -32,10 +36,10 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3005/signup/', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3005/signup/", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           firstname,
@@ -49,37 +53,47 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        const userData = await response.json()
-        sessionStorage.setItem('jwtToken', userData.token);
-        sessionStorage.setItem('userRole', role);
-        sessionStorage.setItem('username', userData.firstname);
-        console.log('User signed up successfully!');
-        setNotification({ message: 'User is created successfully', status: 'success' })
+        const userData = await response.json();
+        sessionStorage.setItem("jwtToken", userData.token);
+        sessionStorage.setItem("userRole", role);
+        sessionStorage.setItem("username", userData.firstname);
+        console.log("User signed up successfully!");
+        setNotification({
+          message: "User is created successfully",
+          status: "success",
+        });
         setUserRole(role);
-        console.log('role', role);
+        console.log("role", role);
       } else {
         const responseData = await response.json();
         if (responseData.error) {
-          if (responseData.error.message === 'Email already exists') {
+          if (responseData.error.message === "Email already exists") {
             setEmailExists(true);
-            setNotification({ message: 'User is not created', status: 'error' })
-          } else if (responseData.error.message === 'Passwords do not match') {
-            setNotification({ message: 'User is not created', status: 'error' })
+            setNotification({
+              message: "User is not created",
+              status: "error",
+            });
+          } else if (responseData.error.message === "Passwords do not match") {
+            setNotification({
+              message: "User is not created",
+              status: "error",
+            });
             setPasswordsMatch(false);
           } else {
-            console.error('Failed to sign up:', responseData.error.message);
-            setNotification({ message: 'User is not created', status: 'error' })
+            console.error("Failed to sign up:", responseData.error.message);
+            setNotification({
+              message: "User is not created",
+              status: "error",
+            });
           }
         }
       }
     } catch (error) {
-      setNotification({ message: 'Server Error', status: 'warning' })
-      console.error('Error:', error);
+      setNotification({ message: "Server Error", status: "warning" });
+      console.error("Error:", error);
     }
     setNoUser(true);
-
   };
-
 
   useEffect(() => {
     setEmailExists(false); // Reset emailExists state when the email changes
@@ -113,14 +127,15 @@ const SignUp = () => {
           label="email"
           required
           onChange={(e) => {
-            setEmail(e.target.value)
-            setEmailExists(false)
-          }
-          } />
-        {emailExists &&
-          <span style={{ color: 'red' }}>
+            setEmail(e.target.value);
+            setEmailExists(false);
+          }}
+        />
+        {emailExists && (
+          <span style={{ color: "red" }}>
             Email already exists. Please use a different email.
-          </span>}
+          </span>
+        )}
         <Input
           label="phone number"
           required
@@ -132,8 +147,8 @@ const SignUp = () => {
             <input
               type="radio"
               value="owner"
-              checked={role === 'owner'}
-              onChange={() => setRole('owner')}
+              checked={role === "owner"}
+              onChange={() => setRole("owner")}
               required
             />
             <span className="radiol-label">Owner</span>
@@ -142,8 +157,8 @@ const SignUp = () => {
             <input
               type="radio"
               value="student"
-              checked={role === 'student'}
-              onChange={() => setRole('student')}
+              checked={role === "student"}
+              onChange={() => setRole("student")}
               required
             />
             <span className="radio-label">Student</span>
@@ -155,18 +170,26 @@ const SignUp = () => {
           passwordsMatch={passwordsMatch}
           setPasswordsMatch={setPasswordsMatch}
         />
-        {!passwordsMatch && <span id='notMatch' style={{ color: 'red' }}>Passwords do not match!</span>}
+        {!passwordsMatch && (
+          <span id="notMatch" style={{ color: "red" }}>
+            Passwords do not match!
+          </span>
+        )}
         <div className="span-text1">
           <span className="condition">already have an account, </span>
-          <span className='signin'>
-            <Link to={'/signin'}>Sign in!</Link>
+          <span className="signin">
+            <Link to={"/signin"}>Sign in!</Link>
           </span>
         </div>
         <div className="signIn-button">
-          <button>Sign Up</button>
+          <button disabled={!capVal}>Sign Up</button>
         </div>
+        <ReCAPTCHA
+          sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
+          onChange={(val) => setCapval(val)}
+        />
       </form>
-      <img src={logo} alt="" className='img-log'/>
+      <img src={logo} alt="" className="img-log" />
     </div>
   );
 };

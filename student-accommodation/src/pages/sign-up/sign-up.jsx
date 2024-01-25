@@ -190,7 +190,7 @@ const SignUp = () => {
         id="capcha"
         sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
         onChange={(val) => setCapval(val)}
-        style={{ float: 'right', marginRight: '10px' }}
+        style={{ float: "right", marginRight: "10px" }}
       />
 
       <img src={logo} alt="" className="img-log" />

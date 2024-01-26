@@ -42,7 +42,7 @@ const Verification = (props) => {
         <div className="title">
           <span style={{ fontSize: 20 }}>check your email please and enter the code</span>
         </div>
-        <form >
+        <form onSubmit={handleVerification}>
           {popup ?
             <>
               <button type='button'
@@ -63,8 +63,7 @@ const Verification = (props) => {
                 required
               />
               <button
-                type='button'
-                onClick={handleVerification}
+                type='submit'
               >Verify
               </button>
               <span 

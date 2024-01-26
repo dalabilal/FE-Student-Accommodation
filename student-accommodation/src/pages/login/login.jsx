@@ -31,20 +31,17 @@ const SignInForm = () => {
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('username', userData.firstname);
         sessionStorage.setItem('userRole', userData.role);
-        setUserRole(userData.role);
         setNotification({ message: 'Login successful!', status: 'success' });
-
+        setUserRole(userData.role);
       } else {
         const errorData = await response.json();
         if (errorData && errorData.message === 'Invalid credentials') {
           setNotification({ message: 'Invalid email or password, Try again', status: 'error' });
-          setNoUser(true);
         }  else if (errorData && errorData.message === 'Verification code sent to your email. Enter the code to proceed.') {
-           setEmailVerify(email);
-           navigate('/verification')
+          setEmailVerify(email);
+          navigate('/verification')
           setNotification({ message: 'Verification code sent to your email. Enter the code to proceed.', status: 'warning' });
-          setNoUser(true);
-
+          
         } else {
           setNotification({ message: 'Server Error', status: 'warning' });
         }
@@ -53,6 +50,7 @@ const SignInForm = () => {
       console.error('Error:', error);
       setNotification({ message: 'Server Error', status: 'warning' });
     }
+    setNoUser(true);
   };
 
   return (

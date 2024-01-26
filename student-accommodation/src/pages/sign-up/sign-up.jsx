@@ -26,10 +26,9 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if passwords match
     if (password !== confirmPassword) {
       setPasswordsMatch(false);
-      setEmailExists(false); // Reset emailExists state
+      setEmailExists(false); 
       return;
     }
 
@@ -51,20 +50,18 @@ const SignUp = () => {
       });
 
       if (response.ok) {
+        setUserRole(role);
         const userData = await response.json()
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('userRole', role);
         sessionStorage.setItem('username', userData.firstname);
-        console.log('User signed up successfully!');
         setNotification({ message: 'User is created successfully', status: 'success' })
-        setUserRole(role);
-        console.log('role', role);
       } else {
         const responseData = await response.json();
         if (responseData.error) {
           if (responseData.error.message === 'Email already exists') {
             setEmailExists(true);
-            setNotification({ message: 'User is not created', status: 'error' })
+            setNotification({ message: 'Email already exists', status: 'error' })
           } else if (responseData.error.message === 'Passwords do not match') {
             setNotification({ message: 'User is not created', status: 'error' })
             setPasswordsMatch(false);
@@ -84,7 +81,7 @@ const SignUp = () => {
 
 
   useEffect(() => {
-    setEmailExists(false); // Reset emailExists state when the email changes
+    setEmailExists(false);
   }, [email]);
 
   return (

@@ -25,7 +25,6 @@ const Verification = (props) => {
       });
 
       if (response.ok) {
-        console.log(verificationCode);
         setPopup(!popup)
         setNotification({ message: 'Verification code are correct', status: 'sucess' });
       } else {
@@ -68,7 +67,9 @@ const Verification = (props) => {
                 onClick={handleVerification}
               >Verify
               </button>
-              <span >resend code ?</span>
+              <span 
+               onClick={() => navigate('/sendVerify')}
+              >resend code ?</span>
             </>}
 
         </form>

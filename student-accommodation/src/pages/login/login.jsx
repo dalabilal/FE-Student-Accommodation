@@ -13,7 +13,7 @@ const SignInForm = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { setNotification } = useNotification();
-  const { setUserRole, setNoUser, setShowVerificationCodeInput, verificationCode, setEmailVerify} = useUser(); 
+  const { setUserRole, setNoUser, verificationCode, setEmailVerify} = useUser(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,10 +39,7 @@ const SignInForm = () => {
         if (errorData && errorData.message === 'Invalid credentials') {
           setNotification({ message: 'Invalid email or password, Try again', status: 'error' });
           setNoUser(true);
-          setShowVerificationCodeInput(false);
-
         }  else if (errorData && errorData.message === 'Verification code sent to your email. Enter the code to proceed.') {
-           setShowVerificationCodeInput(true);
            setEmailVerify(email);
            navigate('/verification')
           setNotification({ message: 'Verification code sent to your email. Enter the code to proceed.', status: 'warning' });

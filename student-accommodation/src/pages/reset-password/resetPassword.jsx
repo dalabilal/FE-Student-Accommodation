@@ -13,14 +13,9 @@ const ResetPassword = (props) => {
   const { setNotification } = useNotification();
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
-  const [error, setError] = useState(null);
-  console.log('====================================');
-  console.log(emailVerify);
-  console.log('====================================');
+
   const handleResetPassword = async (e) => {
     e.preventDefault();
-  
-  
   
     try {
       const response = await fetch('http://localhost:3005/resetPassword/', {
@@ -29,32 +24,29 @@ const ResetPassword = (props) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: emailVerify,  // Assuming you have the user's email from your context
+          email: emailVerify, 
           newPassword,
           confirmNewPassword,
         }),
       });
   
       if (response.ok) {
-        // Handle successful password reset here
         console.log('Password reset successful');
         setNotification({ message: 'Password reset successful!', status: 'success' });
-        navigate('/');  // Navigate to the home page or another page after successful password reset
+        navigate('/signin');  
       } else {
         const errorData = await response.json();
-  
-        // Handle different error scenarios
+
         if (errorData && errorData.error === 'Invalid request body') {
-          setError('Invalid request body');
+          console.error(errorData.error )
         } else if (errorData && errorData.error === 'User not found') {
-          setError('User not found');
+          console.error(errorData.error )
         } else {
-          // Handle other errors here
-          setError('Error resetting password. Please try again.');
+          console.error('Error resetting password. Please try again.')
         }
       }
     } catch (error) {
-      setError('Server Error');
+      console.error('Server Error')
     }
   };
 

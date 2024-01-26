@@ -11,10 +11,10 @@ const Verification = (props) => {
   const { setNotification } = useNotification();
   const [popup, setPopup] = useState(false);
   const navigate = useNavigate();
-  const { verificationCode,
-    setVerificationCode, showVerificationCodeInput, emailVerify, } = useUser();
+  const { verificationCode, setVerificationCode, emailVerify, } = useUser();
+
   const handleVerification = async () => {
-    // Perform verification
+   
     try {
       const response = await fetch('http://localhost:3005/verify/', {
         method: 'POST',
@@ -34,13 +34,11 @@ const Verification = (props) => {
     } catch (error) {
       console.error('Error during verification:', error);
     }
-
-
   };
 
   return (
     <div className="main">
-       <img src={Home} alt='homepage' className='img-sign' onClick={() => navigate('/')} />
+      <img src={Home} alt='homepage' className='img-sign' onClick={() => navigate('/')} />
       <div className="sign-in-form">
         <div className="title">
           <span style={{ fontSize: 20 }}>check your email please and enter the code</span>
@@ -52,8 +50,8 @@ const Verification = (props) => {
                 onClick={() => navigate('/signin')}
               >signin Again</button>
               <button
-              type='button'
-              onClick={() => navigate('/reset')}
+                type='button'
+                onClick={() => navigate('/reset')}
               >reset Password</button>
             </>
             : <>
@@ -70,7 +68,7 @@ const Verification = (props) => {
                 onClick={handleVerification}
               >Verify
               </button>
-            <span >resend code ?</span>
+              <span >resend code ?</span>
             </>}
 
         </form>

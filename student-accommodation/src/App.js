@@ -15,6 +15,7 @@ import NavBar from './component/common/navBar/NavBar';
 import Guard from './component/guard/guard';
 import Verification from './pages/verification/verification';
 import ResetPassword from './pages/reset-password/resetPassword';
+import EmailVerification from './pages/email-verification/EmailVerification';
 
 function App() {
  return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/allusers' element={<Guard permittedRoles={['owner']}><ProtectedUsers /></Guard>} />
         <Route path='/*' element={<NotFound/>}/>
         <Route path='/verification' element={<Verification/>}/>
+        <Route path='/sendVerify' element={<EmailVerification/>}/>
         <Route path='/reset' element={<ResetPassword/>}/>
       </Routes>
     </BrowserRouter>

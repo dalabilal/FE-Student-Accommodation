@@ -8,7 +8,6 @@ export const UserProvider = ({ children }) => {
   const [noUser, setNoUser] = useState(token ? true : false);
   const [verificationCode, setVerificationCode] = useState('');
   const [emailVerify, setEmailVerify] = useState('');
-  const [showVerificationCodeInput, setShowVerificationCodeInput] = useState(false);
 
   useEffect(() => {
     const token = sessionStorage.getItem('jwtToken');
@@ -32,8 +31,7 @@ export const UserProvider = ({ children }) => {
       noUser, userRole,
      logoutUser ,setUserRole ,
      setNoUser , verificationCode ,
-     setVerificationCode, showVerificationCodeInput,
-     setShowVerificationCodeInput, emailVerify,
+     setVerificationCode, emailVerify,
      setEmailVerify
      }}>
       {children}

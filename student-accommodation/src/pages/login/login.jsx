@@ -12,12 +12,15 @@ import Verification from '../verification/verification';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [verificationCode, setVerificationCode] = useState('');
-  const ver = sessionStorage.getItem('Verification');
-  const [showVerificationCodeInput, setShowVerificationCodeInput] = useState(ver? true : false);
   const navigate = useNavigate();
-  const { setUserRole, setNoUser } = useUser(); // Get setUserRole from the context
   const { setNotification } = useNotification();
+  const { setUserRole, setNoUser , 
+    setShowVerificationCodeInput ,
+    showVerificationCodeInput , 
+    setVerificationCode,
+    verificationCode,
+    setEmailVerify
+  } = useUser(); // Get setUserRole from the context
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,12 +48,13 @@ const SignInForm = () => {
           setNotification({ message: 'Invalid email or password, Try again', status: 'error' });
           setNoUser(true);
           setShowVerificationCodeInput(false);
-        } else if (errorData && errorData.message === 'Verification code sent to your email. Enter the code to proceed.') {
-          sessionStorage.setItem('Verification', showVerificationCodeInput);
-          
+        } else
+        if (errorData && errorData.message === 'Verification code sent to your email. Enter the code to proceed.') {
+           setShowVerificationCodeInput(true);
+           setEmailVerify(email);
+           navigate('/verification')
           setNotification({ message: 'Verification code sent to your email. Enter the code to proceed.', status: 'warning' });
           setNoUser(true);
-          setShowVerificationCodeInput(true);
         } else {
           // Handle other errors here
           setNotification({ message: 'Server Error', status: 'warning' });
@@ -70,15 +74,7 @@ const SignInForm = () => {
           <span>Sign In</span>
         </div>
         <form onSubmit={handleSubmit}>
-          {showVerificationCodeInput ?
-            <Verification
-              showVerificationCodeInput={showVerificationCodeInput}
-              setShowVerificationCodeInput={setShowVerificationCodeInput}
-              verificationCode={verificationCode}
-              setVerificationCode={setVerificationCode}
-              email={email}
-            />:
-            <> <Input
+            <Input
             id='email'
             label='Email'
             type='email'
@@ -93,7 +89,6 @@ const SignInForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            
           <div className="forgot-password">
             <span id='forgot-password'>forgot password?</span>
           </div>
@@ -106,7 +101,6 @@ const SignInForm = () => {
           <div className="signIn-button">
             <button type="submit">Sign In</button>
           </div>
-          </> }
         </form>
       </div>
       <img src={logo} alt="" className='img-log' />

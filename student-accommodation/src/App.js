@@ -13,6 +13,7 @@ import SignInForm from './pages/login/login';
 
 import NavBar from './component/common/navBar/NavBar';
 import Guard from './component/guard/guard';
+import Verification from './pages/verification/verification';
 
 function App() {
  return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/favorite' element={<Favorite/>}/>
         <Route path='/allusers' element={<Guard permittedRoles={['owner']}><ProtectedUsers /></Guard>} />
         <Route path='/*' element={<NotFound/>}/>
+        <Route path='/verification' element={<Verification/>}/>
       </Routes>
     </BrowserRouter>
     <Notification/>

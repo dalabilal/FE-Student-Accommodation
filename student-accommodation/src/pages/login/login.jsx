@@ -33,6 +33,7 @@ const SignInForm = () => {
         sessionStorage.setItem('userRole', userData.role);
         setNotification({ message: 'Login successful!', status: 'success' });
         setUserRole(userData.role);
+        navigate('/')
       } else {
         const errorData = await response.json();
         if (errorData && errorData.message === 'Invalid credentials') {

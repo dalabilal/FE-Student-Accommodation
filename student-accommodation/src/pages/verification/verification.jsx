@@ -51,7 +51,10 @@ const Verification = (props) => {
               <button type='button'
                 onClick={() => navigate('/signin')}
               >signin Again</button>
-              <button type='button'>reset Password</button>
+              <button
+              type='button'
+              onClick={() => navigate('/reset')}
+              >reset Password</button>
             </>
             : <>
               <Input

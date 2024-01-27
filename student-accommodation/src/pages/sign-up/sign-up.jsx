@@ -20,16 +20,63 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [cap, setCap] = useState(null);
+  const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
 
   const navigate = useNavigate();
-  const { setNoUser, setUserRole } = useUser();
-
+  const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify} = useUser();
+  console.log(emailVerify);
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
+  const handleSendEmail = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3005/sendEmail/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: emailVerify }),
+      });
+
+      if (response.status === 200) {
+
+      }
+      else {
+        setNotification({ message: 'email Not Found', status: 'error' })
+
+      }
+    } catch (error) {
+      console.error('Error sending verification code:', error.response ? error.response.data : error.message);
+      setNotification({ message: 'Error sending verification code. Please try again.', status: 'error' });
+    }
+  };
+
+  const handleVerification = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3005/verify/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email, verificationCode: verificationCode , verificationcode2 :verificationCode }),
+      });
+
+      if (response.ok) {
+        setNotification({ message: 'Verification code are correct', status: 'sucess' });
+        handleSubmit(e);
+      } else {
+        setNotification({ message: 'Verification code are not right', status: 'warning' });
+      }
+    } catch (error) {
+      console.error('Error during verification:', error);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,6 +116,7 @@ const SignUp = () => {
         sessionStorage.setItem('username', userData.firstname);
         setNotification({ message: 'User is created successfully', status: 'success' })
         navigate('/')
+
       } else {
         const responseData = await response.json();
         if (responseData.error) {
@@ -86,7 +134,6 @@ const SignUp = () => {
       }
     } catch (error) {
       setNotification({ message: 'Server Error', status: 'warning' })
-      console.error('Error:', error);
     }
     setNoUser(true);
 
@@ -100,7 +147,7 @@ const SignUp = () => {
   return (
     <div className="main1">
       <img src={Home} alt='homepage' className='img-sign' onClick={() => navigate('/')} />
-      <form className="sign-up-form" onSubmit={handleSubmit}>
+      <form className="sign-up-form" onSubmit={handleVerification}>
         <div className="title">
           <span>Sign Up</span>
         </div>
@@ -128,6 +175,7 @@ const SignUp = () => {
           onChange={(e) => {
             setEmail(e.target.value)
             setEmailExists(false)
+            setEmailVerify(e.target.value);
           }
           } />
         {emailExists &&
@@ -169,23 +217,56 @@ const SignUp = () => {
           setPasswordsMatch={setPasswordsMatch}
         />
         {!passwordsMatch && <span id='notMatch' style={{ color: 'red' }}>Passwords do not match!</span>}
+        <ReCAPTCHA
+          id="capcha"
+          sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
+          onChange={(val) => setCap(val)}
+          style={{ float: 'right', marginRight: '10px' }}
+        />
         <div className="span-text1">
           <span className="condition">already have an account, </span>
           <span className='signin'>
             <Link to={'/signin'}>Sign in!</Link>
           </span>
         </div>
-        <ReCAPTCHA
-          id="capcha"
-          sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
-          onChange={(val) => setCap(val)}
-          style={{ float: 'right', marginRight: '10px' }} />
         <div className="signIn-button">
           <button
             disabled={!cap}
-            type='submit'
+            type='button'
+            onClick={(e) => {
+              setVerify(true)
+              handleSendEmail(e);
+            }}
           >Sign Up
           </button>
+          {verify && <div className="plur-popup">
+            <div className="popup-container show">
+
+            <Input
+                id="verificationCode"
+                label="Verification Code"
+                type="text"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
+                required
+              />
+              <div
+                className="verification-items"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <button id="verify" type="submit">
+                  Verify
+                </button>
+                <span id="resendCode" onClick={() => navigate("/sendVerify")}>
+                  resend code ?
+                </span>
+               </div>
+            </div>
+          </div>}
         </div>
       </form>
       <img src={logo} alt="" className='img-log' />

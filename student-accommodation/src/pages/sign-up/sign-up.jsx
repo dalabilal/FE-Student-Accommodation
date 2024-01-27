@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
 import Input from '../../component/common/input/input.component';
-import { useUser } from '../../service/UserContext';
-import './sign-up.css';
+import useNotification from '../../hook/notification.hook';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../../service/UserContext';
 import logo from '../../assests/logo.jpg'
 import StrongPassword from './passwordStrength';
-import useNotification from '../../hook/notification.hook';
 import Home from '../../assests/home.png'
 import ReCAPTCHA from 'react-google-recaptcha';
+import './sign-up.css';
 
 const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,7 +19,6 @@ const SignUp = () => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
-  const [capVal, setCapval] = useState(false);
   const [cap, setCap] = useState(null);
   const { setNotification } = useNotification();
 
@@ -33,7 +32,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateEmail(email)) {
       setNotification({ message: 'Invalid email format', status: 'error' });
       return;
@@ -102,103 +101,92 @@ const SignUp = () => {
     <div className="main1">
       <img src={Home} alt='homepage' className='img-sign' onClick={() => navigate('/')} />
       <form className="sign-up-form" onSubmit={handleSubmit}>
-        {!capVal ? <> <div className="title">
+        <div className="title">
           <span>Sign Up</span>
         </div>
-          <div className="name">
-            <Input
-              label="first name"
-              required
-              radius={15}
-              height={30}
-              width={160}
-              onChange={(e) => setFirstname(e.target.value)}
-            />
-            <Input
-              label="last name"
-              required
-              radius={15}
-              height={30}
-              width={160}
-              onChange={(e) => setLastname(e.target.value)}
-            />
-          </div>
+        <div className="name">
           <Input
-            label="email"
+            label="first name"
             required
-            onChange={(e) => {
-              setEmail(e.target.value)
-              setEmailExists(false)
-            }
-            } />
-          {emailExists &&
-            <span style={{ color: 'red' }}>
-              Email already exists. Please use a different email.
-            </span>}
+            radius={15}
+            height={30}
+            width={160}
+            onChange={(e) => setFirstname(e.target.value)}
+          />
           <Input
-            label="phone number"
+            label="last name"
             required
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            radius={15}
+            height={30}
+            width={160}
+            onChange={(e) => setLastname(e.target.value)}
           />
-          <div className="role-radio">
-            <label className="role">Are you : </label>
-            <label>
-              <input
-                type="radio"
-                value="owner"
-                checked={role === 'owner'}
-                onChange={() => setRole('owner')}
-                required
-              />
-              <span className="radiol-label">Owner</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="student"
-                checked={role === 'student'}
-                onChange={() => setRole('student')}
-                required
-              />
-              <span className="radio-label">Student</span>
-            </label>
-          </div>
-          <StrongPassword
-            setPassword={setPassword}
-            setConfirmPassword={setConfirmPassword}
-            passwordsMatch={passwordsMatch}
-            setPasswordsMatch={setPasswordsMatch}
-          />
-          {!passwordsMatch && <span id='notMatch' style={{ color: 'red' }}>Passwords do not match!</span>}
-          <div className="span-text1">
-            <span className="condition">already have an account, </span>
-            <span className='signin'>
-              <Link to={'/signin'}>Sign in!</Link>
-            </span>
-          </div>
-          <div className="signIn-button">
-            <button
-              type='button'
-              onClick={() => setCapval(true)}
-            >Sign Up</button>
-          </div>
-        </>
-          : <>
-            <ReCAPTCHA
-              id="capcha"
-              sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
-              onChange={(val) => setCap(val)}
-              style={{ float: 'right', marginRight: '10px' }} />
-
-            {cap ? <div className="signIn-button">
-              <button
-                // disabled={!cap}
-                type='submit'
-              >Sign Up
-              </button>
-            </div> : ""}
-          </>
-        }
+        </div>
+        <Input
+          label="email"
+          required
+          onChange={(e) => {
+            setEmail(e.target.value)
+            setEmailExists(false)
+          }
+          } />
+        {emailExists &&
+          <span style={{ color: 'red' }}>
+            Email already exists. Please use a different email.
+          </span>}
+        <Input
+          label="phone number"
+          required
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+        <div className="role-radio">
+          <label className="role">Are you : </label>
+          <label>
+            <input
+              type="radio"
+              value="owner"
+              checked={role === 'owner'}
+              onChange={() => setRole('owner')}
+              required
+            />
+            <span className="radiol-label">Owner</span>
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="student"
+              checked={role === 'student'}
+              onChange={() => setRole('student')}
+              required
+            />
+            <span className="radio-label">Student</span>
+          </label>
+        </div>
+        <StrongPassword
+          setPassword={setPassword}
+          setConfirmPassword={setConfirmPassword}
+          passwordsMatch={passwordsMatch}
+          setPasswordsMatch={setPasswordsMatch}
+        />
+        {!passwordsMatch && <span id='notMatch' style={{ color: 'red' }}>Passwords do not match!</span>}
+        <div className="span-text1">
+          <span className="condition">already have an account, </span>
+          <span className='signin'>
+            <Link to={'/signin'}>Sign in!</Link>
+          </span>
+        </div>
+        <ReCAPTCHA
+          id="capcha"
+          sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
+          onChange={(val) => setCap(val)}
+          style={{ float: 'right', marginRight: '10px' }} />
+        <div className="signIn-button">
+          <button
+            disabled={!cap}
+            type='submit'
+          >Sign Up
+          </button>
+        </div>
       </form>
       <img src={logo} alt="" className='img-log' />
     </div>

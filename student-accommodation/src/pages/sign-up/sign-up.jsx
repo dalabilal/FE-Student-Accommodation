@@ -24,11 +24,20 @@ const SignUp = () => {
   const { setNotification } = useNotification();
 
   const navigate = useNavigate();
-
   const { setNoUser, setUserRole } = useUser();
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateEmail(email)) {
+      setNotification({ message: 'Invalid email format', status: 'error' });
+      return;
+    }
 
     if (password !== confirmPassword) {
       setPasswordsMatch(false);
@@ -175,15 +184,15 @@ const SignUp = () => {
           </div>
         </>
           : <>
-          <ReCAPTCHA
-            id="capcha"
-            sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
-            onChange={(val) => setCap(val)}
-            style={{ float: 'right', marginRight: '10px' }} />
+            <ReCAPTCHA
+              id="capcha"
+              sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
+              onChange={(val) => setCap(val)}
+              style={{ float: 'right', marginRight: '10px' }} />
 
-         { cap ? <div className="signIn-button">
+            {cap ? <div className="signIn-button">
               <button
-              // disabled={!cap}
+                // disabled={!cap}
                 type='submit'
               >Sign Up
               </button>

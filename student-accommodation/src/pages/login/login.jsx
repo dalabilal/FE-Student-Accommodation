@@ -15,7 +15,18 @@ const SignInForm = () => {
   const { setNotification } = useNotification();
   const { setUserRole, setNoUser, verificationCode, setEmailVerify} = useUser(); 
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  
   const handleSubmit = async (e) => {
+
+    if (!validateEmail(email)) {
+      setNotification({ message: 'Invalid email format', status: 'error' });
+      return;
+    }
+
     e.preventDefault();
     try {
       const response = await fetch('http://localhost:3005/signin/', {

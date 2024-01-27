@@ -1,6 +1,6 @@
 .plur-popup {
   width: 100%;
-  background-color: #e1fbd56b;
+  background-color: #9e9e9ea3;
   position: fixed;
   height: 1000vh;
   top: 0;
@@ -10,10 +10,7 @@
 }
 
 .popup-container {
-  display: none;
   position: fixed;
-  border: 1px solid #5965536a;
-  height: 540px;
   top: 50%;
   left: 50%;
   justify-content: center;
@@ -23,39 +20,37 @@
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 17px;
+  height: 623px;
+  width: 358px;
+  display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
-.popup-container.show,
+/* .popup-container.show,
 .overlay.show {
   display: block;
-}
+} */
 
 .popup-container Input {
   margin-bottom: 15px;
   align-self: center;
 }
 
-.bottuns {
-  display: inline-flex;
-}
 
-#add {
-  margin-top: 15px;
-  height: 30px;
-  width: 50px;
-  border: 1px solid #8193796b;
-  border-radius: 15px;
-  background-color: #f2f6f06b;
-}
 
 #choose {
   margin-top: 15px;
+  font-size: 20px;
+  color: #666;
 }
 
 Textarea {
   font-size: 1rem;
   font-weight: 400;
   color: #212529;
+  height: 132px;
   background-color: #fff;
   background-clip: padding-box;
   -webkit-appearance: none;
@@ -85,3 +80,92 @@ Textarea:focus {
   cursor: pointer;
 }
 
+
+#add {
+  color: #fff;
+  padding: 0.5em;
+  margin-top: 22px;
+  height: 39px;
+  width: 75px;
+  border: 1px solid #A3C195;
+  border-radius: 15px;
+  background-color: #A3C195;
+}
+
+#add:hover {
+  background-color: #a4a5a4;
+
+}
+
+#choose {
+  margin-top: 15px;
+}
+
+Textarea {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid rgb(163, 193, 149);
+  border-radius: 30px;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  filter: drop-shadow(0px 4px 4px rgb(163, 193, 149))
+}
+
+Textarea:focus {
+  box-shadow: rgba(163, 247, 138, 0.25);
+}
+
+.xDiv {
+  display: inline-flex;
+  margin-top: 0;
+}
+
+.xDiv h2{
+  font-family: 'Times New Roman', Times, serif;
+    color: #A3C195;
+}
+
+#x {
+  position: absolute; 
+  right: 20px;
+  margin-top: -25px;
+  top: 40px;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #666;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+input {
+  width: 250px;
+  font-size: small;
+}
+
+#choose {
+  font-size: small;
+}
+
+input::file-selector-button {
+  font-size: small;
+  color: rgb(255, 255, 255);
+  padding: 0.5em;
+  border: thin solid rgb(228, 227, 227);
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #A3C195;;
+
+}
+
+input::file-selector-button:hover {
+  background-color: #a4a5a4;
+}

@@ -13,8 +13,8 @@ const Verification = (props) => {
   const navigate = useNavigate();
   const { verificationCode, setVerificationCode, emailVerify, } = useUser();
 
-  const handleVerification = async () => {
-   
+  const handleVerification = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch('http://localhost:3005/verify/', {
         method: 'POST',

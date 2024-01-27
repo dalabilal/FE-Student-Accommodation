@@ -6,12 +6,23 @@ import {
   DotsThreeOutlineVertical,
 } from "@phosphor-icons/react";
 import "./card.css";
+import { useUser } from "../../service/UserContext";
+import { useNavigate } from "react-router-dom";
+import useNotification from "../../hook/notification.hook";
 
 const Card = ({ title, content, imageUrl }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
+  const {noUser} =  useUser()
+  const navigate = useNavigate();
+  const { setNotification } = useNotification();
 
   const handleHeartClick = () => {
-    setIsHeartClicked(!isHeartClicked);
+    if(!noUser) {
+      navigate('/signin');
+      setNotification({ message: 'you are not Login ', status: 'wks' })
+    }else {
+      setIsHeartClicked(!isHeartClicked);
+    }
   };
 
   return (

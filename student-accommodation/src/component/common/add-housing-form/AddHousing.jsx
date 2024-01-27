@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Input from '../input/input.component'
 import Textarea from '../textarea/textarea.component'
 import './addhousing.css'

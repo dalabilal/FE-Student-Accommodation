@@ -25,12 +25,16 @@ const EmailVerification = () => {
 
       if (response.status === 200) {
         setNotification({ message: 'Verification code sent , check your email!', status: 'success' })
+        navigate('/verification')
+      }
+      else {
+        setNotification({ message: 'email Not Found', status: 'error' })
+
       }
     } catch (error) {
       console.error('Error sending verification code:', error.response ? error.response.data : error.message);
       setNotification({ message: 'Error sending verification code. Please try again.', status: 'error' });
     }
-   navigate('/verification')
   };
 
   return (

@@ -55,21 +55,30 @@ const Verification = (props) => {
             </>
             : <>
               <Input
-                id='verificationCode'
-                label='Verification Code'
-                type='text'
+                id="verificationCode"
+                label="Verification Code"
+                type="text"
                 value={verificationCode}
                 onChange={(e) => setVerificationCode(e.target.value)}
                 required
               />
-              <button
-                type='submit'
-              >Verify
-              </button>
-              <span 
-               onClick={() => navigate('/sendVerify')}
-              >resend code ?</span>
-            </>}
+              <div
+                className="verification-items"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <button id="verify" type="submit">
+                  Verify
+                </button>
+                <span id="resendCode" onClick={() => navigate("/sendVerify")}>
+                  resend code ?
+                </span>
+              </div>
+            </>
+          }
 
         </form>
       </div>

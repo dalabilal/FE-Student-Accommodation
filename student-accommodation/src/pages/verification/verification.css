@@ -29,6 +29,22 @@
     z-index: 3;
     
 }
+.verification-items {
+    display: block;
+    align-content: center;
+    justify-content: space-between;
+}
+
+#verify {
+    margin-top: 30px;
+}
+
+#resendCode {
+    margin-top: 254px;
+    cursor: pointer;
+    font-weight: bolder;
+    color: #a3c195;
+}
 
 .img-log {
     top: 60px;

@@ -44,7 +44,15 @@ const EmailVerification = () => {
         <div className="title">
           <span style={{ fontSize: 20 }}>Please Enter your email below</span>
         </div>
-        <form onSubmit={handleSendEmail}>
+        <form
+          className="emailVerificationForm"
+          onSubmit={handleSendEmail}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Input
             label='Enter your Email'
             type='text'
@@ -52,7 +60,7 @@ const EmailVerification = () => {
             onChange={(e) => setEmailVerify(e.target.value)}
             required
           />
-          <button type='submit'>
+          <button type='submit' id="send-code">
             Send Code
           </button>
         </form>

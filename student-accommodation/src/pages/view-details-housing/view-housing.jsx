@@ -29,7 +29,7 @@ const ViewHousing = () => {
         };
     
         fetchHousingData();
-      }, [id]);
+      }, [id,setNotification]);
     
       if (!housingData) {
         return <div>Loading...</div>;

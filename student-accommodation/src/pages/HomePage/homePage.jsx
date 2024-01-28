@@ -1,6 +1,6 @@
 import React from "react";
-import "./homePage.css";
 import {FacebookLogo} from "@phosphor-icons/react"
+import "./homePage.css";
 
 const HomePage = () => {
   return (

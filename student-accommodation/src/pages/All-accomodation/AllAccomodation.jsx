@@ -2,7 +2,7 @@
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import Card from "../../component/Card/card";
 import "./allAcommodation.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser } from "../../service/UserContext";
 import AddHousingForm from "../../component/common/add-housing-form/AddHousing";
 

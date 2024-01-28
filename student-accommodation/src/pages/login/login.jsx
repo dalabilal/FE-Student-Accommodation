@@ -13,7 +13,7 @@ const SignInForm = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { setNotification } = useNotification();
-  const { setUserRole, setNoUser, verificationCode, setEmailVerify , setUserId} = useUser(); 
+  const { setUserRole, setNoUser, verificationCode, setEmailVerify} = useUser(); 
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

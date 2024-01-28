@@ -9,7 +9,7 @@ import { Trash } from "@phosphor-icons/react/dist/ssr";
 
 const Card = ({ name, description, imageUrl  , data }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
-  const { noUser, housingData } = useUser()
+  const { noUser } = useUser()
   const navigate = useNavigate();
   const { setNotification } = useNotification();
   const userID = sessionStorage.getItem('userID');

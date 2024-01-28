@@ -2,16 +2,12 @@ import Input from "../input/input.component";
 import Textarea from "../textarea/textarea.component";
 import sanitizeHtml from 'sanitize-html';
 import "./addhousing.css";
-import { useUser } from "../../../service/UserContext";
-import { useEffect } from "react";
 
 const AddHousingForm = (props) => {
-  const {userId } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Define sanitization options
     const sanitizeOptions = {
       allowedTags: ['b', 'i', 'em', 'strong', 'a', 'p', 'br'],
       allowedAttributes: {

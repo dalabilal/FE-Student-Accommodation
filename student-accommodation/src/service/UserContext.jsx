@@ -43,6 +43,7 @@ export const UserProvider = ({ children }) => {
     sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('userRole');
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userID');
     document.cookie = 'jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   };
 

@@ -39,9 +39,9 @@ const SignInForm = () => {
 
       if (response.ok) {
         const userData = await response.json();
-        setUserId(userData.userId);
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('username', userData.firstname);
+        sessionStorage.setItem('userID', userData._id);
         sessionStorage.setItem('userRole', userData.role);
         setNotification({ message: 'Login successful!', status: 'success' });
         setUserRole(userData.role);

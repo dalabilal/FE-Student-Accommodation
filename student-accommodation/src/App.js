@@ -16,6 +16,7 @@ import Guard from './component/guard/guard';
 import Verification from './pages/verification/verification';
 import ResetPassword from './pages/reset-password/resetPassword';
 import EmailVerification from './pages/email-verification/EmailVerification';
+import ViewHousing from './pages/view-details-housing/view-housing';
 
 function App() {
  return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/all' element={<AllAccomodation/>}/>
+        <Route path='/view/:id' element={<ViewHousing/>}/>
         <Route path='/favorite' element={<Favorite/>}/>
         <Route path='/allusers' element={<Guard permittedRoles={['owner']}><ProtectedUsers /></Guard>} />
         <Route path='/*' element={<NotFound/>}/>

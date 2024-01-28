@@ -1,0 +1,17 @@
+.view-page-group {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.view-page-group > .image-housing {
+    width: 60%;
+    height: 500px;
+   
+}
+
+.view-page-group > .image-housing > .information {
+    width: 100%;
+}

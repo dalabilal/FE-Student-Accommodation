@@ -1,10 +1,13 @@
-import React from "react";
 import Input from "../input/input.component";
 import Textarea from "../textarea/textarea.component";
 import sanitizeHtml from 'sanitize-html';
 import "./addhousing.css";
+import { useUser } from "../../../service/UserContext";
+import { useEffect } from "react";
 
 const AddHousingForm = (props) => {
+  const {userId } = useUser();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,16 +25,12 @@ const AddHousingForm = (props) => {
       },
     };
 
-    // Sanitize user inputs
     const name = sanitizeHtml(e.target.name.value, sanitizeOptions);
     const phoneNumber = sanitizeHtml(e.target.phoneNumber.value, sanitizeOptions);
     const location = sanitizeHtml(e.target.location.value, sanitizeOptions);
     const university = sanitizeHtml(e.target.university.value, sanitizeOptions);
     const rooms = sanitizeHtml(e.target.rooms.value, sanitizeOptions);
     const description = sanitizeHtml(e.target.description.value, sanitizeOptions);
-
-    // Retrieve files (assuming multiple files)
-    const files = Array.from(e.target.files.files);
 
     const formData = {
       name: name,
@@ -40,7 +39,7 @@ const AddHousingForm = (props) => {
       rooms: rooms,
       university: university,
       description: description,
-      files: files,
+      ownerId : userId
     };
 
     try {
@@ -53,6 +52,8 @@ const AddHousingForm = (props) => {
       });
 
       if (response.ok) {
+        
+        console.log("formData" , formData);
         console.log("Housing data submitted successfully");
         props.setPopup(false);
       } else {
@@ -73,15 +74,45 @@ const AddHousingForm = (props) => {
             X
           </span>
         </div>
-        <form onSubmit={handleSubmit}>
-          <Input label="name" name="name" required />
-          <Input label="phone number:" name="phoneNumber" required />
-          <Input name="location" label="location" required />
-          <Input label="rooms" type="number" name="rooms" required />
-          <Input label="university" name="university" required />
-          <Textarea label="description" name="description" required />
+        <form onSubmit={handleSubmit} encType="multipart/formData">
+          <Input
+            label="name"
+            name="name"
+            required
+          />
+          <Input
+            label="phone number:"
+            name="phoneNumber"
+            required
+          />
+          <Input
+            name="location"
+            label="location"
+            required
+          />
+          <Input
+            label="rooms"
+            type="number"
+            name="rooms"
+            required
+          />
+          <Input
+            label="university"
+            name="university"
+            required
+          />
+          <Textarea
+            label="description"
+            name="description"
+            required
+          />
           <div className="bottuns">
-            <input id="choose" type="file" multiple name="files" required />
+            <input
+              id="choose"
+              type="file"
+              name="files"
+              required
+            />
             <button id="add" type="submit">
               Add
             </button>

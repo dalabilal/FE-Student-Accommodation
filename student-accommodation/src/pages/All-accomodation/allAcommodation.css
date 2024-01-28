@@ -1,6 +1,10 @@
 .display-cards {
     margin-top: 40px;
     padding-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 .searchContainer {
     max-width: 280px;

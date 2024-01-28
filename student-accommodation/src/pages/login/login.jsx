@@ -13,7 +13,7 @@ const SignInForm = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { setNotification } = useNotification();
-  const { setUserRole, setNoUser, verificationCode, setEmailVerify} = useUser(); 
+  const { setUserRole, setNoUser, verificationCode, setEmailVerify , setUserId} = useUser(); 
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,6 +39,7 @@ const SignInForm = () => {
 
       if (response.ok) {
         const userData = await response.json();
+        setUserId(userData.userId);
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('username', userData.firstname);
         sessionStorage.setItem('userRole', userData.role);

@@ -10,7 +10,7 @@ import { useUser } from "../../service/UserContext";
 import { useNavigate } from "react-router-dom";
 import useNotification from "../../hook/notification.hook";
 
-const Card = ({ title, content, imageUrl }) => {
+const Card = ({ name, description, imageUrl }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const {noUser} =  useUser()
   const navigate = useNavigate();
@@ -27,10 +27,10 @@ const Card = ({ title, content, imageUrl }) => {
 
   return (
     <div className="card">
-      <h2 className="card-title">{title}</h2>
-      {imageUrl && <img src={imageUrl} alt={title} className="card-image" />}
+      <h2 className="card-title">{name}</h2>
+      {imageUrl && <img src={imageUrl} alt={name} className="card-image" />}
       <div className="card-content">
-        <p className="card-text">{content}</p>
+        <p className="card-text">{description}</p>
         <ul className="card-details">
           <Heart
             id="heart"

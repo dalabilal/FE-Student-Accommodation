@@ -29,7 +29,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/all' element={<AllAccomodation/>}/>
-        <Route path='/view/:id' element={<ViewHousing/>}/>
+        <Route path='/all/:id' element={<ViewHousing/>}/>
         <Route path='/favorite' element={<Favorite/>}/>
         <Route path='/allusers' element={<Guard permittedRoles={['owner']}><ProtectedUsers /></Guard>} />
         <Route path='/*' element={<NotFound/>}/>

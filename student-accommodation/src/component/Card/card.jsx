@@ -23,12 +23,30 @@ const Card = ({ name, description, imageUrl  , data }) => {
     }
   };
 
+  const handleDeleteClick = async () => {
+    try {
+      const response = await fetch(`http://localhost:3005/all/housing/${data._id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setNotification({ message: 'Housing card deleted successfully', status: 'success' });
+      } else {
+        const errorData = await response.json();
+        setNotification({ message: errorData.message || 'Failed to delete housing card', status: 'err' });
+      }
+    } catch (error) {
+      console.error('Error during delete:', error.message);
+      setNotification({ message: 'Error during delete', status: 'err' });
+    }
+  };
+
   return (
     <div className="card">
       <h2 className="card-title">{name}</h2>
-     {data.ownerId === userID && <span><Trash size={30}/></span>}
+     {data.ownerId === userID && <span><Trash size={30} onClick={handleDeleteClick}/></span>}
       {imageUrl &&
-        <Link to={`/view/${data._id}`}>
+        <Link to={`/all/${data._id}`}>
           <img src={imageUrl} alt={name} className="card-image" />
         </Link>
       }

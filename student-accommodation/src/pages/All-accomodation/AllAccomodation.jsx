@@ -23,9 +23,8 @@ const SearchBar = () => {
 };
 
 const AllAccomodation = () => {
-  const { noUser, userRole  , housingData  } = useUser();
+  const { noUser, userRole, housingData } = useUser();
   const [popup, setPopup] = useState(false);
-
 
   return (
     <div className="all-acc">
@@ -47,9 +46,10 @@ const AllAccomodation = () => {
         />
       }
       <div className="display-cards">
-      {housingData?.map((housing) => (
+        {housingData?.map((housing, index) => (
           <Card
-            key={housing._id}  
+            data={housing}
+            key={housing._id}
             name={housing.name}
             description={housing.description}
             imageUrl="https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"

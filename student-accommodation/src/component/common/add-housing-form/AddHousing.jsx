@@ -31,6 +31,7 @@ const AddHousingForm = (props) => {
     const university = sanitizeHtml(e.target.university.value, sanitizeOptions);
     const rooms = sanitizeHtml(e.target.rooms.value, sanitizeOptions);
     const description = sanitizeHtml(e.target.description.value, sanitizeOptions);
+    const useID = sessionStorage.getItem('userID');
 
     const formData = {
       name: name,
@@ -39,7 +40,7 @@ const AddHousingForm = (props) => {
       rooms: rooms,
       university: university,
       description: description,
-      ownerId : userId
+      ownerId : useID
     };
 
     try {

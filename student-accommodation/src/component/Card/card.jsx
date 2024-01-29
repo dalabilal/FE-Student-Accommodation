@@ -1,25 +1,57 @@
 import React, { useState } from "react";
-import {
-  Heart,
-  MapPinLine,
-  Phone,
-  DotsThreeOutlineVertical,
-} from "@phosphor-icons/react";
+import {Heart, MapPinLine, Phone, DotsThreeOutlineVertical} from "@phosphor-icons/react";
 import "./card.css";
+import { useUser } from "../../service/UserContext";
+import { Link, useNavigate } from "react-router-dom";
+import useNotification from "../../hook/notification.hook";
+import { Trash } from "@phosphor-icons/react/dist/ssr";
 
-const Card = ({ title, content, imageUrl }) => {
+
+const Card = ({ name, description, imageUrl  , data }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
+  const { noUser } = useUser()
+  const navigate = useNavigate();
+  const { setNotification } = useNotification();
+  const userID = sessionStorage.getItem('userID');
 
   const handleHeartClick = () => {
-    setIsHeartClicked(!isHeartClicked);
+    if (!noUser) {
+      navigate('/signin');
+      setNotification({ message: 'you are not Login ', status: 'wks' })
+    } else {
+      setIsHeartClicked(!isHeartClicked);
+    }
+  };
+
+  const handleDeleteClick = async () => {
+    try {
+      const response = await fetch(`http://localhost:3005/all/housing/${data._id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setNotification({ message: 'Housing card deleted successfully', status: 'success' });
+      } else {
+        const errorData = await response.json();
+        setNotification({ message: errorData.message || 'Failed to delete housing card', status: 'err' });
+      }
+    } catch (error) {
+      console.error('Error during delete:', error.message);
+      setNotification({ message: 'Error during delete', status: 'err' });
+    }
   };
 
   return (
     <div className="card">
-      <h2 className="card-title">{title}</h2>
-      {imageUrl && <img src={imageUrl} alt={title} className="card-image" />}
+      <h2 className="card-title">{name}</h2>
+     {data.ownerId === userID && <span><Trash size={30} onClick={handleDeleteClick}/></span>}
+      {imageUrl &&
+        <Link to={`/all/${data._id}`}>
+          <img src={imageUrl} alt={name} className="card-image" />
+        </Link>
+      }
       <div className="card-content">
-        <p className="card-text">{content}</p>
+        <p className="card-text">{description}</p>
         <ul className="card-details">
           <Heart
             id="heart"
@@ -27,8 +59,8 @@ const Card = ({ title, content, imageUrl }) => {
             weight={isHeartClicked ? "fill" : "bold"}
             onClick={handleHeartClick}
           />
-          <MapPinLine id="MapPinLine" size={25} weight="bold" />
-          <Phone id="Phone" size={25} weight="bold" />
+          <MapPinLine id="MapPinLine" size={25} weight='bold' />
+          <Phone id="Phone" size={25} weight='bold' />
           <DotsThreeOutlineVertical id="DotsThreeOutlineVertical" size={25} />
         </ul>
       </div>

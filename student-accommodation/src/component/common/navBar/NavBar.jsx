@@ -1,8 +1,9 @@
 import "./navBar.css";
 import React, { useState } from "react";
-import { HouseLine, UserCircle } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { HouseLine, SignOut, UserCircle } from "@phosphor-icons/react";
+import { Link, useLocation } from "react-router-dom";
 import { useUser } from "../../../service/UserContext"
+import { User } from "@phosphor-icons/react/dist/ssr";
 
 const NavBar = () => {
 
@@ -10,6 +11,10 @@ const NavBar = () => {
   const [Options, setOptions] = useState(false);
   const { logoutUser, noUser, userRole } = useUser();
   const username = sessionStorage.getItem('username');
+  const location = useLocation();
+  const hideNavBarRoutes = ['/signin', '/signup' , '/verification' , '/reset' , '/sendVerify'];
+  const shouldShowNavBar = !hideNavBarRoutes.includes(location.pathname);
+
 
   const handleOptions = () => {
     setOptions(false);
@@ -22,7 +27,7 @@ const NavBar = () => {
 
 
   return (
-    <div className="navBarWithList">
+   <>{shouldShowNavBar && <div className="navBarWithList">
       <div className="container">
         <HouseLine id="houseLine" size={32} weight="bold" />
         <h1 id="HShousing">Hebron Student Housing</h1>
@@ -80,25 +85,30 @@ const NavBar = () => {
           {Options && (
             <ul className="options">
               {!noUser && <><li>
-                <Link id="signin" to="/signin">
+                <Link id="signin" to="/signin" style={{color : "#848488"}}>
                   sign in
                 </Link>
               </li>
                 <li>
-                  <Link id="signup" to="/signup">
+                  <Link id="signup" to="/signup" style={{color : "#848488"}}>
                     sign up
                   </Link>
                 </li>
               </>
               }
-              {noUser && <li onClick={handleOptions}>
-                <Link id="YourAccount" to="/profile">
+              {noUser && <li
+               onClick={handleOptions}
+             
+               >
+                <Link id="YourAccount" to="/profile"  style={{color : "#848488"}}>
+                <User color="#848484" size={20} weight="bold"/>
                   Your Profile
                 </Link>
               </li>}
               {noUser &&
                 <li onClick={handleOptions}>
-                  <Link id="LogOut" to="/signin" onClick={logoutUser}>
+                  <Link id="LogOut" to="/signin" onClick={logoutUser}  style={{color : "#848484"}}>
+                  <SignOut color="#848484" size={20} weight="bold"/>
                     Log Out
                   </Link>
                 </li>
@@ -108,7 +118,7 @@ const NavBar = () => {
         </div>
       </div>
 
-    </div>);
+    </div>}</>);
 };
 
 export default NavBar;

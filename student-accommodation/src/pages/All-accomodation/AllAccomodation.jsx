@@ -2,20 +2,17 @@
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import Card from "../../component/Card/card";
 import "./allAcommodation.css";
-import { CaretCircleDown } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useUser } from "../../service/UserContext";
 import AddHousingForm from "../../component/common/add-housing-form/AddHousing";
 
+
 const SearchBar = () => {
-  const [toggle, setToggle] = useState(false);
-  const handleTheClick = () => {
-    setToggle(false);
-  };
+
   return (
     <div className="searchContainer">
       <div className="input-wrapper">
-      <select className="unisList">
+        <select className="unisList">
           <option>Palestine Polyticnech University</option>
           <option>Hebron University</option>
           <option>University</option>
@@ -26,7 +23,7 @@ const SearchBar = () => {
 };
 
 const AllAccomodation = () => {
-  const { noUser, userRole } = useUser();
+  const { noUser, userRole, housingData } = useUser();
   const [popup, setPopup] = useState(false);
 
   return (
@@ -45,15 +42,19 @@ const AllAccomodation = () => {
       </div>
       {popup &&
         <AddHousingForm
-        setPopup={setPopup}
+          setPopup={setPopup}
         />
       }
       <div className="display-cards">
-        <Card
-          title="Hebron Stay"
-          content="it is near to ppu....."
-          imageUrl="https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"
-        />
+        {housingData?.map((housing, index) => (
+          <Card
+            data={housing}
+            key={housing._id}
+            name={housing.name}
+            description={housing.description}
+            imageUrl="https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"
+          />
+        ))}
       </div>
     </div>
   );

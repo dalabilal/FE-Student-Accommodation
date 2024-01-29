@@ -2,11 +2,25 @@
     display: flex;
     height: 100vh;
     flex-direction: column;
-    justify-content: space-between;
     gap: 10px;
 }
 
-
+.main1 .img-sign {
+    width: 44px;
+    height: 41px;
+    margin-right: 25px;
+    margin-top: 20px;
+    align-self: flex-end;
+}
+.backgroundDiv {
+    width: 500px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
 .form-control-shadow-none {
     border: none;
     box-shadow: none;
@@ -19,9 +33,9 @@
 
 .main1 .sign-up-form {
     margin-left: 189px;
-    margin-top: 55px;
+    /* margin-top: 18px; */
     max-width: 400px;
-    max-height: 650px;
+    max-height: 708px;
     padding: 35px;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -107,8 +121,6 @@
     margin-bottom: 2px;
 }
 
-
-
 .img-log {
     top: 60px;
     width: 436px;
@@ -116,7 +128,6 @@
     position: fixed;
     left: 600px;
 }
-
 
 .main1 .sign-up>span>a {
     color: #023E8A;
@@ -167,28 +178,19 @@
     letter-spacing: 0.5px;
     font-weight: bold;
     color: #666;
-}
+  }
 
-#notMatch {
+  #notMatch {
     margin-top: 0px;
     align-self: center;
 }
 
-.progress {
-    margin-top: 0;
+.progress{
+    margin-bottom: 10px;
 }
 
 .progress-bar {
-    margin-top: 0;
+    position: relative;
+    top: -29px;
     border-radius: 5px;
-}
-
-#capcha {
-    position: absolute;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    z-index: 6;
-    margin-left: auto;
-    margin-left: 10px;
 }

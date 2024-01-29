@@ -1,5 +1,4 @@
-import React from 'react';
-import './sign-up.css'
+import './sign-up.css';
 
 const PasswordStrengthMeter = ({ label, color }) => {
   let widthPercentage;
@@ -12,7 +11,7 @@ const PasswordStrengthMeter = ({ label, color }) => {
       widthPercentage = '60%';
       break;
     case 'Strong':
-      widthPercentage = '100%';
+      widthPercentage = '88%';
       break;
     default:
       widthPercentage = '0%';
@@ -22,6 +21,7 @@ const PasswordStrengthMeter = ({ label, color }) => {
     width: widthPercentage,
     background: color,
     height: '7px',
+    margin_left: '2px',
   };
 
   return (
@@ -29,7 +29,6 @@ const PasswordStrengthMeter = ({ label, color }) => {
       <div className="progress" style={{ height: '2px' }}>
         <div className="progress-bar" style={progressStyle}></div>
       </div>
-      <p style={{ color }}>{}</p>
     </>
   );
 };

@@ -16,7 +16,7 @@
     margin-left: 189px;
     /* margin-top: 60px; */
     max-width: 400px;
-    height: 600px;
+    height: 630px;
     padding: 35px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -27,7 +27,7 @@
     background: #FFF;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 3;
-
+    
 }
 
 .img-log {
@@ -36,7 +36,6 @@
     height: 613px;
     position: fixed;
     left: 800px;
-    z-index: 0;
 }
 
 .main .sign-in-form .forgot-password>span {
@@ -116,6 +115,15 @@
 
 #email {
     margin-bottom: 30px;
+}
+
+.emailVerificationForm {
+    align-content: center;
+}
+
+#send-code {
+    margin-top: 30px;
+    align-self: center;
 }
 
 .forgot-password {

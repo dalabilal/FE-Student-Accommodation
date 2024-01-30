@@ -1,31 +1,38 @@
-import Input from '../../component/common/input/input.component';
-import useNotification from '../../hook/notification.hook';
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../../service/UserContext';
-import logo from '../../assests/logo.jpg'
-import StrongPassword from './passwordStrength';
-import Home from '../../assests/home.png'
-import ReCAPTCHA from 'react-google-recaptcha';
-import './sign-up.css';
+import Input from "../../component/common/input/input.component";
+import useNotification from "../../hook/notification.hook";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../service/UserContext";
+import logo from "../../assests/logo.jpg";
+import StrongPassword from "./passwordStrength";
+import Home from "../../assests/home.png";
+import ReCAPTCHA from "react-google-recaptcha";
+import "./sign-up.css";
 
 const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [emailExists, setEmailExists] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [password, setPassword] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [password, setPassword] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
   const [cap, setCap] = useState(null);
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
   const [capVal, setCapval] = useState(null);
-
+  const [showVerification, setShowVerification] = useState(false);
   const navigate = useNavigate();
-  const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify} = useUser();
+  const {
+    setNoUser,
+    setUserRole,
+    verificationCode,
+    setVerificationCode,
+    emailVerify,
+    setEmailVerify,
+  } = useUser();
   console.log(emailVerify);
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,53 +43,66 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3005/sendEmail/signup', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3005/sendEmail/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: emailVerify }),
       });
 
       if (response.status === 200) {
-
-      }
-      else {
-        setNotification({ message: 'email Not Found', status: 'error' })
-
+      } else {
+        setNotification({ message: "email Not Found", status: "error" });
       }
     } catch (error) {
-      console.error('Error sending verification code:', error.response ? error.response.data : error.message);
-      setNotification({ message: 'Error sending verification code. Please try again.', status: 'error' });
+      console.error(
+        "Error sending verification code:",
+        error.response ? error.response.data : error.message
+      );
+      setNotification({
+        message: "Error sending verification code. Please try again.",
+        status: "error",
+      });
     }
   };
 
   const handleVerification = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3005/verify/signup', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3005/verify/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email, verificationCode: verificationCode , verificationcode2 :verificationCode }),
+        body: JSON.stringify({
+          email: email,
+          verificationCode: verificationCode,
+          verificationcode2: verificationCode,
+        }),
       });
 
       if (response.ok) {
-        setNotification({ message: 'Verification code are correct', status: 'sucess' });
+        setNotification({
+          message: "Verification code are correct",
+          status: "sucess",
+        });
         handleSubmit(e);
       } else {
-        setNotification({ message: 'Verification code are not right', status: 'warning' });
+        setNotification({
+          message: "Verification code are not right",
+          status: "warning",
+        });
       }
     } catch (error) {
-      console.error('Error during verification:', error);
+      console.error("Error during verification:", error);
     }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-      setNotification({ message: 'Invalid email format', status: 'error' });
+      setNotification({ message: "Invalid email format", status: "error" });
       return;
     }
 
@@ -111,22 +131,30 @@ const SignUp = () => {
 
       if (response.ok) {
         setUserRole(role);
-        const userData = await response.json()
-        sessionStorage.setItem('jwtToken', userData.token);
-        sessionStorage.setItem('userRole', role);
-        sessionStorage.setItem('username', userData.firstname);
-        sessionStorage.setItem('username', userData._id);
-        setNotification({ message: 'User is created successfully', status: 'success' })
-        navigate('/')
-
+        const userData = await response.json();
+        sessionStorage.setItem("jwtToken", userData.token);
+        sessionStorage.setItem("userRole", role);
+        sessionStorage.setItem("username", userData.firstname);
+        sessionStorage.setItem("username", userData._id);
+        setNotification({
+          message: "User is created successfully",
+          status: "success",
+        });
+        navigate("/");
       } else {
         const responseData = await response.json();
         if (responseData.error) {
           if (responseData.error.message === "Email already exists") {
             setEmailExists(true);
-            setNotification({ message: 'Email already exists', status: 'error' })
-          } else if (responseData.error.message === 'Passwords do not match') {
-            setNotification({ message: 'User is not created', status: 'error' })
+            setNotification({
+              message: "Email already exists",
+              status: "error",
+            });
+          } else if (responseData.error.message === "Passwords do not match") {
+            setNotification({
+              message: "User is not created",
+              status: "error",
+            });
             setPasswordsMatch(false);
           } else {
             console.error("Failed to sign up:", responseData.error.message);
@@ -138,7 +166,7 @@ const SignUp = () => {
         }
       }
     } catch (error) {
-      setNotification({ message: 'Server Error', status: 'warning' })
+      setNotification({ message: "Server Error", status: "warning" });
     }
     setNoUser(true);
   };
@@ -147,9 +175,20 @@ const SignUp = () => {
     setEmailExists(false);
   }, [email]);
 
+  const handleCancelVerification = () => {
+    setShowVerification(false);
+    setVerificationCode(""); // Reset verification code
+    setVerify(false); // Reset verification state
+  };
+
   return (
     <div className="main1">
-      <img src={Home} alt='homepage' className='img-sign' onClick={() => navigate('/')} />
+      <img
+        src={Home}
+        alt="homepage"
+        className="img-sign"
+        onClick={() => navigate("/")}
+      />
       <form className="sign-up-form" onSubmit={handleVerification}>
         <div className="title">
           <span>Sign Up</span>
@@ -176,16 +215,16 @@ const SignUp = () => {
           label="email"
           required
           onChange={(e) => {
-            setEmail(e.target.value)
-            setEmailExists(false)
+            setEmail(e.target.value);
+            setEmailExists(false);
             setEmailVerify(e.target.value);
-          }
-          } />
-        {emailExists &&
-          <span style={{ color: 'red' }}>
+          }}
+        />
+        {emailExists && (
+          <span style={{ color: "red" }}>
             Email already exists. Please use a different email.
           </span>
-        }
+        )}
         <Input
           label="phone number"
           required
@@ -220,12 +259,16 @@ const SignUp = () => {
           passwordsMatch={passwordsMatch}
           setPasswordsMatch={setPasswordsMatch}
         />
-        {!passwordsMatch && <span id='notMatch' style={{ color: 'red' }}>Passwords do not match!</span>}
+        {!passwordsMatch && (
+          <span id="notMatch" style={{ color: "red" }}>
+            Passwords do not match!
+          </span>
+        )}
         <ReCAPTCHA
           id="capcha"
           sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
           onChange={(val) => setCap(val)}
-          style={{ float: 'right', marginRight: '10px' }}
+          style={{ float: "right", marginRight: "10px" }}
         />
         <div className="span-text1">
           <span className="condition">already have an account, </span>
@@ -236,44 +279,57 @@ const SignUp = () => {
         <div className="signIn-button">
           <button
             disabled={!cap}
-            type='button'
+            type="button"
             onClick={(e) => {
-              setVerify(true)
+              setVerify(true);
               handleSendEmail(e);
             }}
-          >Sign Up
+          >
+            Sign Up
           </button>
-          {verify && <div className="plur-popup">
-            <div className="popup-container show">
+          {verify && (
+            <div className="plur-popup">
+              <div className="popup-container show">
+                <Input
+                  id="verificationCode"
+                  label="Verification Code"
+                  type="text"
+                  value={verificationCode}
+                  onChange={(e) => setVerificationCode(e.target.value)}
+                  required
+                />
+                <div
+                  className="verification-items"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <div className="Vbuttons">
+                    <button id="verifyB" type="submit">
+                      Verify
+                    </button>
 
-            <Input
-                id="verificationCode"
-                label="Verification Code"
-                type="text"
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-                required
-              />
-              <div
-                className="verification-items"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <button id="verifyB" type="submit">
-                  Verify
-                </button>
-                <span id="resendCode" onClick={() => navigate("/sendVerify")}>
-                  resend code ?
-                </span>
-               </div>
+                    <button
+                      id="cancel"
+                      type="button"
+                      value="cancel"
+                      onClick={handleCancelVerification}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <span id="resendCode" onClick={() => navigate("/sendVerify")}>
+                    resend code ?
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>}
+          )}
         </div>
       </form>
-      <img src={logo} alt="" className='img-log' />
+      <img src={logo} alt="" className="img-log" />
     </div>
   );
 };

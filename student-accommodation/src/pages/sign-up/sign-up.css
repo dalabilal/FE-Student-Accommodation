@@ -201,6 +201,16 @@
     border-radius: 5px;
 }
 
+.Vbuttons {
+display: inline;
+justify-content: space-between;
+}
+
 #verifyB {
     width: 70px;
+}
+
+#cancel {
+    width: 70px;
+    margin-left: 20px;
 }

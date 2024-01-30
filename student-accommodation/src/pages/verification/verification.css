@@ -4,7 +4,7 @@
     justify-content: space-between;
     gap: 10px;
 }
-    
+
 .main .img-sign {
     width: 44px;
     height: 41px;
@@ -12,6 +12,7 @@
     margin-top: 20px;
     align-self: flex-end;
 }
+
 .main .sign-in-form {
     margin-left: 189px;
     /* margin-top: 60px; */
@@ -27,8 +28,9 @@
     background: #FFF;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 3;
-    
+
 }
+
 .verification-items {
     display: block;
     align-content: center;
@@ -148,3 +150,4 @@
     align-self: center;
     font-size: 11px;
 }
+

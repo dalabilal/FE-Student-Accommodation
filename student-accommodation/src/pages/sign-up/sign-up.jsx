@@ -262,7 +262,7 @@ const SignUp = () => {
                   alignItems: "center",
                 }}
               >
-                <button id="verify" type="submit">
+                <button id="verifyB" type="submit">
                   Verify
                 </button>
                 <span id="resendCode" onClick={() => navigate("/sendVerify")}>

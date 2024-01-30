@@ -34,6 +34,8 @@ const ViewHousing = () => {
       if (!housingData) {
         return <div>Loading...</div>;
       }
+
+
   return (
     <div className="view-page-group">
             <img className="image-housing" src={imageUrl} alt='housing pic'/>
@@ -44,6 +46,9 @@ const ViewHousing = () => {
                    <p>{housingData.location}</p>
                    <p>Added by : {username}</p>
                    <p>{housingData.phoneNumber}</p>
+        </div>
+        <div className="payment">
+
         </div>
     </div>
   )

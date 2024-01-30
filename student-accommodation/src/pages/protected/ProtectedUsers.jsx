@@ -1,6 +1,6 @@
 // ProtectedUsers.js
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useUser } from '../../service/UserContext';
 import Users from '../AllUsers/Users';
 import { useNavigate } from 'react-router-dom';

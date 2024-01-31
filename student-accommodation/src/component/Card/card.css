@@ -51,6 +51,17 @@
     fill: #BFB9B9;
 }
 
+.title-trash {
+    align-items: center;
+    display: flex;
+}
+
+#trush {
+
+    fill: #BFB9B9;
+    margin-left: 50px;
+}
+
 #heartUnFill,
 #MapPinLine,
 #Phone {

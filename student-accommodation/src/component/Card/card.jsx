@@ -43,13 +43,16 @@ const Card = ({ name, description, imageUrl  , data }) => {
 
   return (
     <div className="card">
+      <div className="title-trash">
       <h2 className="card-title">{name}</h2>
-     {data.ownerId === userID && <span><Trash size={30} onClick={handleDeleteClick}/></span>}
+     {data.ownerId === userID && <span><Trash id="trush" size={30} onClick={handleDeleteClick}/></span>}
+     </div>
       {imageUrl &&
         <Link to={`/all/${data._id}`}>
           <img src={imageUrl} alt={name} className="card-image" />
         </Link>
       }
+      
       <div className="card-content">
         <p className="card-text">{description}</p>
         <ul className="card-details">

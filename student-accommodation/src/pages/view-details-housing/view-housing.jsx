@@ -38,19 +38,25 @@ const ViewHousing = () => {
 
 
   return (
+    <div className='view-page-group-buttons'>
     <div className="view-page-group">
             <img className="image-housing" src={imageUrl} alt='housing pic'/>
         <div className="information">
                    <h2>{housingData.name}</h2>
-                   <p>{housingData.description}</p>
-                   <p>Number of room : {housingData.rooms}</p>
-                   <p>{housingData.location}</p>
-                   <p>Added by : {username}</p>
-                   <p>{housingData.phoneNumber}</p>
+                   <p id='cardItem'>{housingData.description}</p>
+                   <p id='cardItem'>Number of room : {housingData.rooms}</p>
+                   <p id='cardItem'>{housingData.location}</p>
+                   <p id='cardItem'>Added by : {username}</p>
+                   <p id='cardItem'>{housingData.phoneNumber}</p>
         </div>
         <div className="payment">
           <button onClick={() =>navigate('/payment')}>Book now</button>
         </div>
+    </div>
+    <div className="buttons-container">
+        <button id='cardB'>Show Rental terms</button>
+        <button id='cardB'>Book Now!</button>
+      </div>
     </div>
   )
 }

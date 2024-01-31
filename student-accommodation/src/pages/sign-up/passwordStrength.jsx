@@ -1,10 +1,15 @@
-import { useState } from 'react';
-import './sign-up.css'
-import PasswordStrengthMeter from './PasswordStrengthMeter';
-import InputPassword from '../../component/common/input-password/inputpassword.component';
+import { useState } from "react";
+import "./sign-up.css";
+import PasswordStrengthMeter from "./PasswordStrengthMeter";
+import InputPassword from "../../component/common/input-password/inputpassword.component";
 
-const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setPasswordsMatch }) => {
-  const [password, setPasswordLocal] = useState('');
+const StrongPassword = ({
+  setPassword,
+  setConfirmPassword,
+  passwordsMatch,
+  setPasswordsMatch,
+}) => {
+  const [password, setPasswordLocal] = useState("");
 
   const meetsPasswordCriteria = () => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
@@ -13,14 +18,14 @@ const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setP
 
   const getPasswordStrengthLabel = () => {
     if (password.length < 8) {
-      return 'Weak';
+      return "Weak";
     }
 
     if (meetsPasswordCriteria()) {
-      return 'Strong';
+      return "Strong";
     }
 
-    return 'Medium';
+    return "Medium";
   };
 
   const getPasswordStrengthColor = () => {
@@ -39,13 +44,13 @@ const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setP
     const newPassword = e.target.value;
     setPasswordLocal(newPassword);
     setPassword(newPassword);
-    setConfirmPassword('');
+    setConfirmPassword("");
   };
 
   return (
     <div className="container1">
       <div className="col-md-6 mx-auto text-right">
-        <div className="form-group mb-1">
+        <div className="form-group-mb-1">
           <InputPassword
             className="form-control-shadow-none"
             label="Password"
@@ -62,12 +67,14 @@ const StrongPassword = ({ setPassword, setConfirmPassword, passwordsMatch , setP
         )}
         <div className="form-group mb-1">
           <InputPassword
-            className={`form-control shadow-none ${!passwordsMatch ? 'password-mismatch' : ''}`}
+            className={`form-control shadow-none ${
+              !passwordsMatch ? "password-mismatch" : ""
+            }`}
             label="Confirm Password"
             placeholder="***************"
             onChange={(e) => {
-              setConfirmPassword(e.target.value)
-              setPasswordsMatch(true)
+              setConfirmPassword(e.target.value);
+              setPasswordsMatch(true);
             }}
             required
           />

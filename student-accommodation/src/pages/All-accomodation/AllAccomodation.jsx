@@ -1,4 +1,3 @@
-
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import Card from "../../component/Card/card";
 import "./allAcommodation.css";
@@ -6,9 +5,7 @@ import { useState } from "react";
 import { useUser } from "../../service/UserContext";
 import AddHousingForm from "../../component/common/add-housing-form/AddHousing";
 
-
 const SearchBar = () => {
-
   return (
     <div className="searchContainer">
       <div className="input-wrapper">
@@ -30,21 +27,14 @@ const AllAccomodation = () => {
     <div className="all-acc">
       <div className="bar">
         <SearchBar />
-        {(noUser && userRole === 'owner') &&
-          <button
-            className="add-housing"
-            onClick={() => setPopup(!popup)}
-          >
+        {noUser && userRole === "owner" && (
+          <button className="add-housing" onClick={() => setPopup(!popup)}>
             <Plus size={40} color="white" />
             <span>Add Housing</span>
           </button>
-        }
+        )}
       </div>
-      {popup &&
-        <AddHousingForm
-          setPopup={setPopup}
-        />
-      }
+      {popup && <AddHousingForm setPopup={setPopup} />}
       <div className="display-cards">
         {housingData?.map((housing, index) => (
           <Card

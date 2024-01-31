@@ -12,6 +12,7 @@
     margin-top: 20px;
     align-self: flex-end;
 }
+
 .backgroundDiv {
     width: 500px;
     height: 100%;
@@ -21,6 +22,11 @@
     bottom: 0;
     z-index: 0;
 }
+
+.plur-popup {
+    right: 0px;
+}
+
 .form-control-shadow-none {
     border: none;
     box-shadow: none;
@@ -30,6 +36,7 @@
     display: flex;
     justify-content: space-between;
 }
+
 .main1 .sign-up-form {
     margin-left: 189px;
     /* margin-top: 18px; */
@@ -98,6 +105,7 @@
     margin-top: 20px;
     align-self: right;
 }
+
 .main1 .sign-up-form .span-text1 .signin>a {
     color: #a3c195;
     text-decoration: none;
@@ -124,7 +132,7 @@
     width: 436px;
     height: 613px;
     position: fixed;
-    left: 800px;
+    left: 600px;
 }
 
 .main1 .sign-up>span>a {
@@ -145,29 +153,30 @@
     outline: none;
     box-shadow: 0 0 5px #A3C195;
     transition: box-shadow 0.3s ease;
-  }
+}
 
-  .main1 .sign-up-form .role-radio input[type='radio']:before {
+.main1 .sign-up-form .role-radio input[type='radio']:before {
     content: '';
     display: block;
     width: 60%;
     height: 60%;
     margin: 20% auto;
     border-radius: 50%;
-  }
-  .main1 .sign-up-form .role-radio label{
+}
+
+.main1 .sign-up-form .role-radio label {
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 0.7px;
     font-weight: 600;
     color: #848484;
-  }
+}
 
-  .main1 .sign-up-form .role-radio input[type='radio']:checked:before {
+.main1 .sign-up-form .role-radio input[type='radio']:checked:before {
     background: #A3C195;
-  }
+}
 
-  .main1 .sign-up-form .role-radio .role {
+.main1 .sign-up-form .role-radio .role {
     display: block;
     margin-bottom: 9px;
     text-transform: uppercase;
@@ -175,14 +184,14 @@
     letter-spacing: 0.5px;
     font-weight: bold;
     color: #666;
-  }
+}
 
-  #notMatch {
+#notMatch {
     margin-top: 0px;
     align-self: center;
 }
 
-.progress{
+.progress {
     margin-bottom: 10px;
 }
 
@@ -190,4 +199,18 @@
     position: relative;
     top: -29px;
     border-radius: 5px;
+}
+
+.Vbuttons {
+display: inline;
+justify-content: space-between;
+}
+
+#verifyB {
+    width: 70px;
+}
+
+#cancel {
+    width: 70px;
+    margin-left: 20px;
 }

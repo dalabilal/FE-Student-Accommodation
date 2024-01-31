@@ -25,6 +25,7 @@ const SignUp = () => {
   const [capVal, setCapval] = useState(null);
   const [showVerification, setShowVerification] = useState(false);
   const navigate = useNavigate();
+
   const {
     setNoUser,
     setUserRole,
@@ -34,6 +35,9 @@ const SignUp = () => {
     setEmailVerify,
   } = useUser();
   console.log(emailVerify);
+
+  const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify} = useUser();
+
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -131,16 +135,14 @@ const SignUp = () => {
 
       if (response.ok) {
         setUserRole(role);
-        const userData = await response.json();
-        sessionStorage.setItem("jwtToken", userData.token);
-        sessionStorage.setItem("userRole", role);
-        sessionStorage.setItem("username", userData.firstname);
-        sessionStorage.setItem("username", userData._id);
-        setNotification({
-          message: "User is created successfully",
-          status: "success",
-        });
-        navigate("/");
+        const userData = await response.json()
+        sessionStorage.setItem('jwtToken', userData.token);
+        sessionStorage.setItem('userRole', role);
+        sessionStorage.setItem('username', userData.firstname);
+        sessionStorage.setItem('userID', userData._id);
+        setNotification({ message: 'User is created successfully', status: 'success' })
+        navigate('/')
+
       } else {
         const responseData = await response.json();
         if (responseData.error) {

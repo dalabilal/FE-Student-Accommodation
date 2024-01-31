@@ -1,15 +1,11 @@
-// Guard.js
-
-import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import { UserContext } from '../../service/UserContext';
+import React from 'react';
+import { Navigate } from 'react-router-dom';;
 
 const Guard = ({ children, permittedRoles }) => {
-  const { userRole } = useContext(UserContext);
-  console.log("user" , userRole);
-  if (!userRole) {
+  const userrole = sessionStorage.getItem('userRole');
+  if (!userrole) {
     return <Navigate to="/*" />;
-  } else if (permittedRoles && !permittedRoles.includes(userRole)) {
+  } else if (permittedRoles && !permittedRoles.includes(userrole)) {
     return <Navigate to="/" />;
   } else {
     return children;

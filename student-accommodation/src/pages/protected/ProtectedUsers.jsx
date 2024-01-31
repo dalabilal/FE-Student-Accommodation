@@ -1,25 +1,21 @@
 // ProtectedUsers.js
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useUser } from '../../service/UserContext';
 import Users from '../AllUsers/Users';
 import { useNavigate } from 'react-router-dom';
 
 const ProtectedUsers = () => {
-  const { userRole , noUser} = useUser();
+  const { noUser} = useUser();
   const navigate = useNavigate();
-  console.log(userRole);
+  const userrole = sessionStorage.getItem('userRole');
 
-  useEffect(() => {
-    if (userRole !== 'owner') {
-      navigate('*');
+    if (userrole !== 'owner' && noUser) {
+      navigate('/*');
+    } else {
+      return <Users />
     }
-  }, [userRole, navigate]);
 
-  if (userRole !== 'owner' && noUser) {
-    return null;
-  }
-  return <Users />
 };
 
 export default ProtectedUsers;

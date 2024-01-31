@@ -22,8 +22,6 @@ const SignUp = () => {
   const [cap, setCap] = useState(null);
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
-  const [capVal, setCapval] = useState(null);
-  const [showVerification, setShowVerification] = useState(false);
   const navigate = useNavigate();
   
   const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify} = useUser();
@@ -167,9 +165,8 @@ const SignUp = () => {
   }, [email]);
 
   const handleCancelVerification = () => {
-    setShowVerification(false);
-    setVerificationCode(""); // Reset verification code
-    setVerify(false); // Reset verification state
+    setVerificationCode("");
+    setVerify(false); 
   };
 
   return (

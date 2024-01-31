@@ -95,6 +95,7 @@ const SignUp = () => {
 
     if (!validateEmail(email)) {
       setNotification({ message: "Invalid email format", status: "error" });
+      setVerify(false); 
       return;
     }
     
@@ -141,6 +142,7 @@ const SignUp = () => {
         if (responseData.error) {
           if (responseData.error.message === "Email already exists") {
             setEmailExists(true);
+            setVerify(false); 
             setNotification({
               message: "Email already exists",
               status: "error",
@@ -150,6 +152,7 @@ const SignUp = () => {
               message: "User is not created",
               status: "error",
             });
+            setVerify(false); 
             setPasswordsMatch(false);
           } else {
             console.error("Failed to sign up:", responseData.error.message);
@@ -157,11 +160,13 @@ const SignUp = () => {
               message: "User is not created",
               status: "error",
             });
+            setVerify(false); 
           }
         }
       }
     } catch (error) {
       setNotification({ message: "Server Error", status: "warning" });
+      setVerify(false); 
     }
     setNoUser(true);
   };

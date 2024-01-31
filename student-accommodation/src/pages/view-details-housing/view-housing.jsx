@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useNotification from '../../hook/notification.hook';
 import './view-housing.css'
 
@@ -10,6 +10,7 @@ const ViewHousing = () => {
     const [housingData, setHousingData] = useState(null);
     const { setNotification } = useNotification();
     const username = sessionStorage.getItem('username');
+    const navigate = useNavigate();
     
     useEffect(() => {
         const fetchHousingData = async () => {
@@ -48,7 +49,7 @@ const ViewHousing = () => {
                    <p>{housingData.phoneNumber}</p>
         </div>
         <div className="payment">
-
+          <button onClick={() =>navigate('/payment')}>Book now</button>
         </div>
     </div>
   )

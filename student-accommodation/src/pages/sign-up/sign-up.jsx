@@ -25,19 +25,8 @@ const SignUp = () => {
   const [capVal, setCapval] = useState(null);
   const [showVerification, setShowVerification] = useState(false);
   const navigate = useNavigate();
-
-  const {
-    setNoUser,
-    setUserRole,
-    verificationCode,
-    setVerificationCode,
-    emailVerify,
-    setEmailVerify,
-  } = useUser();
-  console.log(emailVerify);
-
+  
   const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify} = useUser();
-
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);

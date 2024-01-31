@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
-import InputPassword from '../../component/common/input-password/inputpassword.component';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assests/logo.jpg';
 import Home from '../../assests/home.png';
 import './resetPassword.css';
 import { useUser } from '../../service/UserContext';
 import useNotification from '../../hook/notification.hook';
+import StrongPassword from '../sign-up/passwordStrength';
 
-const ResetPassword = (props) => {
+const ResetPassword = () => {
   const navigate = useNavigate();
-  const { emailVerify } = useUser();
+  const { emailVerify , color } = useUser();
   const { setNotification } = useNotification();
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
-
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [error, setError] = useState('');
+  
   const handleResetPassword = async (e) => {
     e.preventDefault();
-  
+    if (newPassword !== confirmNewPassword) {
+      setNotification({ message: "Password doesn't match", status: 'error' });
+      setPasswordsMatch(false);
+      return;
+    }
+
+    if(color !== "Green") {
+      setError("Your Password is not strong")
+      return
+    }
+
     try {
       const response = await fetch('http://localhost:3005/resetPassword/', {
         method: 'PUT',
@@ -58,15 +70,12 @@ const ResetPassword = (props) => {
           <span style={{ fontSize: 20 }}>Reset Your Password</span>
         </div>
         <form onSubmit={handleResetPassword}>
-          <InputPassword
-            label='New password'
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <InputPassword
-            label='Confirm new password'
-            value={confirmNewPassword}
-            onChange={(e) => setConfirmNewPassword(e.target.value)}
+          <StrongPassword
+           setPassword={setNewPassword}
+           setConfirmPassword={setConfirmNewPassword}
+           passwordsMatch={passwordsMatch}
+           error={error}
+           setPasswordsMatch={setPasswordsMatch}
           />
           <button type='submit'>Reset</button>
         </form>

@@ -19,12 +19,13 @@ const SignUp = () => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
+  const [error, setError] = useState("");
   const [cap, setCap] = useState(null);
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
   const navigate = useNavigate();
   
-  const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify} = useUser();
+  const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify , color} = useUser();
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -96,11 +97,16 @@ const SignUp = () => {
       setNotification({ message: "Invalid email format", status: "error" });
       return;
     }
-
+    
     if (password !== confirmPassword) {
       setPasswordsMatch(false);
       setEmailExists(false);
       return;
+    }
+    
+    if(color !== "Green") {
+      setError("Your Password is not strong")
+      return
     }
 
     try {
@@ -246,6 +252,7 @@ const SignUp = () => {
           setConfirmPassword={setConfirmPassword}
           passwordsMatch={passwordsMatch}
           setPasswordsMatch={setPasswordsMatch}
+          error={error}
         />
         {!passwordsMatch && (
           <span id="notMatch" style={{ color: "red" }}>

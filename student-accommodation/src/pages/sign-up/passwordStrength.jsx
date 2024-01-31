@@ -2,14 +2,17 @@ import { useState } from "react";
 import "./sign-up.css";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
 import InputPassword from "../../component/common/input-password/inputpassword.component";
+import { useUser } from "../../service/UserContext";
 
 const StrongPassword = ({
   setPassword,
   setConfirmPassword,
   passwordsMatch,
   setPasswordsMatch,
+  error
 }) => {
   const [password, setPasswordLocal] = useState("");
+  const {setColor} = useUser();
 
   const meetsPasswordCriteria = () => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
@@ -30,14 +33,17 @@ const StrongPassword = ({
 
   const getPasswordStrengthColor = () => {
     if (password.length < 8) {
+      setColor("Red")
       return 'rgb(234 17 17 / 51%)'; // Red for weak passwords
-    }
-
+    } else 
     if (meetsPasswordCriteria()) {
+      setColor("Green")
       return 'rgb(0 181 0 / 49%)'; // Green for strong passwords
+    } else {
+      setColor("Orange");
+      return 'rgb(255 173 0 / 48%)'; // Orange for medium passwords
     }
-
-    return 'rgb(255 173 0 / 48%)'; // Orange for medium passwords
+    
   };
 
   const handlePasswordChange = (e) => {
@@ -65,6 +71,7 @@ const StrongPassword = ({
             color={getPasswordStrengthColor()}
           />
         )}
+        <span style={{color : "red"}}>{error}</span>
         <div className="form-group mb-1">
           <InputPassword
             className={`form-control shadow-none ${

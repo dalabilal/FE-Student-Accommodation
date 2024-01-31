@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [noUser, setNoUser] = useState(token ? true : false);
   const [verificationCode, setVerificationCode] = useState('');
   const [emailVerify, setEmailVerify] = useState('');
+  const [color, setColor] = useState('');
   const [housingData, setHousingData] = useState([]);
 
   useEffect(() => {
@@ -54,7 +55,8 @@ export const UserProvider = ({ children }) => {
      setNoUser , verificationCode ,
      setVerificationCode, emailVerify,
      setEmailVerify,userId,setUserId,
-     housingData, setHousingData
+     housingData, setHousingData,setColor,
+     color
      }}>
       {children}
     </UserContext.Provider>

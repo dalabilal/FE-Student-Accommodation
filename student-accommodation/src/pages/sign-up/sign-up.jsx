@@ -113,7 +113,7 @@ const SignUp = () => {
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('userRole', role);
         sessionStorage.setItem('username', userData.firstname);
-        sessionStorage.setItem('username', userData._id);
+        sessionStorage.setItem('userID', userData._id);
         setNotification({ message: 'User is created successfully', status: 'success' })
         navigate('/')
 

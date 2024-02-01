@@ -36,7 +36,7 @@ const ViewHousing = () => {
     };
 
     fetchHousingData();
-  }, [id]);
+  }, [id,setOwner,setHousingData,setNotification]);
 
   if (!housingData) {
     return <div>Loading...</div>;

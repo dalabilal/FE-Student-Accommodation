@@ -33,7 +33,7 @@ const ViewHousing = () => {
         };
     
         fetchHousingData();
-      }, [id,setNotification]);
+      }, [id]);
     
       if (!housingData) {
         return <div>Loading...</div>;

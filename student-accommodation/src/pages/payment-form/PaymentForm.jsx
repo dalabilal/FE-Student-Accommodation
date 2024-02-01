@@ -35,7 +35,6 @@ const PaymentForm = () => {
             useid :useid,
             housingId:idparam,
         }
-        console.log(payInfo);
 
         try {
             const response = await fetch("http://localhost:3005/payment/", {

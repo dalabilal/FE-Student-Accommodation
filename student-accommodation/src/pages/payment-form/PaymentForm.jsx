@@ -87,6 +87,11 @@ const PaymentForm = () => {
             <p>{housingTerms.fees}</p>
             <p>{housingTerms.term}</p>
             <form onSubmit={handelPAyment}>
+                <label >Are u agree with these terms</label>
+                <input
+                type="checkbox"
+                required
+                />
                 <Input
                     label="holder's name :"
                     required

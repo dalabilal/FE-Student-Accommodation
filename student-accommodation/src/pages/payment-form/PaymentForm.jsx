@@ -7,6 +7,8 @@ const PaymentForm = () => {
     const { setNotification } = useNotification();
     const [housingTerms , setHousingTerms] = useState('');
     const id = sessionStorage.getItem('housingID');
+    const [showModal, setShowModal] = useState(false);
+    const [userChoice, setUserChoice] = useState(null);
 
     const handelPAyment = async (e) => {
         e.preventDefault();
@@ -47,6 +49,7 @@ const PaymentForm = () => {
             })
             if (response.ok) {
                 setNotification({ message: 'payment successfuly', status: 'success' });
+                setShowModal(false);
             } else {
                 setNotification({ message: 'faild', status: 'error' });
 
@@ -75,7 +78,7 @@ const PaymentForm = () => {
     
         fetchHousingData();
       }, [id]);
-        // Validation functions
+       
         const isValidCardNumber = (cardNumber) => /^\d{16}$/.test(cardNumber);
         const isValidCVV = (cvv) => /^\d{3}$/.test(cvv);
 
@@ -108,7 +111,16 @@ const PaymentForm = () => {
                     name="expDate"
                     required
                 />
-                <button type="submit">Pay</button>
+                <button type="button" onClick={() => setShowModal(true)}>Pay</button>
+                {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <p>Are you sure you want to proceed with the payment?</p>
+                        <button type="submit">Yes</button>
+                        <button type="button" onClick={() => setShowModal(false)}>No</button>
+                    </div>
+                </div>
+            )}
             </form>
 
         </div>

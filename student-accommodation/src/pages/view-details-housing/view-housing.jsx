@@ -14,7 +14,7 @@ const ViewHousing = () => {
   const { setNotification } = useNotification();
   const username = sessionStorage.getItem('username');
   const navigate = useNavigate();
-  const { setIdparam, userRole } = useUser();
+  const { userRole, noUser } = useUser();
 
   useEffect(() => {
     const fetchHousingData = async () => {
@@ -22,7 +22,7 @@ const ViewHousing = () => {
         const response = await fetch(`http://localhost:3005/all/housing/${id}`);
         if (response.ok) {
           const data = await response.json();
-          setIdparam(id);
+          sessionStorage.setItem("housingID", id);
           setHousingData(data);
         } else {
           console.error('Failed to fetch housing data:', response.statusText);
@@ -56,28 +56,23 @@ const ViewHousing = () => {
         </div>
       </div>
       <div className="buttons-container">
-       {userRole === 'student' ?
-          <>
-            <button
-              id='cardB'
+
+        {userRole === 'owner' ? ''
+        : <button
+          onClick={() => noUser ? navigate('/payment') : navigate('/signin')}
+          id='cardB'
         >
-              Show Rental terms
-            </button>
-            <button
-              onClick={() => navigate('/payment')}
-              id='cardB'
-            >
-              Book Now!
-            </button>
-            </> :
-           <button onClick={() => setAddTerms(true)}>Add rental terms</button>
-       }
-       {
-        addTerms &&
-         <AddTerms
-         setPopup={setAddTerms}
-        />
-       }
+          Book Now!
+        </button>}
+
+        {userRole === 'owner' && <button onClick={() => setAddTerms(true)}>Add rental terms</button>}
+
+        {
+          addTerms &&
+          <AddTerms
+            setPopup={setAddTerms}
+          />
+        }
       </div>
     </div>
   )

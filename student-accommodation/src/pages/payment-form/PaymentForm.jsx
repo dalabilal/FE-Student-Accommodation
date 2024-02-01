@@ -1,11 +1,12 @@
+import { useEffect, useState } from "react";
 import Input from "../../component/common/input/input.component"
 import useNotification from "../../hook/notification.hook";
-import { useUser } from "../../service/UserContext";
 import "./paymentform.css"
 
 const PaymentForm = () => {
     const { setNotification } = useNotification();
-    const {idparam} = useUser();
+    const [housingTerms , setHousingTerms] = useState('');
+    const id = sessionStorage.getItem('housingID');
 
     const handelPAyment = async (e) => {
         e.preventDefault();
@@ -33,7 +34,7 @@ const PaymentForm = () => {
             cvv :cvv,
             expDate :expDate,
             useid :useid,
-            housingId:idparam,
+            housingId:id,
         }
 
         try {
@@ -55,12 +56,33 @@ const PaymentForm = () => {
         }
     }
 
+    useEffect(() => {
+        const fetchHousingData = async () => {
+          try {
+            const response = await fetch(`http://localhost:3005/term/${id}`);
+            if (response.ok) {
+              const data = await response.json();
+              setHousingTerms(data);
+            } else {
+            //   console.error('Failed to fetch housing data:', response.statusText);
+            //   setNotification({ message: 'Failed to fetch housing terms', status: 'err' });
+            }
+          } catch (error) {
+            console.error('Error during fetch:', error.message);
+            // setNotification({ message: 'Error during fetch', status: 'err' });
+          }
+        };
+    
+        fetchHousingData();
+      }, [id]);
         // Validation functions
         const isValidCardNumber = (cardNumber) => /^\d{16}$/.test(cardNumber);
         const isValidCVV = (cvv) => /^\d{3}$/.test(cvv);
 
     return (
         <div className="payment-form">
+            <p>{housingTerms.fees}</p>
+            <p>{housingTerms.term}</p>
             <form onSubmit={handelPAyment}>
                 <Input
                     label="holder's name :"

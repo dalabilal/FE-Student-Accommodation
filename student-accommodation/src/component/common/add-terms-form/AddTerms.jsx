@@ -5,7 +5,7 @@ import "./addterms.css";
 import { useUser } from "../../../service/UserContext";
 
 const AddTerms = (props) => {
-  const {idparam } = useUser();
+  const idparam = sessionStorage.getItem('housingID');
 
   const handleSubmit = async (e) => {
     e.preventDefault();

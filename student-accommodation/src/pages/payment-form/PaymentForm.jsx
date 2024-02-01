@@ -1,9 +1,11 @@
 import Input from "../../component/common/input/input.component"
 import useNotification from "../../hook/notification.hook";
+import { useUser } from "../../service/UserContext";
 import "./paymentform.css"
 
 const PaymentForm = () => {
     const { setNotification } = useNotification();
+    const {idparam} = useUser();
 
     const handelPAyment = async (e) => {
         e.preventDefault();
@@ -14,12 +16,24 @@ const PaymentForm = () => {
         const expDate = e.target.expDate.value;
         const useid = sessionStorage.getItem('userID');
 
+        if (!isValidCardNumber(cardnum)) {
+            setNotification({ message: 'Invalid card number. Please enter a 16-digit card number.', status: 'error' });
+            return;
+        }
+
+        if (!isValidCVV(cvv)) {
+            setNotification({ message: 'Invalid CVV. Please enter a 3-digit CVV.', status: 'error' });
+            return;
+        }
+
+
         const payInfo = {
             holdername :holdername,
             cardnum : cardnum,
             cvv :cvv,
             expDate :expDate,
-            useid :useid
+            useid :useid,
+            housingId:idparam,
         }
         console.log(payInfo);
 
@@ -41,6 +55,10 @@ const PaymentForm = () => {
             setNotification({ message: 'Server Error', status: 'warning' })
         }
     }
+
+        // Validation functions
+        const isValidCardNumber = (cardNumber) => /^\d{16}$/.test(cardNumber);
+        const isValidCVV = (cvv) => /^\d{3}$/.test(cvv);
 
     return (
         <div className="payment-form">

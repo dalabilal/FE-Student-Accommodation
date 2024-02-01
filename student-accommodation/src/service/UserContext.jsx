@@ -11,6 +11,7 @@ export const UserProvider = ({ children }) => {
   const [emailVerify, setEmailVerify] = useState('');
   const [color, setColor] = useState('');
   const [housingData, setHousingData] = useState([]);
+  const [idparam , setIdparam] = useState('');
 
   useEffect(() => {
     const token = sessionStorage.getItem('jwtToken');
@@ -56,7 +57,7 @@ export const UserProvider = ({ children }) => {
      setVerificationCode, emailVerify,
      setEmailVerify,userId,setUserId,
      housingData, setHousingData,setColor,
-     color
+     color,idparam,setIdparam
      }}>
       {children}
     </UserContext.Provider>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import useNotification from '../../hook/notification.hook';
 import './view-housing.css'
+import { useUser } from '../../service/UserContext';
 
 const imageUrl="https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"
 
@@ -11,6 +12,7 @@ const ViewHousing = () => {
     const { setNotification } = useNotification();
     const username = sessionStorage.getItem('username');
     const navigate = useNavigate();
+    const {setIdparam} = useUser();
     
     useEffect(() => {
         const fetchHousingData = async () => {
@@ -18,6 +20,7 @@ const ViewHousing = () => {
             const response = await fetch(`http://localhost:3005/all/housing/${id}`);
             if (response.ok) {
               const data = await response.json();
+              setIdparam(id);
               setHousingData(data);
             } else {
               console.error('Failed to fetch housing data:', response.statusText);

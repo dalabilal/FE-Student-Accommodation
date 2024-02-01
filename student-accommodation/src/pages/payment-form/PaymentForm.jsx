@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import Input from "../../component/common/input/input.component"
 import useNotification from "../../hook/notification.hook";
 import "./paymentform.css"
+import { useUser } from "../../service/UserContext";
 
 const PaymentForm = () => {
     const { setNotification } = useNotification();
     const [housingTerms , setHousingTerms] = useState('');
     const id = sessionStorage.getItem('housingID');
     const [showModal, setShowModal] = useState(false);
-    const [userChoice, setUserChoice] = useState(null);
+    const { owner } = useUser();
 
     const handelPAyment = async (e) => {
         e.preventDefault();
@@ -37,6 +38,7 @@ const PaymentForm = () => {
             expDate :expDate,
             useid :useid,
             housingId:id,
+            ownerId : owner,
         }
 
         try {

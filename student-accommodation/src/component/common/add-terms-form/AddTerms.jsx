@@ -2,7 +2,6 @@ import Input from "../input/input.component";
 import Textarea from "../textarea/textarea.component";
 import sanitizeHtml from 'sanitize-html';
 import "./addterms.css";
-import { useUser } from "../../../service/UserContext";
 
 const AddTerms = (props) => {
   const idparam = sessionStorage.getItem('housingID');

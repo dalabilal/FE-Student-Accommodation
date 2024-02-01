@@ -14,7 +14,7 @@ const ViewHousing = () => {
   const { setNotification } = useNotification();
   const username = sessionStorage.getItem('username');
   const navigate = useNavigate();
-  const { userRole, noUser } = useUser();
+  const { userRole, noUser ,setOwner} = useUser();
 
   useEffect(() => {
     const fetchHousingData = async () => {
@@ -23,6 +23,7 @@ const ViewHousing = () => {
         if (response.ok) {
           const data = await response.json();
           sessionStorage.setItem("housingID", id);
+          setOwner(data.ownerId)
           setHousingData(data);
         } else {
           console.error('Failed to fetch housing data:', response.statusText);

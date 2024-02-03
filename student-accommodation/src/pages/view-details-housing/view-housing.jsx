@@ -13,8 +13,9 @@ const ViewHousing = () => {
   const [addTerms, setAddTerms] = useState(false);
   const { setNotification } = useNotification();
   const username = sessionStorage.getItem('username');
+  const userId = sessionStorage.getItem('userID');
   const navigate = useNavigate();
-  const { userRole, noUser ,setOwner} = useUser();
+  const { userRole, noUser ,setOwner , owner} = useUser();
 
   useEffect(() => {
     const fetchHousingData = async () => {
@@ -66,7 +67,7 @@ const ViewHousing = () => {
           Book Now!
         </button>}
 
-        {userRole === 'owner' && <button id='rentalTermsButton' onClick={() => setAddTerms(true)}>Add rental terms</button>}
+        {owner === userId && <button id='rentalTermsButton' onClick={() => setAddTerms(true)}>Add rental terms</button>}
 
         {
           addTerms &&

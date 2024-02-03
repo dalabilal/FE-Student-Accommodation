@@ -35,7 +35,7 @@ const Favorite = () => {
       });
 
       if (response.ok) {
-        setFavoriteData((prevData) => prevData.filter(item => item.dataId !== dataId));
+        setFavoriteData((prevData) => prevData.filter(item => item._id !== dataId));
       } else {
         console.error('Failed to delete favorite data:', response.statusText);
       }
@@ -67,7 +67,7 @@ const Favorite = () => {
         <div className="card" key={data._id}>
           <div className="title-trash">
             <h2 className="card-title">{data.name}</h2>
-            <span onClick={() => handleDeleteClick(data.dataId)}><Trash id="trush" size={30} /></span>
+            <span onClick={() => handleDeleteClick(data._id)}><Trash id="trush" size={30} /></span>
           </div>
           {imageUrl &&
             <Link to={`/all/${data.dataId}`}>

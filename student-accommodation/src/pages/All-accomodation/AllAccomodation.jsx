@@ -1,18 +1,25 @@
+import React, { useState } from "react";
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import Card from "../../component/Card/card";
 import "./allAcommodation.css";
-import { useState } from "react";
 import { useUser } from "../../service/UserContext";
 import AddHousingForm from "../../component/common/add-housing-form/AddHousing";
 
-const SearchBar = () => {
+const SearchBar = ({ onUniversityChange }) => {
+  const handleUniversityChange = (e) => {
+    onUniversityChange(e.target.value);
+  };
+
   return (
     <div className="searchContainer">
       <div className="input-wrapper">
-        <select className="unisList">
-          <option>Palestine Polyticnech University</option>
-          <option>Hebron University</option>
-          <option>University</option>
+        <select className="unisList" onChange={handleUniversityChange}>
+          <option value="">All Universities</option>
+          <option value="Palestine Polytechnic University">
+            Palestine Polytechnic University
+          </option>
+          <option value="Hebron University">Hebron University</option>
+          <option value="">Another University</option>
         </select>
       </div>
     </div>
@@ -22,11 +29,20 @@ const SearchBar = () => {
 const AllAccomodation = () => {
   const { noUser, userRole, housingData } = useUser();
   const [popup, setPopup] = useState(false);
+  const [selectedUniversity, setSelectedUniversity] = useState("");
+
+  const filteredHousingData = selectedUniversity
+    ? housingData.filter((housing) => housing.university === selectedUniversity)
+    : housingData;
+
+  const handleUniversityChange = (university) => {
+    setSelectedUniversity(university);
+  };
 
   return (
     <div className="all-acc">
       <div className="bar">
-        <SearchBar />
+        <SearchBar onUniversityChange={handleUniversityChange} />
         {noUser && userRole === "owner" && (
           <button className="add-housing" onClick={() => setPopup(!popup)}>
             <Plus size={40} color="white" />
@@ -36,7 +52,7 @@ const AllAccomodation = () => {
       </div>
       {popup && <AddHousingForm setPopup={setPopup} />}
       <div className="display-cards">
-        {housingData?.map((housing, index) => (
+        {filteredHousingData.map((housing, index) => (
           <Card
             data={housing}
             key={housing._id}

@@ -1,9 +1,11 @@
 import Input from "../input/input.component";
 import Textarea from "../textarea/textarea.component";
 import sanitizeHtml from 'sanitize-html';
+import React, { useState } from "react";
 import "./addhousing.css";
 
 const AddHousingForm = (props) => {
+  const [selectedUniversity, setSelectedUniversity] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const AddHousingForm = (props) => {
     const name = sanitizeHtml(e.target.name.value, sanitizeOptions);
     const phoneNumber = sanitizeHtml(e.target.phoneNumber.value, sanitizeOptions);
     const location = sanitizeHtml(e.target.location.value, sanitizeOptions);
-    const university = sanitizeHtml(e.target.university.value, sanitizeOptions);
+    const university = sanitizeHtml(selectedUniversity, sanitizeOptions);
     const rooms = sanitizeHtml(e.target.rooms.value, sanitizeOptions);
     const description = sanitizeHtml(e.target.description.value, sanitizeOptions);
     const useID = sessionStorage.getItem('userID');
@@ -36,7 +38,7 @@ const AddHousingForm = (props) => {
       rooms: rooms,
       university: university,
       description: description,
-      ownerId : useID
+      ownerId: useID
     };
 
     try {
@@ -49,8 +51,8 @@ const AddHousingForm = (props) => {
       });
 
       if (response.ok) {
-        
-        console.log("formData" , formData);
+
+        console.log("formData", formData);
         console.log("Housing data submitted successfully");
         props.setPopup(false);
       } else {
@@ -93,11 +95,20 @@ const AddHousingForm = (props) => {
             name="rooms"
             required
           />
-          <Input
-            label="university"
-            name="university"
-            required
-          />
+          <div className="searchContainer1">
+            <div className="input-wrapper">
+              <select
+                className="unisList"
+                value={selectedUniversity}
+                onChange={(e) => setSelectedUniversity(e.target.value)}
+              >
+                <option value="">Select University</option>
+                <option value="Palestine Polytechnic University">Palestine Polytechnic University</option>
+                <option value="Hebron University">Hebron University</option>
+                <option value="Another University">Another University</option>
+              </select>
+            </div>
+          </div>
           <Textarea
             id="AddhousingDiscription"
             label="description"

@@ -101,6 +101,7 @@ const Card = ({ name, description, imageUrl, data }) => {
         <Link to={`/all/${data._id}`} id="seeMore">
           see more...
         </Link>
+        <p className="card-text">{data.university}</p>
         <ul className="card-details">
           <Heart
             id="heart"

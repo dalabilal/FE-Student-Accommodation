@@ -69,3 +69,24 @@ h2 {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+#rentalTermsButton {
+    background-color: #A3C195;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.discriptionParagraph {
+    overflow-wrap: break-word;
+    height: 50px;
+    width: 400px;
+    margin-bottom: 40px;
+}

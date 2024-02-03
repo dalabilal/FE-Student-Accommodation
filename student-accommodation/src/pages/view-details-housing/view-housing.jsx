@@ -49,7 +49,7 @@ const ViewHousing = () => {
         <img className="image-housing" src={imageUrl} alt='housing pic' />
         <div className="information">
           <h2>{housingData.name}</h2>
-          <p id='cardItem'>{housingData.description}</p>
+          <p className='discriptionParagraph' id='cardItem'>{housingData.description}</p>
           <p id='cardItem'>Number of room : {housingData.rooms}</p>
           <p id='cardItem'>{housingData.location}</p>
           <p id='cardItem'>Added by : {username}</p>
@@ -66,7 +66,7 @@ const ViewHousing = () => {
           Book Now!
         </button>}
 
-        {userRole === 'owner' && <button onClick={() => setAddTerms(true)}>Add rental terms</button>}
+        {userRole === 'owner' && <button id='rentalTermsButton' onClick={() => setAddTerms(true)}>Add rental terms</button>}
 
         {
           addTerms &&

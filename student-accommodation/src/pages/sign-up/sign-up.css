@@ -75,7 +75,6 @@
 
 .main1 .sign-up-form .span-text1 {
     width: 400px;
-    margin-top: 40px;
 }
 
 .main1 .sign-up-form .span-text1 .condition {
@@ -94,7 +93,7 @@
     padding: 15px;
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 5px;
     justify-content: center;
     margin-right: 21px;
 
@@ -103,7 +102,9 @@
 .main1 .sign-up-form .span-text1 {
     width: 400px;
     margin-top: 20px;
+    margin-bottom: -7px;
     align-self: right;
+
 }
 
 .main1 .sign-up-form .span-text1 .signin>a {
@@ -113,6 +114,35 @@
     margin-left: 8px;
 }
 
+#not-match {
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    height: 7px;
+    position: relative;
+    top: -35px;
+    margin: 0;
+    z-index: -50;
+}
+
+
+#notMatch {
+    top: -50px;
+    margin-top: 0px;
+    margin-left: 25%;
+    padding: 0px;
+    align-self: center;
+    font-size: small;
+    z-index: -50;
+}
+
+#PasswordnotStrong {
+    font-size: small;
+    margin-left: 20%;
+    z-index: -50;
+    position: relative;
+    top: -20px;
+}
 
 .main1 .sign-up-form button {
     width: 35%;
@@ -124,7 +154,7 @@
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 }
 
 .img-log {
@@ -186,14 +216,11 @@
     color: #666;
 }
 
-#notMatch {
-    margin-top: 0px;
-    align-self: center;
-}
 
-.progress {
+
+/* .progress {
     margin-bottom: 10px;
-}
+} */
 
 .progress-bar {
     position: relative;
@@ -202,8 +229,8 @@
 }
 
 .Vbuttons {
-display: inline;
-justify-content: space-between;
+    display: inline;
+    justify-content: space-between;
 }
 
 #verifyB {
@@ -213,4 +240,9 @@ justify-content: space-between;
 #cancel {
     width: 70px;
     margin-left: 20px;
+}
+
+#capcha {
+    margin-top: -10px;
+    margin-bottom: -15px;
 }

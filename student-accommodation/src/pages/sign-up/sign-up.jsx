@@ -253,6 +253,7 @@ const SignUp = () => {
             <span className="radio-label">Student</span>
           </label>
         </div>
+        
         <StrongPassword
           setPassword={setPassword}
           setConfirmPassword={setConfirmPassword}
@@ -260,11 +261,13 @@ const SignUp = () => {
           setPasswordsMatch={setPasswordsMatch}
           error={error}
         />
+        <div id="not-match">
         {!passwordsMatch && (
           <span id="notMatch" style={{ color: "red" }}>
             Passwords do not match!
           </span>
         )}
+        </div>
         <ReCAPTCHA
           id="capcha"
           sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"

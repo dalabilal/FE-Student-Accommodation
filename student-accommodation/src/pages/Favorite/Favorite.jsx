@@ -61,35 +61,36 @@ const Favorite = () => {
     }
   };
 
+  
   return (
+    <>
     <div className='favorite'>
       {favoriteData?.map((data) => (
-        <div className="card" key={data._id}>
-          <div className="title-trash">
-            <h2 className="card-title">{data.name}</h2>
-            <span onClick={() => handleDeleteClick(data.dataId)}><Trash id="trush" size={30} /></span>
-          </div>
-          {imageUrl &&
-            <Link to={`/all/${data.dataId}`}>
-              <img src={imageUrl} alt={data.name} className="card-image" />
-            </Link>
-          }
-          <div className="card-content">
-            <p className="card-text">{data.description}</p>
-            <ul className="card-details">
-              <MapPinLine id="MapPinLine" size={25} weight='bold' />
-              <Phone id="Phone" size={25} weight='bold' />
-              <DotsThreeOutlineVertical id="DotsThreeOutlineVertical" size={25} />
+        <div className="favorate-card" key={data._id}>
+          <Link to={`/all/${data.dataId}`}>
+            {imageUrl && <img src={imageUrl} alt={data.name} className="card-image-favorite" />}
+          </Link>
+          
+          <div className="card-content-favorite">
+            <div className="title-trash-favorite">
+              <h2 className="card-title-favorite">{data.name}</h2>
+              <span onClick={() => handleDeleteClick(data.dataId)}><Trash id="trush" size={30} /></span>
+            </div>
+            
+            <p className="card-text-favorite">{data.description}</p>
+            
+            <ul className="card-details-favorite">
+              <MapPinLine id="MapPinLine-favorite" size={25} weight='bold' />
+              <Phone id="Phone-favorite" size={25} weight='bold' />
+              <DotsThreeOutlineVertical id="DotsThreeOutlineVertical-favorite" size={25} />
             </ul>
           </div>
         </div>
       ))}
-      <button
-        onClick={handleClearAllClick}
-      >
-        Clear All
-      </button>
+     
     </div>
+     <button id='ClearAll' onClick={handleClearAllClick}>Clear All</button>
+     </>
   );
 }
 

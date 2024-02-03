@@ -1,3 +1,92 @@
-.favorite{
-    padding: 100px;
+.favorite {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 100px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 200px;
+
+}
+
+.favorate-card {
+    display: flex;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #EEEEEE;
+    box-shadow: 0px 4px 4px #E5F6DD;
+    border-radius: 17px;
+}
+
+.card-image-favorite {
+    width: 300px;
+    /* Adjust as needed */
+    height: 70%;
+    padding: 20px 10px 20px 10px;
+    border-radius: 30px;
+    margin-top: 8%;
+    margin-bottom: 10%;
+}
+
+.card-content-favorite {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.title-trash-favorite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-title-favorite {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.card-text-favorite {
+    margin: 0;
+    width: 700px;
+    height: auto;
+    overflow-wrap: break-word;
+    fill: #BFB9B9;
+}
+
+.card-details-favorite {
+    position: absolute;
+    top: 40%;
+    left: 47%;
+}
+
+#MapPinLine-favorite,
+#Phone-favorite,
+#DotsThreeOutlineVertical-favorite {
+    fill: #BFB9B9;
+}
+
+#trush {
+    position: relative;
+    cursor: pointer;
+}
+
+#ClearAll {
+    position: absolute;
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    width: 90px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #bcd7af;
+    border: none;
+    font-size: 18px;
+    color: #EEEEEE;
+    cursor: pointer;
 }

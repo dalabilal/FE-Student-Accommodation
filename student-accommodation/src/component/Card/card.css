@@ -59,7 +59,8 @@
 #trush {
 
     fill: #BFB9B9;
-    margin-left: 50px;
+    margin-left: 90px;
+    cursor: pointer;
 }
 
 #heartUnFill,
@@ -69,6 +70,15 @@
     margin: 5px;
 }
 
+.card-text {
+    overflow: hidden;
+}
+
+#seeMore {
+    cursor: pointer;
+    text-decoration: none;
+    color: #86A279;
+}
 
 @media (max-width: 280px) {
     .card {

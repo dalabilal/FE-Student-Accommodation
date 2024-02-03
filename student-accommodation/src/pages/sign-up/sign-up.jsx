@@ -130,6 +130,7 @@ const SignUp = () => {
       if (response.ok) {
         setUserRole(role);
         const userData = await response.json()
+        console.log(userData);
         sessionStorage.setItem('jwtToken', userData.token);
         sessionStorage.setItem('userRole', role);
         sessionStorage.setItem('username', userData.firstname);

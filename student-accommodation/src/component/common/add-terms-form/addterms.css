@@ -23,15 +23,11 @@
   height: 623px;
   width: 358px;
   display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-/* .popup-container.show,
-.overlay.show {
-  display: block;
-} */
 
 .popup-container Input {
   margin-bottom: 15px;
@@ -128,13 +124,16 @@ Textarea:focus {
   margin-top: 0;
 }
 
-.xDiv h2{
+#termsHeader {
+  position: absolute;
+  top: 20px;
+  left: 15px;
   font-family: 'Times New Roman', Times, serif;
-    color: #A3C195;
+  color: #A3C195;
 }
 
 #x {
-  position: absolute; 
+  position: absolute;
   right: 20px;
   margin-top: -25px;
   top: 40px;
@@ -162,7 +161,8 @@ input::file-selector-button {
   border: thin solid rgb(228, 227, 227);
   border-radius: 20px;
   cursor: pointer;
-  background-color: #A3C195;;
+  background-color: #A3C195;
+  ;
 
 }
 

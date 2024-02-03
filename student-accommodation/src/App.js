@@ -8,6 +8,7 @@ import ResetPassword from './pages/reset-password/resetPassword';
 import Notification from './notification/notification.component';
 import ProtectedUsers from './pages/protected/ProtectedUsers';
 import Verification from './pages/verification/verification';
+import PaymentForm from './pages/payment-form/PaymentForm';
 import Profile from './pages/user-profile/Profile';
 import Favorite from './pages/Favorite/Favorite';
 import NotFound from './pages/Not-found/NotFound';
@@ -17,7 +18,6 @@ import SignInForm from './pages/login/login';
 
 import NavBar from './component/common/navBar/NavBar';
 import Guard from './component/guard/guard';
-import PaymentForm from './pages/payment-form/PaymentForm';
 
 function App() {
  return (

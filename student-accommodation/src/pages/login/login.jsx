@@ -56,12 +56,12 @@ const SignInForm = () => {
           setNotification({ message: 'Verification code sent to your email. Enter the code to proceed.', status: 'warning' });
           
         } else {
-          setNotification({ message: 'Server Error', status: 'warning' });
+          setNotification({ message: 'there is no account with this email', status: 'warning' });
         }
       }
     } catch (error) {
       console.error('Error:', error);
-      setNotification({ message: 'Server Error', status: 'warning' });
+      setNotification({ message: 'there is no account with this email', status: 'warning' });
     }
     setNoUser(true);
   };

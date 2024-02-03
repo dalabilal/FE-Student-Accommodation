@@ -18,14 +18,40 @@ const Card = ({ name, description, imageUrl, data }) => {
   const { setNotification } = useNotification();
   const userID = sessionStorage.getItem("userID");
 
-  const handleHeartClick = () => {
+  const handleHeartClick = async () => {
     if (!noUser) {
+
       navigate("/signin");
       setNotification({ message: "you are not Login ", status: "wks" });
+
     } else {
-      setIsHeartClicked(!isHeartClicked);
+      setIsHeartClicked(!isHeartClicked)
+
+      try {
+        const response = await fetch('http://localhost:3005/like/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userID,
+            dataId: data._id,
+            name,
+            description,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          setNotification({ message: errorData.message || 'Failed to save like', status: 'err' });
+        }
+      } catch (error) {
+        console.error('Error during like save:', error.message);
+        setNotification({ message: 'Error during like save', status: 'err' });
+      }
     }
   };
+
 
   const handleDeleteClick = async () => {
     try {

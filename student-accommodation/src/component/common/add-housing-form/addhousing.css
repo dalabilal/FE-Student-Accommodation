@@ -10,6 +10,7 @@
 }
 
 .popup-container {
+  overflow: auto;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -23,15 +24,11 @@
   height: 623px;
   width: 358px;
   display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-/* .popup-container.show,
-.overlay.show {
-  display: block;
-} */
 
 .popup-container Input {
   margin-bottom: 15px;
@@ -69,30 +66,18 @@ Textarea:focus {
   box-shadow: rgba(163, 247, 138, 0.25);
 }
 
-
-#x {
-  text-align: right;
-  display: block;
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #666;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-}
-
-
-#add {
+#addingButton {
   color: #fff;
   padding: 0.5em;
   margin-top: 22px;
-  height: 39px;
   width: 75px;
   border: 1px solid #A3C195;
   border-radius: 15px;
   background-color: #A3C195;
+  cursor: pointer;
 }
 
-#add:hover {
+#addingButton:hover {
   background-color: #a4a5a4;
 
 }
@@ -101,7 +86,7 @@ Textarea:focus {
   margin-top: 15px;
 }
 
-Textarea {
+#AddhousingDiscription {
   font-size: 1rem;
   font-weight: 400;
   color: #212529;
@@ -111,6 +96,7 @@ Textarea {
   -moz-appearance: none;
   appearance: none;
   width: 300px;
+  height: 150px;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid rgb(163, 193, 149);
@@ -119,7 +105,7 @@ Textarea {
   filter: drop-shadow(0px 4px 4px rgb(163, 193, 149))
 }
 
-Textarea:focus {
+#AddhousingDiscription:focus {
   box-shadow: rgba(163, 247, 138, 0.25);
 }
 
@@ -128,16 +114,19 @@ Textarea:focus {
   margin-top: 0;
 }
 
-.xDiv h2{
+#addHousingHeader {
+  left: 15px;
+  top: 20px;
+  position: absolute;
   font-family: 'Times New Roman', Times, serif;
-    color: #A3C195;
+  color: #A3C195;
 }
 
-#x {
-  position: absolute; 
+#cancelAdd {
+  position: absolute;
   right: 20px;
   margin-top: -25px;
-  top: 40px;
+  top: 45px;
   display: block;
   margin-bottom: 20px;
   font-size: 20px;
@@ -162,7 +151,8 @@ input::file-selector-button {
   border: thin solid rgb(228, 227, 227);
   border-radius: 20px;
   cursor: pointer;
-  background-color: #A3C195;;
+  background-color: #A3C195;
+  ;
 
 }
 

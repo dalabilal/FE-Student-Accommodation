@@ -57,7 +57,7 @@ const AddTerms = (props) => {
     <div className="plur-popup">
       <div className="popup-container show">
         <div className="xDiv">
-          <h2>Add Your Terms details</h2>
+          <h2 id="termsHeader">Add Your Terms details</h2>
           <span id="x" onClick={() => props.setPopup(false)}>
             X
           </span>

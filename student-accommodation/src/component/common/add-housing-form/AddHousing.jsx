@@ -66,8 +66,8 @@ const AddHousingForm = (props) => {
     <div className="plur-popup">
       <div className="popup-container show">
         <div className="xDiv">
-          <h2>Add Your Housing details</h2>
-          <span id="x" onClick={() => props.setPopup(false)}>
+          <h2 id="addHousingHeader">Add Your Housing details</h2>
+          <span id="cancelAdd" onClick={() => props.setPopup(false)}>
             X
           </span>
         </div>
@@ -99,6 +99,7 @@ const AddHousingForm = (props) => {
             required
           />
           <Textarea
+            id="AddhousingDiscription"
             label="description"
             name="description"
             required
@@ -110,7 +111,7 @@ const AddHousingForm = (props) => {
               name="files"
               required
             />
-            <button id="add" type="submit">
+            <button id="addingButton" type="submit">
               Add
             </button>
           </div>

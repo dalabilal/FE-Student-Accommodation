@@ -53,7 +53,7 @@ const NavBar = () => {
             <Link to="all">Accommodations</Link>
           </li>
 
-          <li
+       {userRole === 'student' &&  <li
             className={
               (window.location.pathname === '/favorite' | activeItem === "Favorite")
                 ? "active"
@@ -62,7 +62,7 @@ const NavBar = () => {
             onClick={() => handleItemClick("Favorite")}
           >
             <Link to="/favorite">Favorite</Link>
-          </li>
+          </li>}
 
 
           {(userRole === 'owner' && noUser) &&

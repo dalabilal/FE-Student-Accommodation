@@ -34,6 +34,12 @@ const SignUp = () => {
   const handleSendEmail = async (e) => {
     e.preventDefault();
 
+    if (!validateEmail(email)) {
+      setNotification({ message: "Invalid email format", status: "error" });
+      setVerify(false); 
+      return;
+    }
+    
     try {
       const response = await fetch("http://localhost:3005/sendEmail/signup", {
         method: "POST",
@@ -75,10 +81,6 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        setNotification({
-          message: "Verification code are correct",
-          status: "sucess",
-        });
         handleSubmit(e);
       } else {
         setNotification({
@@ -92,6 +94,12 @@ const SignUp = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    
+  if (!role) {
+    setNotification({ message: "Please select a role", status: "error" });
+    return;
+  }
 
     if (!validateEmail(email)) {
       setNotification({ message: "Invalid email format", status: "error" });

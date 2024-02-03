@@ -18,6 +18,7 @@ import SignInForm from './pages/login/login';
 
 import NavBar from './component/common/navBar/NavBar';
 import Guard from './component/guard/guard';
+import GuardFav from './component/guard-fav/guard';
 
 function App() {
  return (
@@ -31,7 +32,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/all' element={<AllAccomodation/>}/>
         <Route path='/all/:id' element={<ViewHousing/>}/>
-        <Route path='/favorite' element={<Favorite/>}/>
+        <Route path='/favorite' element={<GuardFav permittedRoles={['student']}><Favorite/></GuardFav>}/>
         <Route path='/allusers' element={<Guard permittedRoles={['owner']}><ProtectedUsers /></Guard>} />
         <Route path='/*' element={<NotFound/>}/>
         <Route path='/verification' element={<Verification/>}/>

@@ -42,6 +42,15 @@ const NavBar = () => {
           >
             <Link to="/">Home</Link>
           </li>
+          {userRole === 'admin' &&  <li
+            className={
+              (window.location.pathname === '/' | activeItem === "admin")
+                ? "active"
+                : ""}
+            onClick={() => handleItemClick("admin")}
+          >
+            <Link to="/admin">All Users</Link>
+          </li>}
           <li
             className={
               (window.location.pathname === '/all' || activeItem === "Accommodations")

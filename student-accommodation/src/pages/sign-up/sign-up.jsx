@@ -136,16 +136,11 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        setUserRole(role);
-        const userData = await response.json()
-        console.log(userData);
-        sessionStorage.setItem('jwtToken', userData.token);
-        sessionStorage.setItem('userRole', role);
-        sessionStorage.setItem('username', userData.firstname);
-        sessionStorage.setItem('userID', userData._id);
-        setNotification({ message: 'User is created successfully', status: 'success' })
-        navigate('/')
-
+        setNotification({
+          message: 'Your account has been created successfully. Please wait for admin approval.',
+          status: 'success',
+        });
+        navigate('/signin')
       } else {
         const responseData = await response.json();
         if (responseData.error) {
@@ -177,7 +172,6 @@ const SignUp = () => {
       setNotification({ message: "Server Error", status: "warning" });
       setVerify(false); 
     }
-    setNoUser(true);
   };
 
   useEffect(() => {

@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import './users.css';
-import useNotification from '../../hook/notification.hook';
+import { useEffect, useState } from "react";
+import "./users.css";
+import useNotification from "../../hook/notification.hook";
 
 const Users = () => {
-  const id = sessionStorage.getItem('userID');
+  const id = sessionStorage.getItem("userID");
   const { setNotification } = useNotification();
   const [ownerId, setOwnerId] = useState([]);
   const [studentData, setStudentData] = useState([]);
@@ -11,26 +11,42 @@ const Users = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ownerResponse = await fetch(`http://localhost:3005/payment/owner`);
+        const ownerResponse = await fetch(
+          `https://localhost:3005/payment/owner`
+        );
         if (ownerResponse.ok) {
           const ownerData = await ownerResponse.json();
           setOwnerId(ownerData);
         } else {
-          console.error('Failed to fetch owner data:', ownerResponse.statusText);
-          setNotification({ message: 'Failed to fetch owner data', status: 'err' });
+          console.error(
+            "Failed to fetch owner data:",
+            ownerResponse.statusText
+          );
+          setNotification({
+            message: "Failed to fetch owner data",
+            status: "err",
+          });
         }
 
-        const studentResponse = await fetch(`http://localhost:3005/signin/pay`);
+        const studentResponse = await fetch(
+          `https://localhost:3005/signin/pay`
+        );
         if (studentResponse.ok) {
           const studentData = await studentResponse.json();
           setStudentData(studentData);
         } else {
-          console.error('Failed to fetch student data:', studentResponse.statusText);
-          setNotification({ message: 'Failed to fetch student data', status: 'err' });
+          console.error(
+            "Failed to fetch student data:",
+            studentResponse.statusText
+          );
+          setNotification({
+            message: "Failed to fetch student data",
+            status: "err",
+          });
         }
       } catch (error) {
-        console.error('Error during fetch:', error.message);
-        setNotification({ message: 'Error during fetch', status: 'err' });
+        console.error("Error during fetch:", error.message);
+        setNotification({ message: "Error during fetch", status: "err" });
       }
     };
 
@@ -47,8 +63,10 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {ownerId?.map(owner => {
-            const student = studentData?.find(student => student._id === owner.useid);
+          {ownerId?.map((owner) => {
+            const student = studentData?.find(
+              (student) => student._id === owner.useid
+            );
             if (student && owner.ownerId === id) {
               return (
                 <tr key={owner._id}>
@@ -65,7 +83,7 @@ const Users = () => {
     );
   };
 
-  return <div className='users'>{renderUserDetails(ownerId)}</div>;
+  return <div className="users">{renderUserDetails(ownerId)}</div>;
 };
 
 export default Users;

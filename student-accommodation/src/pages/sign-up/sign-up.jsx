@@ -24,8 +24,16 @@ const SignUp = () => {
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
   const navigate = useNavigate();
-  
-  const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify , color} = useUser();
+
+  const {
+    setNoUser,
+    setUserRole,
+    verificationCode,
+    setVerificationCode,
+    emailVerify,
+    setEmailVerify,
+    color,
+  } = useUser();
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -35,7 +43,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3005/sendEmail/signup", {
+      const response = await fetch("https://localhost:3005/sendEmail/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +70,7 @@ const SignUp = () => {
   const handleVerification = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3005/verify/signup", {
+      const response = await fetch("https://localhost:3005/verify/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,23 +103,23 @@ const SignUp = () => {
 
     if (!validateEmail(email)) {
       setNotification({ message: "Invalid email format", status: "error" });
-      setVerify(false); 
+      setVerify(false);
       return;
     }
-    
+
     if (password !== confirmPassword) {
       setPasswordsMatch(false);
       setEmailExists(false);
       return;
     }
-    
-    if(color !== "Green") {
-      setError("Your Password is not strong")
-      return
+
+    if (color !== "Green") {
+      setError("Your Password is not strong");
+      return;
     }
 
     try {
-      const response = await fetch("http://localhost:3005/signup/", {
+      const response = await fetch("https://localhost:3005/signup/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -129,21 +137,23 @@ const SignUp = () => {
 
       if (response.ok) {
         setUserRole(role);
-        const userData = await response.json()
+        const userData = await response.json();
         console.log(userData);
-        sessionStorage.setItem('jwtToken', userData.token);
-        sessionStorage.setItem('userRole', role);
-        sessionStorage.setItem('username', userData.firstname);
-        sessionStorage.setItem('userID', userData._id);
-        setNotification({ message: 'User is created successfully', status: 'success' })
-        navigate('/')
-
+        sessionStorage.setItem("jwtToken", userData.token);
+        sessionStorage.setItem("userRole", role);
+        sessionStorage.setItem("username", userData.firstname);
+        sessionStorage.setItem("userID", userData._id);
+        setNotification({
+          message: "User is created successfully",
+          status: "success",
+        });
+        navigate("/");
       } else {
         const responseData = await response.json();
         if (responseData.error) {
           if (responseData.error.message === "Email already exists") {
             setEmailExists(true);
-            setVerify(false); 
+            setVerify(false);
             setNotification({
               message: "Email already exists",
               status: "error",
@@ -153,7 +163,7 @@ const SignUp = () => {
               message: "User is not created",
               status: "error",
             });
-            setVerify(false); 
+            setVerify(false);
             setPasswordsMatch(false);
           } else {
             console.error("Failed to sign up:", responseData.error.message);
@@ -161,13 +171,13 @@ const SignUp = () => {
               message: "User is not created",
               status: "error",
             });
-            setVerify(false); 
+            setVerify(false);
           }
         }
       }
     } catch (error) {
       setNotification({ message: "Server Error", status: "warning" });
-      setVerify(false); 
+      setVerify(false);
     }
     setNoUser(true);
   };
@@ -178,7 +188,7 @@ const SignUp = () => {
 
   const handleCancelVerification = () => {
     setVerificationCode("");
-    setVerify(false); 
+    setVerify(false);
   };
 
   return (
@@ -253,7 +263,7 @@ const SignUp = () => {
             <span className="radio-label">Student</span>
           </label>
         </div>
-        
+
         <StrongPassword
           setPassword={setPassword}
           setConfirmPassword={setConfirmPassword}
@@ -262,11 +272,11 @@ const SignUp = () => {
           error={error}
         />
         <div id="not-match">
-        {!passwordsMatch && (
-          <span id="notMatch" style={{ color: "red" }}>
-            Passwords do not match!
-          </span>
-        )}
+          {!passwordsMatch && (
+            <span id="notMatch" style={{ color: "red" }}>
+              Passwords do not match!
+            </span>
+          )}
         </div>
         <ReCAPTCHA
           id="capcha"

@@ -20,18 +20,16 @@ const Card = ({ name, description, imageUrl, data }) => {
 
   const handleHeartClick = async () => {
     if (!noUser) {
-
       navigate("/signin");
       setNotification({ message: "you are not Login ", status: "wks" });
-
     } else {
-      setIsHeartClicked(!isHeartClicked)
+      setIsHeartClicked(!isHeartClicked);
 
       try {
-        const response = await fetch('http://localhost:3005/like/', {
-          method: 'POST',
+        const response = await fetch("https://localhost:3005/like/", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             userID,
@@ -43,20 +41,22 @@ const Card = ({ name, description, imageUrl, data }) => {
 
         if (!response.ok) {
           const errorData = await response.json();
-          setNotification({ message: errorData.message || 'Failed to save like', status: 'err' });
+          setNotification({
+            message: errorData.message || "Failed to save like",
+            status: "err",
+          });
         }
       } catch (error) {
-        console.error('Error during like save:', error.message);
-        setNotification({ message: 'Error during like save', status: 'err' });
+        console.error("Error during like save:", error.message);
+        setNotification({ message: "Error during like save", status: "err" });
       }
     }
   };
 
-
   const handleDeleteClick = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3005/all/housing/${data._id}`,
+        `https://localhost:3005/all/housing/${data._id}`,
         {
           method: "DELETE",
         }

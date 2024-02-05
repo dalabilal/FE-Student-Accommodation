@@ -1,40 +1,40 @@
 import Input from "../input/input.component";
 import Textarea from "../textarea/textarea.component";
-import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from "sanitize-html";
 import "./addterms.css";
 
 const AddTerms = (props) => {
-  const idparam = sessionStorage.getItem('housingID');
+  const idparam = sessionStorage.getItem("housingID");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const sanitizeOptions = {
-      allowedTags: ['b', 'i', 'em', 'strong', 'a', 'p', 'br'],
+      allowedTags: ["b", "i", "em", "strong", "a", "p", "br"],
       allowedAttributes: {
-        'a': ['href'],
+        a: ["href"],
       },
       transformTags: {
-        'script': function (tagName, attribs) {
-          alert('Script tag not allowed!');
-          return { tagName: 'div', text: 'Script tag not allowed!' };
+        script: function (tagName, attribs) {
+          alert("Script tag not allowed!");
+          return { tagName: "div", text: "Script tag not allowed!" };
         },
       },
     };
 
     const fees = sanitizeHtml(e.target.fee.value, sanitizeOptions);
     const term = sanitizeHtml(e.target.terms.value, sanitizeOptions);
-    const useID = sessionStorage.getItem('userID');
+    const useID = sessionStorage.getItem("userID");
 
     const termData = {
-      fees : fees,
-      term :term,
-      housingId :idparam,
-      ownerId : useID
+      fees: fees,
+      term: term,
+      housingId: idparam,
+      ownerId: useID,
     };
 
     try {
-      const response = await fetch("http://localhost:3005/term/", {
+      const response = await fetch("https://localhost:3005/term/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,17 +63,8 @@ const AddTerms = (props) => {
           </span>
         </div>
         <form onSubmit={handleSubmit} encType="multipart/formData">
-          <Input
-            label="fees Per month $"
-            type="number"
-            name="fee"
-            required
-          />
-          <Textarea
-            label="provide your  terms "
-            name="terms"
-            required
-          />
+          <Input label="fees Per month $" type="number" name="fee" required />
+          <Textarea label="provide your  terms " name="terms" required />
           <div className="bottuns">
             <button id="add" type="submit">
               Add

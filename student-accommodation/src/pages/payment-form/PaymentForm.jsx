@@ -47,7 +47,7 @@ const PaymentForm = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3005/payment/", {
+      const response = await fetch("https://localhost:3005/payment/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const PaymentForm = () => {
   useEffect(() => {
     const fetchHousingData = async () => {
       try {
-        const response = await fetch(`http://localhost:3005/term/${id}`);
+        const response = await fetch(`https://localhost:3005/term/${id}`);
         if (response.ok) {
           const data = await response.json();
           setHousingTerms(data);
@@ -92,9 +92,14 @@ const PaymentForm = () => {
     <div className="payment-container">
       <div className="payment-form">
         <form className="inner-payment-form" onSubmit={handelPAyment}>
-          <Input className="formInput" label="holder's name :" required name="holdername" />
           <Input
-          className="formInput"
+            className="formInput"
+            label="holder's name :"
+            required
+            name="holdername"
+          />
+          <Input
+            className="formInput"
             label="Card  Number:"
             placeholder="___-___-___-___"
             type="number"
@@ -102,15 +107,19 @@ const PaymentForm = () => {
             required
           />
           <Input
-          className="formInput"
+            className="formInput"
             label="CVV(security number)"
             type="number"
             name="cvv"
             required
           />
-          <Input 
-          className="formInput"
-          label="Exp date" type="date" name="expDate" required />
+          <Input
+            className="formInput"
+            label="Exp date"
+            type="date"
+            name="expDate"
+            required
+          />
           <div id="rental-agreement">
             <label id="agreeQ">Are u agree with these terms?</label>
             <input id="check" type="checkbox" required />

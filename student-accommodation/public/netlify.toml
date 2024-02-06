@@ -1,4 +1,6 @@
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "https://main--student-housing-app.netlify.app/"
   status = 200
+  force = true
+  headers = {X-From = "Netlify"}

@@ -34,7 +34,7 @@ const AddTerms = (props) => {
     };
 
     try {
-      const response = await fetch("https://localhost:3005/term/", {
+      const response = await fetch("http://localhost:3005/term/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

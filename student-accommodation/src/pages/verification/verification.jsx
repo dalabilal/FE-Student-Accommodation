@@ -16,7 +16,7 @@ const Verification = (props) => {
   const handleVerification = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://localhost:3005/verify/", {
+      const response = await fetch("http://localhost:3005/verify/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

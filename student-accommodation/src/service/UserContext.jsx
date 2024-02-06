@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
     // Fetch housing data from the backend
     const fetchHousingData = async () => {
       try {
-        const response = await fetch("https://localhost:3005/all/housing");
+        const response = await fetch("http://localhost:3005/all/housing");
         if (response.ok) {
           const data = await response.json();
           setHousingData(data);

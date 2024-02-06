@@ -30,7 +30,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await fetch("https://localhost:3005/resetPassword/", {
+      const response = await fetch("http://localhost:3005/resetPassword/", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

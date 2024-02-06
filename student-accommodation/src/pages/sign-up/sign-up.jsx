@@ -43,7 +43,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://localhost:3005/sendEmail/signup", {
+      const response = await fetch("http://localhost:3005/sendEmail/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const SignUp = () => {
   const handleVerification = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://localhost:3005/verify/signup", {
+      const response = await fetch("http://localhost:3005/verify/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -119,7 +119,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("https://localhost:3005/signup/", {
+      const response = await fetch("http://localhost:3005/signup/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

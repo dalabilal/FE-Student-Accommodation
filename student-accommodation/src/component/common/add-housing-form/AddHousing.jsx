@@ -45,7 +45,7 @@ const AddHousingForm = (props) => {
     };
 
     try {
-      const response = await fetch("https://localhost:3005/all/", {
+      const response = await fetch("http://localhost:3005/all/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

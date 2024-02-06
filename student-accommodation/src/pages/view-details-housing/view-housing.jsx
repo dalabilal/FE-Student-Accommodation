@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import useNotification from '../../hook/notification.hook';
-import './view-housing.css'
-import { useUser } from '../../service/UserContext';
-import AddTerms from '../../component/common/add-terms-form/AddTerms';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import useNotification from "../../hook/notification.hook";
+import "./view-housing.css";
+import { useUser } from "../../service/UserContext";
+import AddTerms from "../../component/common/add-terms-form/AddTerms";
 
-const imageUrl = "https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"
+const imageUrl =
+  "http://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain";
 
 const ViewHousing = () => {
   const { id } = useParams();
   const [housingData, setHousingData] = useState(null);
   const [addTerms, setAddTerms] = useState(false);
   const { setNotification } = useNotification();
-  const username = sessionStorage.getItem('username');
+  const username = sessionStorage.getItem("username");
   const navigate = useNavigate();
-  const { userRole, noUser ,setOwner} = useUser();
+  const { userRole, noUser, setOwner } = useUser();
 
   useEffect(() => {
     const fetchHousingData = async () => {
@@ -23,60 +24,67 @@ const ViewHousing = () => {
         if (response.ok) {
           const data = await response.json();
           sessionStorage.setItem("housingID", id);
-          setOwner(data.ownerId)
+          setOwner(data.ownerId);
           setHousingData(data);
         } else {
-          console.error('Failed to fetch housing data:', response.statusText);
-          setNotification({ message: 'Failed to fetch housing data', status: 'err' });
+          console.error("Failed to fetch housing data:", response.statusText);
+          setNotification({
+            message: "Failed to fetch housing data",
+            status: "err",
+          });
         }
       } catch (error) {
-        console.error('Error during fetch:', error.message);
-        setNotification({ message: 'Error during fetch', status: 'err' });
+        console.error("Error during fetch:", error.message);
+        setNotification({ message: "Error during fetch", status: "err" });
       }
     };
 
     fetchHousingData();
-  }, [id,setOwner,setHousingData,setNotification]);
+  }, [id, setOwner, setHousingData, setNotification]);
 
   if (!housingData) {
     return <div>Loading...</div>;
   }
 
-
   return (
-    <div className='view-page-group-buttons'>
+    <div className="view-page-group-buttons">
       <div className="view-page-group">
-        <img className="image-housing" src={imageUrl} alt='housing pic' />
+        <img className="image-housing" src={imageUrl} alt="housing pic" />
         <div className="information">
           <h2>{housingData.name}</h2>
-          <p className='discriptionParagraph' id='cardItem'>{housingData.description}</p>
-          <p id='cardItem'>Number of room : {housingData.rooms}</p>
-          <p id='cardItem'>{housingData.location}</p>
-          <p id='cardItem'>Added by : {username}</p>
-          <p id='cardItem'>{housingData.phoneNumber}</p>
+          <p className="discriptionParagraph" id="cardItem">
+            {housingData.description}
+          </p>
+          <p id="cardItem">Number of room : {housingData.rooms}</p>
+          <p id="cardItem">{housingData.location}</p>
+          <p id="cardItem">Added by : {username}</p>
+          <p id="cardItem">{housingData.phoneNumber}</p>
         </div>
       </div>
       <div className="buttons-container">
+        {userRole === "owner" ? (
+          ""
+        ) : (
+          <button
+            onClick={() =>
+              noUser ? navigate("/payment") : navigate("/signin")
+            }
+            id="cardB"
+          >
+            Book Now!
+          </button>
+        )}
 
-        {userRole === 'owner' ? ''
-        : <button
-          onClick={() => noUser ? navigate('/payment') : navigate('/signin')}
-          id='cardB'
-        >
-          Book Now!
-        </button>}
+        {userRole === "owner" && (
+          <button id="rentalTermsButton" onClick={() => setAddTerms(true)}>
+            Add rental terms
+          </button>
+        )}
 
-        {userRole === 'owner' && <button id='rentalTermsButton' onClick={() => setAddTerms(true)}>Add rental terms</button>}
-
-        {
-          addTerms &&
-          <AddTerms
-            setPopup={setAddTerms}
-          />
-        }
+        {addTerms && <AddTerms setPopup={setAddTerms} />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ViewHousing
+export default ViewHousing;

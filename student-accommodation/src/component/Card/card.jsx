@@ -26,7 +26,7 @@ const Card = ({ name, description, imageUrl, data }) => {
       setIsHeartClicked(!isHeartClicked);
 
       try {
-        const response = await fetch("https://localhost:3005/like/", {
+        const response = await fetch("http://localhost:3005/like/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const Card = ({ name, description, imageUrl, data }) => {
   const handleDeleteClick = async () => {
     try {
       const response = await fetch(
-        `https://localhost:3005/all/housing/${data._id}`,
+        `http://localhost:3005/all/housing/${data._id}`,
         {
           method: "DELETE",
         }

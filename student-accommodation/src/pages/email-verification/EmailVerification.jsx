@@ -15,7 +15,7 @@ const EmailVerification = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://localhost:3005/sendEmail/", {
+      const response = await fetch("http://localhost:3005/sendEmail/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

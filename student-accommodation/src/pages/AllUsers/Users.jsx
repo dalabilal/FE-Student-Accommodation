@@ -12,7 +12,7 @@ const Users = () => {
     const fetchData = async () => {
       try {
         const ownerResponse = await fetch(
-          `https://localhost:3005/payment/owner`
+          `http://localhost:3005/payment/owner`
         );
         if (ownerResponse.ok) {
           const ownerData = await ownerResponse.json();
@@ -28,9 +28,7 @@ const Users = () => {
           });
         }
 
-        const studentResponse = await fetch(
-          `https://localhost:3005/signin/pay`
-        );
+        const studentResponse = await fetch(`http://localhost:3005/signin/pay`);
         if (studentResponse.ok) {
           const studentData = await studentResponse.json();
           setStudentData(studentData);

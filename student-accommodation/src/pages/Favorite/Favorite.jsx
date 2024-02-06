@@ -9,7 +9,7 @@ import {
 import { Trash } from "@phosphor-icons/react/dist/ssr";
 
 const imageUrl =
-  "httpss://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain";
+  "https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain";
 
 const Favorite = () => {
   const [favoriteData, setFavoriteData] = useState([]);
@@ -21,7 +21,7 @@ const Favorite = () => {
   const fetchFavoriteData = async () => {
     try {
       const userID = sessionStorage.getItem("userID");
-      const response = await fetch(`https://localhost:3005/like/${userID}`);
+      const response = await fetch(`http://localhost:3005/like/${userID}`);
       if (response.ok) {
         const data = await response.json();
         setFavoriteData(data);
@@ -35,7 +35,7 @@ const Favorite = () => {
 
   const handleDeleteClick = async (dataId) => {
     try {
-      const response = await fetch(`https://localhost:3005/like/${dataId}`, {
+      const response = await fetch(`http://localhost:3005/like/${dataId}`, {
         method: "DELETE",
       });
 
@@ -55,7 +55,7 @@ const Favorite = () => {
     try {
       const userID = sessionStorage.getItem("userID");
       const response = await fetch(
-        `https://localhost:3005/like/clear/${userID}`,
+        `http://localhost:3005/like/clear/${userID}`,
         {
           method: "DELETE",
         }

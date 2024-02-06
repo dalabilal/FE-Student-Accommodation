@@ -47,7 +47,7 @@ const PaymentForm = () => {
     };
 
     try {
-      const response = await fetch("https://localhost:3005/payment/", {
+      const response = await fetch("http://localhost:3005/payment/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const PaymentForm = () => {
   useEffect(() => {
     const fetchHousingData = async () => {
       try {
-        const response = await fetch(`https://localhost:3005/term/${id}`);
+        const response = await fetch(`http://localhost:3005/term/${id}`);
         if (response.ok) {
           const data = await response.json();
           setHousingTerms(data);

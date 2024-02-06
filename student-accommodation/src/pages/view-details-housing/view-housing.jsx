@@ -27,12 +27,12 @@ const ViewHousing = () => {
           setOwner(data.ownerId)
           setHousingData(data);
         } else {
-          console.error('Failed to fetch housing data:', response.statusText);
-          setNotification({ message: 'Failed to fetch housing data', status: 'err' });
+          // console.error('Failed to fetch housing data:', response.statusText);
+          // setNotification({ message: 'Failed to fetch housing data', status: 'err' });
         }
       } catch (error) {
-        console.error('Error during fetch:', error.message);
-        setNotification({ message: 'Error during fetch', status: 'err' });
+        // console.error('Error during fetch:', error.message);
+        // setNotification({ message: 'Error during fetch', status: 'err' });
       }
     };
 

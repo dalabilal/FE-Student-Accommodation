@@ -62,7 +62,7 @@ const NavBar = () => {
             <Link to="all">Accommodations</Link>
           </li>
 
-       {userRole === 'student' &&  <li
+       {(userRole === 'student' || !noUser) &&  <li
             className={
               (window.location.pathname === '/favorite' | activeItem === "Favorite")
                 ? "active"

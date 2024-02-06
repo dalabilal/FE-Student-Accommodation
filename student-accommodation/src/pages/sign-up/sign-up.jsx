@@ -25,7 +25,7 @@ const SignUp = () => {
   const { setNotification } = useNotification();
   const navigate = useNavigate();
   
-  const { setNoUser, setUserRole , verificationCode , setVerificationCode , emailVerify , setEmailVerify , color} = useUser();
+  const {  verificationCode , setVerificationCode , emailVerify , setEmailVerify , color} = useUser();
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);

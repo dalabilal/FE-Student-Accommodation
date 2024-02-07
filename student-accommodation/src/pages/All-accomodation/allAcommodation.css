@@ -1,6 +1,7 @@
 .display-cards {
     margin-top: 40px;
     padding-left: 10px;
+    height: 380px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;

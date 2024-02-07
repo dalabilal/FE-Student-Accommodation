@@ -92,11 +92,10 @@ const Favorite = () => {
             <div className="card-content-favorite">
               <div className="title-trash-favorite">
                 <h2 className="card-title-favorite">{data.name}</h2>
-                <span onClick={() => handleDeleteClick(data.dataId)}>
-                  <Trash id="trush" size={30} />
-                </span>
               </div>
-
+               <span onClick={() => handleDeleteClick(data.dataId)}>
+                  <Trash id="trash-icon" size={30} />
+                </span>
               <p className="card-text-favorite">{data.description}</p>
 
               <ul className="card-details-favorite">

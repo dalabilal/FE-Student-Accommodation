@@ -269,7 +269,7 @@ const SignUp = () => {
         )}
         <ReCAPTCHA
           id="capcha"
-          sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
+          sitekey="6Ldj5GopAAAAAM5gr-TubLuBDKs4TZMs8oDEuax0"
           onChange={(val) => setCap(val)}
           style={{ float: "right", marginRight: "10px" }}
         />

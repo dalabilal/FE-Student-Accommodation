@@ -121,8 +121,8 @@ const PaymentForm = () => {
             required
           />
           <div id="rental-agreement">
-            <label id="agreeQ">Are u agree with these terms?</label>
             <input id="check" type="checkbox" required />
+            <label id="agreeQ">Are u agree with these terms?</label>
           </div>
 
           {showModal && (
@@ -136,14 +136,15 @@ const PaymentForm = () => {
               </div>
             </div>
           )}
+
+          <button
+            id="pay-button"
+            type="button"
+            onClick={() => setShowModal(true)}
+          >
+            Pay
+          </button>
         </form>
-        <button
-          id="pay-button"
-          type="button"
-          onClick={() => setShowModal(true)}
-        >
-          Pay
-        </button>
       </div>
       <div className="payment-info">
         <p id="fees"> Fees per month: {housingTerms.fees}</p>

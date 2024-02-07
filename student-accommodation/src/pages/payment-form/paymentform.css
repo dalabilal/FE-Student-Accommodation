@@ -1,23 +1,35 @@
 .payment-form {
     padding: 200px;
-    background-color: #fff;
     display: block;
+    background-color: #fff;
     flex-direction: column;
+    width: 25%;
+    position: absolute;
+    z-index: -200;
+    left: 0;
 }
 
-.inner-payment-form{
+.inner-payment-form {
     display: block;
     flex-direction: column;
+    border: 1px solid rgb(163, 193, 149);
+    padding: 20px;
+    width: 310px;
+    border-radius: 15px;
+    box-shadow: 2px 2px  rgb(113, 114, 114) ;
 }
 
 .payment-container {
     display: flex;
+
 }
+
 
 
 .Input {
     margin-top: 30px;
     margin-bottom: 10px;
+    margin-right: 0px;
 }
 
 .modal-overlay {
@@ -56,8 +68,7 @@
 }
 
 .payment-info {
-    width: 30%;
-    /* Adjust the width as needed */
+    max-width: 30%;
     padding: 10px;
     height: 600px;
     box-shadow: #fff;
@@ -65,9 +76,10 @@
     overflow-y: scroll;
     box-shadow: #86A279;
     position: absolute;
+    position: fixed;
     top: 150px;
     right: 90px;
-    z-index: -1900;
+    z-index: -201;
 }
 
 #fees {
@@ -101,17 +113,20 @@
 }
 
 #rental-agreement {
-    display: inline-block;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #rental-agreement #agreeQ {
-color: #86A279;
+    margin-right: 0px;
+    color: #86A279;
 }
 
 #check {
-margin-left: -95px;
+    margin-right: 0px;
+    padding: 0;
+    position: absolute;
+    left: 350px;
 }
 
 .formInput {

@@ -4,12 +4,12 @@
 }
 
 
-.navBarWithList .container .vanBarOptions li.active > a {
+.navBarWithList .container .vanBarOptions li.active>a {
     background: rgba(185, 230, 165, 0.30);
     color: #fff;
 }
 
-.navBarWithList .container  .vanBarOptions li a:hover {
+.navBarWithList .container .vanBarOptions li a:hover {
     color: #fff;
     background: rgba(185, 230, 165, 0.30);
 }
@@ -36,6 +36,7 @@ body {
 #houseLine {
     color: #A3C195;
     margin-right: 10px;
+    cursor: none;
 }
 
 .container h1 {
@@ -44,9 +45,10 @@ body {
     font-family: 'Times New Roman', Times, serif;
     color: #A3C195;
     text-align: left;
+    cursor: none;
 }
 
-.navBarWithList .container  .vanBarOptions {
+.navBarWithList .container .vanBarOptions {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -62,7 +64,7 @@ body {
     margin-right: 20px;
 }
 
-.navBarWithList .container  .vanBarOptions li:last-child {
+.navBarWithList .container .vanBarOptions li:last-child {
     margin-right: 0;
     /* Remove right margin for the last item */
 }
@@ -120,8 +122,9 @@ body {
 }
 
 #LogOut,
-#YourAccount ,
-#signin , #signup{
+#YourAccount,
+#signin,
+#signup {
     text-decoration: none;
     color: rgb(64, 64, 64);
 }

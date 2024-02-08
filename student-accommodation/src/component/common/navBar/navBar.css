@@ -36,7 +36,6 @@ body {
 #houseLine {
     color: #A3C195;
     margin-right: 10px;
-    cursor: none;
 }
 
 .container h1 {
@@ -45,7 +44,6 @@ body {
     font-family: 'Times New Roman', Times, serif;
     color: #A3C195;
     text-align: left;
-    cursor: none;
 }
 
 .navBarWithList .container .vanBarOptions {

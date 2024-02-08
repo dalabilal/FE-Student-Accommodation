@@ -3,6 +3,7 @@
   background-color: #9e9e9ea3;
   position: fixed;
   height: 1000vh;
+  z-index: 1;
   top: 0;
   display: flex;
   justify-content: center;

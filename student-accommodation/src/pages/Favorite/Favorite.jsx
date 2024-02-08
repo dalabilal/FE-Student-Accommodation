@@ -94,7 +94,7 @@ const Favorite = () => {
                 />
               )}
             </Link>
-
+             }
             <div className="card-content-favorite">
               <div className="title-trash-favorite">
                 <h2 className="card-title-favorite">{data.name}</h2>

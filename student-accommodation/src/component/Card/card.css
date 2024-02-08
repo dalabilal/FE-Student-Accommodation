@@ -29,6 +29,7 @@
     height: auto;
     margin-bottom: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .card-content {
@@ -58,13 +59,16 @@
     fill: #BFB9B9;
     position: absolute;
     bottom: 15px;
-    right: 15px
+    right: 15px;
+    cursor: pointer;
 }
 
 .title-trash {
     align-items: center;
     display: flex;
     position: relative;
+    cursor: pointer;
+
 }
 
 #trush {
@@ -74,6 +78,8 @@
     fill: #BFB9B9;
     margin-left: 90px;
     cursor: pointer;
+    cursor: pointer;
+
 }
 
 
@@ -81,17 +87,23 @@
 #Phone {
     fill: #BFB9B9;
     margin: 5px;
+    cursor: pointer;
+
 }
 
 #MapPinLine {
     position: absolute;
     bottom: 15px;
     left: 80px;
+    cursor: pointer;
+
 }
 #Phone {
     position: absolute;
     bottom: 15px;
     left: 50px;
+    cursor: pointer;
+
 }
 
 #heart {
@@ -99,6 +111,8 @@
     bottom: 15px;
     left: 20px;
     margin: 5px;
+    cursor: pointer;
+
 }
 
 .card-text {
@@ -109,6 +123,7 @@
     cursor: pointer;
     text-decoration: none;
     color: #86A279;
+    cursor: pointer;
 }
 
 @media (max-width: 280px) {

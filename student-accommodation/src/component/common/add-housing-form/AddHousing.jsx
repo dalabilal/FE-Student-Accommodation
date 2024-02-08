@@ -1,4 +1,3 @@
-
 import Input from "../input/input.component";
 import Textarea from "../textarea/textarea.component";
 import sanitizeHtml from "sanitize-html";
@@ -15,7 +14,7 @@ const AddHousingForm = (props) => {
       },
       transformTags: {
         script: function (tagName, attribs) {
-          alert("Script tag not allowed!");
+          console.log("invalid input")
           return { tagName: "div", text: "Script tag not allowed!" };
         },
       },
@@ -44,6 +43,15 @@ const AddHousingForm = (props) => {
       description: description,
       ownerId: useID,
     };
+
+    const invalidInputDetected = Object.values(formData).some(
+      (value) => typeof value === "string" && value.includes("Script tag not allowed!")
+    );
+  
+    if (invalidInputDetected) {
+      console.error("Invalid input detected. Form submission prevented.");
+      return; // Prevent form submission
+    }
 
     try {
       const response = await fetch("http://localhost:3005/all/", {

@@ -16,7 +16,7 @@ const AddTerms = (props) => {
       },
       transformTags: {
         script: function (tagName, attribs) {
-          alert("Script tag not allowed!");
+         console.log("invalid input");
           return { tagName: "div", text: "Script tag not allowed!" };
         },
       },
@@ -32,6 +32,15 @@ const AddTerms = (props) => {
       housingId: idparam,
       ownerId: useID,
     };
+
+    const invalidInputDetected = Object.values(termData).some(
+      (value) => typeof value === "string" && value.includes("Script tag not allowed!")
+    );
+  
+    if (invalidInputDetected) {
+      console.error("Invalid input detected. Form submission prevented.");
+      return; // Prevent form submission
+    }
 
     try {
       const response = await fetch("http://localhost:3005/term/", {

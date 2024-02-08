@@ -1,6 +1,7 @@
 .display-cards {
     margin-top: 40px;
     padding-left: 10px;
+    height: 320px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -60,7 +61,7 @@ select:focus {
 }
 
 .bar .add-housing {
-    background-color: #D8FBC6;
+    background-color: #bbd8ad;
     border: none;
     border-radius: 5px;
     width: 171px;

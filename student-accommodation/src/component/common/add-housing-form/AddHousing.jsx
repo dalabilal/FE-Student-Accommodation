@@ -11,25 +11,31 @@ const AddHousingForm = (props) => {
     e.preventDefault();
 
     const sanitizeOptions = {
-      allowedTags: ['b', 'i', 'em', 'strong', 'a', 'p', 'br'],
+      allowedTags: ["b", "i", "em", "strong", "a", "p", "br"],
       allowedAttributes: {
-        'a': ['href'],
+        a: ["href"],
       },
       transformTags: {
-        'script': function (tagName, attribs) {
-          alert('Script tag not allowed!');
-          return { tagName: 'div', text: 'Script tag not allowed!' };
+        script: function (tagName, attribs) {
+          console.log("invalid input")
+          return { tagName: "div", text: "Script tag not allowed!" };
         },
       },
     };
 
     const name = sanitizeHtml(e.target.name.value, sanitizeOptions);
-    const phoneNumber = sanitizeHtml(e.target.phoneNumber.value, sanitizeOptions);
+    const phoneNumber = sanitizeHtml(
+      e.target.phoneNumber.value,
+      sanitizeOptions
+    );
     const location = sanitizeHtml(e.target.location.value, sanitizeOptions);
     const university = sanitizeHtml(selectedUniversity, sanitizeOptions);
     const rooms = sanitizeHtml(e.target.rooms.value, sanitizeOptions);
-    const description = sanitizeHtml(e.target.description.value, sanitizeOptions);
-    const useID = sessionStorage.getItem('userID');
+    const description = sanitizeHtml(
+      e.target.description.value,
+      sanitizeOptions
+    );
+    const useID = sessionStorage.getItem("userID");
 
     const formData = {
       name: name,
@@ -41,6 +47,15 @@ const AddHousingForm = (props) => {
       ownerId: useID
     };
 
+    const invalidInputDetected = Object.values(formData).some(
+      (value) => typeof value === "string" && value.includes("Script tag not allowed!")
+    );
+  
+    if (invalidInputDetected) {
+      console.error("Invalid input detected. Form submission prevented.");
+      return; // Prevent form submission
+    }
+
     try {
       const response = await fetch("http://localhost:3005/all/", {
         method: "POST",
@@ -51,7 +66,6 @@ const AddHousingForm = (props) => {
       });
 
       if (response.ok) {
-
         console.log("formData", formData);
         console.log("Housing data submitted successfully");
         props.setPopup(false);
@@ -116,12 +130,7 @@ const AddHousingForm = (props) => {
             required
           />
           <div className="bottuns">
-            <input
-              id="choose"
-              type="file"
-              name="files"
-              required
-            />
+            <input id="choose" type="file" name="files" required />
             <button id="addingButton" type="submit">
               Add
             </button>

@@ -1,7 +1,36 @@
-.payment-form{
+.payment-form {
     padding: 200px;
+    display: block;
+    background-color: #fff;
+    flex-direction: column;
+    width: 25%;
+    position: absolute;
+    z-index: -200;
+    left: 0;
 }
-/* Add this to your existing paymentform.css or create a new CSS file */
+
+.inner-payment-form {
+    display: block;
+    flex-direction: column;
+    border: 1px solid rgb(163, 193, 149);
+    padding: 20px;
+    width: 310px;
+    border-radius: 15px;
+    box-shadow: 2px 2px  rgb(113, 114, 114) ;
+}
+
+.payment-container {
+    display: flex;
+
+}
+
+
+
+.Input {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+}
 
 .modal-overlay {
     position: fixed;
@@ -9,7 +38,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black overlay */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,4 +65,70 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+}
+
+.payment-info {
+    max-width: 30%;
+    padding: 10px;
+    height: 600px;
+    box-shadow: #fff;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    box-shadow: #86A279;
+    position: absolute;
+    position: fixed;
+    top: 150px;
+    right: 90px;
+    z-index: -201;
+}
+
+#fees {
+    color: #86A279;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#terms {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #666;
+}
+
+#pay-button {
+    cursor: pointer;
+    width: 70px;
+    height: 30px;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    background-color: #86A279;
+}
+
+
+#pay-button:hover {
+    background-color: #a7a8a6;
+}
+
+#rental-agreement {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#rental-agreement #agreeQ {
+    margin-right: 0px;
+    color: #86A279;
+}
+
+#check {
+    margin-right: 0px;
+    padding: 0;
+    position: absolute;
+    left: 350px;
+}
+
+.formInput {
+    margin-bottom: 10px;
 }

@@ -24,8 +24,8 @@ const SignUp = () => {
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
   const navigate = useNavigate();
-  
   const {  verificationCode , setVerificationCode , emailVerify , setEmailVerify , color} = useUser();
+
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -103,19 +103,19 @@ const SignUp = () => {
 
     if (!validateEmail(email)) {
       setNotification({ message: "Invalid email format", status: "error" });
-      setVerify(false); 
+      setVerify(false);
       return;
     }
-    
+
     if (password !== confirmPassword) {
       setPasswordsMatch(false);
       setEmailExists(false);
       return;
     }
-    
-    if(color !== "Green") {
-      setError("Your Password is not strong")
-      return
+
+    if (color !== "Green") {
+      setError("Your Password is not strong");
+      return;
     }
 
     try {
@@ -146,7 +146,7 @@ const SignUp = () => {
         if (responseData.error) {
           if (responseData.error.message === "Email already exists") {
             setEmailExists(true);
-            setVerify(false); 
+            setVerify(false);
             setNotification({
               message: "Email already exists",
               status: "error",
@@ -156,7 +156,7 @@ const SignUp = () => {
               message: "User is not created",
               status: "error",
             });
-            setVerify(false); 
+            setVerify(false);
             setPasswordsMatch(false);
           } else {
             console.error("Failed to sign up:", responseData.error.message);
@@ -164,13 +164,13 @@ const SignUp = () => {
               message: "User is not created",
               status: "error",
             });
-            setVerify(false); 
+            setVerify(false);
           }
         }
       }
     } catch (error) {
       setNotification({ message: "Server Error", status: "warning" });
-      setVerify(false); 
+      setVerify(false);
     }
   };
 
@@ -180,7 +180,7 @@ const SignUp = () => {
 
   const handleCancelVerification = () => {
     setVerificationCode("");
-    setVerify(false); 
+    setVerify(false);
   };
 
   return (
@@ -255,6 +255,7 @@ const SignUp = () => {
             <span className="radio-label">Student</span>
           </label>
         </div>
+
         <StrongPassword
           setPassword={setPassword}
           setConfirmPassword={setConfirmPassword}
@@ -262,11 +263,13 @@ const SignUp = () => {
           setPasswordsMatch={setPasswordsMatch}
           error={error}
         />
-        {!passwordsMatch && (
-          <span id="notMatch" style={{ color: "red" }}>
-            Passwords do not match!
-          </span>
-        )}
+        <div id="not-match">
+          {!passwordsMatch && (
+            <span id="notMatch" style={{ color: "red" }}>
+              Passwords do not match!
+            </span>
+          )}
+        </div>
         <ReCAPTCHA
           id="capcha"
           sitekey="6Ldj5GopAAAAAM5gr-TubLuBDKs4TZMs8oDEuax0"

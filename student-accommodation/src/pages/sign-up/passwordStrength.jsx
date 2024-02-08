@@ -71,7 +71,7 @@ const StrongPassword = ({
             color={getPasswordStrengthColor()}
           />
         )}
-        <span style={{color : "red"}}>{error}</span>
+        <span id="PasswordnotStrong" style={{color : "red"}}>{error}</span>
         <div className="form-group mb-1">
           <InputPassword
             className={`form-control shadow-none ${

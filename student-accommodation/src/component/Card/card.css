@@ -2,15 +2,21 @@
     max-width: 280px;
     margin-left: 10px;
     margin-top: 20px;
+    height: inherit;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     box-shadow: 4px 4px 4px 4px #c8d8c0;
+    position: fixed;
+    /* z-index: -2000; */
 }
 
 
 .card-title {
+    position: absolute;
+    left: -20px;
+    top: -5px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 24px;
     margin-bottom: 10px;
@@ -18,10 +24,12 @@
 }
 
 .card-image {
+    margin-top: 35px;
     width: 100%;
     height: auto;
     margin-bottom: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .card-content {
@@ -49,25 +57,62 @@
 #DotsThreeOutlineVertical {
     margin-left: auto;
     fill: #BFB9B9;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
 }
 
 .title-trash {
     align-items: center;
     display: flex;
+    position: relative;
+    cursor: pointer;
+
 }
 
 #trush {
-
+    position: absolute;
+    right: -5px;
+    top: -5px;
     fill: #BFB9B9;
     margin-left: 90px;
     cursor: pointer;
+    cursor: pointer;
+
 }
 
-#heartUnFill,
+
 #MapPinLine,
 #Phone {
     fill: #BFB9B9;
     margin: 5px;
+    cursor: pointer;
+
+}
+
+#MapPinLine {
+    position: absolute;
+    bottom: 15px;
+    left: 80px;
+    cursor: pointer;
+
+}
+#Phone {
+    position: absolute;
+    bottom: 15px;
+    left: 50px;
+    cursor: pointer;
+
+}
+
+#heart {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    margin: 5px;
+    cursor: pointer;
+
 }
 
 .card-text {
@@ -78,6 +123,7 @@
     cursor: pointer;
     text-decoration: none;
     color: #86A279;
+    cursor: pointer;
 }
 
 @media (max-width: 280px) {

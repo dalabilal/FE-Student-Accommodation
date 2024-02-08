@@ -13,9 +13,10 @@ const ViewHousing = () => {
   const [housingData, setHousingData] = useState(null);
   const [addTerms, setAddTerms] = useState(false);
   const { setNotification } = useNotification();
-  const username = sessionStorage.getItem("username");
+  const username = sessionStorage.getItem('username');
+  const userId = sessionStorage.getItem('userID');
   const navigate = useNavigate();
-  const { userRole, noUser, setOwner } = useUser();
+  const { userRole, noUser ,setOwner , owner} = useUser();
 
   useEffect(() => {
     const fetchHousingData = async () => {
@@ -27,15 +28,12 @@ const ViewHousing = () => {
           setOwner(data.ownerId);
           setHousingData(data);
         } else {
-          console.error("Failed to fetch housing data:", response.statusText);
-          setNotification({
-            message: "Failed to fetch housing data",
-            status: "err",
-          });
+          // console.error('Failed to fetch housing data:', response.statusText);
+          // setNotification({ message: 'Failed to fetch housing data', status: 'err' });
         }
       } catch (error) {
-        console.error("Error during fetch:", error.message);
-        setNotification({ message: "Error during fetch", status: "err" });
+        // console.error('Error during fetch:', error.message);
+        // setNotification({ message: 'Error during fetch', status: 'err' });
       }
     };
 
@@ -62,24 +60,16 @@ const ViewHousing = () => {
         </div>
       </div>
       <div className="buttons-container">
-        {userRole === "owner" ? (
-          ""
-        ) : (
-          <button
-            onClick={() =>
-              noUser ? navigate("/payment") : navigate("/signin")
-            }
-            id="cardB"
-          >
-            Book Now!
-          </button>
-        )}
+        {userRole === 'owner' ? ''
+        : <button
+          onClick={() => noUser ? navigate('/payment') : navigate('/signin')}
+          id='cardB'
+        >
+          Book Now!
+        </button>}
 
-        {userRole === "owner" && (
-          <button id="rentalTermsButton" onClick={() => setAddTerms(true)}>
-            Add rental terms
-          </button>
-        )}
+        {owner === userId && <button id='rentalTermsButton' onClick={() => setAddTerms(true)}>Add rental terms</button>}
+
 
         {addTerms && <AddTerms setPopup={setAddTerms} />}
       </div>

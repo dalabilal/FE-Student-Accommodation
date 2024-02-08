@@ -1,9 +1,12 @@
 import Input from "../input/input.component";
 import Textarea from "../textarea/textarea.component";
-import sanitizeHtml from "sanitize-html";
+import sanitizeHtml from 'sanitize-html';
+import React, { useState } from "react";
 import "./addhousing.css";
 
 const AddHousingForm = (props) => {
+  const [selectedUniversity, setSelectedUniversity] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -26,7 +29,7 @@ const AddHousingForm = (props) => {
       sanitizeOptions
     );
     const location = sanitizeHtml(e.target.location.value, sanitizeOptions);
-    const university = sanitizeHtml(e.target.university.value, sanitizeOptions);
+    const university = sanitizeHtml(selectedUniversity, sanitizeOptions);
     const rooms = sanitizeHtml(e.target.rooms.value, sanitizeOptions);
     const description = sanitizeHtml(
       e.target.description.value,
@@ -41,7 +44,7 @@ const AddHousingForm = (props) => {
       rooms: rooms,
       university: university,
       description: description,
-      ownerId: useID,
+      ownerId: useID
     };
 
     const invalidInputDetected = Object.values(formData).some(
@@ -85,11 +88,41 @@ const AddHousingForm = (props) => {
           </span>
         </div>
         <form onSubmit={handleSubmit} encType="multipart/formData">
-          <Input label="name" name="name" required />
-          <Input label="phone number:" name="phoneNumber" required />
-          <Input name="location" label="location" required />
-          <Input label="rooms" type="number" name="rooms" required />
-          <Input label="university" name="university" required />
+          <Input
+            label="name"
+            name="name"
+            required
+          />
+          <Input
+            label="phone number:"
+            name="phoneNumber"
+            required
+          />
+          <Input
+            name="location"
+            label="location"
+            required
+          />
+          <Input
+            label="rooms"
+            type="number"
+            name="rooms"
+            required
+          />
+          <div className="searchContainer1">
+            <div className="input-wrapper">
+              <select
+                className="unisList"
+                value={selectedUniversity}
+                onChange={(e) => setSelectedUniversity(e.target.value)}
+              >
+                <option value="">Select University</option>
+                <option value="Palestine Polytechnic University">Palestine Polytechnic University</option>
+                <option value="Hebron University">Hebron University</option>
+                <option value="Another University">Another University</option>
+              </select>
+            </div>
+          </div>
           <Textarea
             id="AddhousingDiscription"
             label="description"

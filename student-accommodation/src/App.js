@@ -18,6 +18,9 @@ import SignInForm from './pages/login/login';
 
 import NavBar from './component/common/navBar/NavBar';
 import Guard from './component/guard/guard';
+import GuardFav from './component/guard-fav/guard';
+import Admin from './pages/admin-panel/Admin';
+import GuardAdmin from './component/guard-admin/guardadmin';
 
 function App() {
  return (
@@ -31,13 +34,14 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/all' element={<AllAccomodation/>}/>
         <Route path='/all/:id' element={<ViewHousing/>}/>
-        <Route path='/favorite' element={<Favorite/>}/>
+        <Route path='/favorite' element={<GuardFav permittedRoles={['student']}><Favorite/></GuardFav>}/>
         <Route path='/allusers' element={<Guard permittedRoles={['owner']}><ProtectedUsers /></Guard>} />
         <Route path='/*' element={<NotFound/>}/>
         <Route path='/verification' element={<Verification/>}/>
         <Route path='/sendVerify' element={<EmailVerification/>}/>
         <Route path='/payment' element={<PaymentForm/>}/>
         <Route path='/reset' element={<ResetPassword/>}/>
+        <Route path='/admin' element={<GuardAdmin permittedRoles={['admin']}><Admin/></GuardAdmin>}/>
       </Routes>
     </BrowserRouter>
     <Notification/>

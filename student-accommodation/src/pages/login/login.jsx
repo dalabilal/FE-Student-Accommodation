@@ -39,11 +39,15 @@ const SignInForm = () => {
 
       if (response.ok) {
         const userData = await response.json();
-        sessionStorage.setItem("jwtToken", userData.token);
-        sessionStorage.setItem("username", userData.firstname);
-        sessionStorage.setItem("userID", userData._id);
-        sessionStorage.setItem("userRole", userData.role);
-        setNotification({ message: "Login successful!", status: "success" });
+        if(userData.status === 'pending') {
+          setNotification({ message: "can't login until your account active by the owner", status: '4335' });
+          return;
+        }
+        sessionStorage.setItem('jwtToken', userData.token);
+        sessionStorage.setItem('username', userData.firstname);
+        sessionStorage.setItem('userID', userData._id);
+        sessionStorage.setItem('userRole', userData.role);
+        setNotification({ message: 'Login successful!', status: 'success' });
         setUserRole(userData.role);
         navigate("/");
       } else {

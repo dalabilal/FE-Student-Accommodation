@@ -24,16 +24,8 @@ const SignUp = () => {
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
   const navigate = useNavigate();
+  const {  verificationCode , setVerificationCode , emailVerify , setEmailVerify , color} = useUser();
 
-  const {
-    setNoUser,
-    setUserRole,
-    verificationCode,
-    setVerificationCode,
-    emailVerify,
-    setEmailVerify,
-    color,
-  } = useUser();
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -42,6 +34,12 @@ const SignUp = () => {
   const handleSendEmail = async (e) => {
     e.preventDefault();
 
+    if (!validateEmail(email)) {
+      setNotification({ message: "Invalid email format", status: "error" });
+      setVerify(false); 
+      return;
+    }
+    
     try {
       const response = await fetch("http://localhost:3005/sendEmail/signup", {
         method: "POST",
@@ -83,10 +81,6 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        setNotification({
-          message: "Verification code are correct",
-          status: "sucess",
-        });
         handleSubmit(e);
       } else {
         setNotification({
@@ -100,6 +94,12 @@ const SignUp = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    
+  if (!role) {
+    setNotification({ message: "Please select a role", status: "error" });
+    return;
+  }
 
     if (!validateEmail(email)) {
       setNotification({ message: "Invalid email format", status: "error" });
@@ -136,18 +136,11 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        setUserRole(role);
-        const userData = await response.json();
-        console.log(userData);
-        sessionStorage.setItem("jwtToken", userData.token);
-        sessionStorage.setItem("userRole", role);
-        sessionStorage.setItem("username", userData.firstname);
-        sessionStorage.setItem("userID", userData._id);
         setNotification({
-          message: "User is created successfully",
-          status: "success",
+          message: 'Your account has been created successfully. Please wait for admin approval.',
+          status: 'success',
         });
-        navigate("/");
+        navigate('/signin')
       } else {
         const responseData = await response.json();
         if (responseData.error) {
@@ -179,7 +172,6 @@ const SignUp = () => {
       setNotification({ message: "Server Error", status: "warning" });
       setVerify(false);
     }
-    setNoUser(true);
   };
 
   useEffect(() => {
@@ -280,7 +272,7 @@ const SignUp = () => {
         </div>
         <ReCAPTCHA
           id="capcha"
-          sitekey="6LcYZ1spAAAAADUyn0DCJOQ8vp0inpl3mLYdhW7b"
+          sitekey="6Ldj5GopAAAAAM5gr-TubLuBDKs4TZMs8oDEuax0"
           onChange={(val) => setCap(val)}
           style={{ float: "right", marginRight: "10px" }}
         />

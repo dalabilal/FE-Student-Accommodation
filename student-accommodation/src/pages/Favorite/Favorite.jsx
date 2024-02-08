@@ -75,10 +75,16 @@ const Favorite = () => {
   };
 
   return (
+
     <>
       <div className="favorite">
         {favoriteData?.map((data) => (
           <div className="favorate-card" key={data._id}>
+          <div className="title-trash">
+            <h2 className="card-title">{data.name}</h2>
+            <span onClick={() => handleDeleteClick(data._id)}><Trash id="trush" size={30} /></span>
+          </div>
+          {imageUrl &&
             <Link to={`/all/${data.dataId}`}>
               {imageUrl && (
                 <img

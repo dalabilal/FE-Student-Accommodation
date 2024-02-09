@@ -24,7 +24,13 @@ const SignUp = () => {
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
   const navigate = useNavigate();
-  const { verificationCode, setVerificationCode, emailVerify, setEmailVerify, color } = useUser();
+  const {
+    verificationCode,
+    setVerificationCode,
+    emailVerify,
+    setEmailVerify,
+    color,
+  } = useUser();
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,7 +50,6 @@ const SignUp = () => {
       setNotification({ message: "Please select a role", status: "error" });
       return;
     }
-
 
     if (password !== confirmPassword) {
       setPasswordsMatch(false);
@@ -77,7 +82,9 @@ const SignUp = () => {
               message: "Email already exists",
               status: "error",
             });
-      }}}
+          }
+        }
+      }
     } catch (error) {
       console.error(
         "Error sending verification code:",
@@ -120,8 +127,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
-
     try {
       const response = await fetch("http://localhost:3005/signup/", {
         method: "POST",
@@ -140,14 +145,17 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        role === 'owner' ? setNotification({
-          message: 'Your account has been created successfully. Please wait for admin approval.',
-          status: 'success',
-        }) : setNotification({
-          message: 'Your account has been created successfully.',
-          status: 'success',
-        })
-        navigate('/signin')
+        role === "owner"
+          ? setNotification({
+              message:
+                "Your account has been created successfully. Please wait for admin approval.",
+              status: "success",
+            })
+          : setNotification({
+              message: "Your account has been created successfully.",
+              status: "success",
+            });
+        navigate("/signin");
       } else {
         const responseData = await response.json();
         if (responseData.error) {
@@ -187,7 +195,7 @@ const SignUp = () => {
       setPasswordsMatch(false);
       setEmailExists(false);
     }
-  }, [email , password, confirmPassword]);
+  }, [email, password, confirmPassword]);
 
   const handleCancelVerification = () => {
     setVerificationCode("");
@@ -282,12 +290,12 @@ const SignUp = () => {
             </span>
           )}
         </div>
-        <ReCAPTCHA
+        {/* <ReCAPTCHA
           id="capcha"
           sitekey="6LchlW0pAAAAAN6TI_M-BJu8sSnz_DyCx4wYrg6z"
           onChange={(val) => setCap(val)}
           style={{ float: "right", marginRight: "10px" }}
-        />
+        /> */}
         <div className="span-text1">
           <span className="condition">already have an account, </span>
           <span className="signin">
@@ -296,7 +304,7 @@ const SignUp = () => {
         </div>
         <div className="signIn-button">
           <button
-            disabled={!cap}
+            // disabled={!cap}
             type="button"
             onClick={(e) => {
               handleSendEmail(e);

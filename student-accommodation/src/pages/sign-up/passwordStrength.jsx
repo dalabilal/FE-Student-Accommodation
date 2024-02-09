@@ -9,7 +9,7 @@ const StrongPassword = ({
   setConfirmPassword,
   passwordsMatch,
   setPasswordsMatch,
-  error
+  error,setError
 }) => {
   const [password, setPasswordLocal] = useState("");
   const {setColor} = useUser();
@@ -50,7 +50,6 @@ const StrongPassword = ({
     const newPassword = e.target.value;
     setPasswordLocal(newPassword);
     setPassword(newPassword);
-    setConfirmPassword("");
   };
 
   return (
@@ -61,7 +60,12 @@ const StrongPassword = ({
             className="form-control-shadow-none"
             label="Password"
             placeholder="***************"
-            onChange={handlePasswordChange}
+            onChange={(e) => { 
+              setPasswordsMatch(true);
+              setPasswordLocal( e.target.value);
+              setPassword( e.target.value);
+              setError("")
+            }}
             required
           />
         </div>
@@ -82,6 +86,7 @@ const StrongPassword = ({
             onChange={(e) => {
               setConfirmPassword(e.target.value);
               setPasswordsMatch(true);
+              setError("");
             }}
             required
           />

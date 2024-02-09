@@ -24,7 +24,7 @@ const SignUp = () => {
   const [verify, setVerify] = useState(null);
   const { setNotification } = useNotification();
   const navigate = useNavigate();
-  const {  verificationCode , setVerificationCode , emailVerify , setEmailVerify , color} = useUser();
+  const { verificationCode, setVerificationCode, emailVerify, setEmailVerify, color } = useUser();
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,10 +36,27 @@ const SignUp = () => {
 
     if (!validateEmail(email)) {
       setNotification({ message: "Invalid email format", status: "error" });
-      setVerify(false); 
+      setVerify(false);
       return;
     }
-    
+
+    if (!role) {
+      setNotification({ message: "Please select a role", status: "error" });
+      return;
+    }
+
+
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false);
+      setEmailExists(false);
+      return;
+    }
+
+    if (color !== "Green") {
+      setError("Your Password is not strong");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3005/sendEmail/signup", {
         method: "POST",
@@ -48,11 +65,19 @@ const SignUp = () => {
         },
         body: JSON.stringify({ email: emailVerify }),
       });
-
-      if (response.status === 200) {
+      if (response.ok) {
+        setVerify(true);
       } else {
-        setNotification({ message: "email Not Found", status: "error" });
-      }
+        const responseData = await response.json();
+        if (responseData.error) {
+          if (responseData.error.message === "Email already exists") {
+            setEmailExists(true);
+            setVerify(false);
+            setNotification({
+              message: "Email already exists",
+              status: "error",
+            });
+      }}}
     } catch (error) {
       console.error(
         "Error sending verification code:",
@@ -95,28 +120,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
-  if (!role) {
-    setNotification({ message: "Please select a role", status: "error" });
-    return;
-  }
 
-    if (!validateEmail(email)) {
-      setNotification({ message: "Invalid email format", status: "error" });
-      setVerify(false);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setPasswordsMatch(false);
-      setEmailExists(false);
-      return;
-    }
-
-    if (color !== "Green") {
-      setError("Your Password is not strong");
-      return;
-    }
 
     try {
       const response = await fetch("http://localhost:3005/signup/", {
@@ -176,7 +180,11 @@ const SignUp = () => {
 
   useEffect(() => {
     setEmailExists(false);
-  }, [email]);
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false);
+      setEmailExists(false);
+    }
+  }, [email , password, confirmPassword]);
 
   const handleCancelVerification = () => {
     setVerificationCode("");
@@ -262,6 +270,7 @@ const SignUp = () => {
           passwordsMatch={passwordsMatch}
           setPasswordsMatch={setPasswordsMatch}
           error={error}
+          setError={setError}
         />
         <div id="not-match">
           {!passwordsMatch && (
@@ -270,12 +279,12 @@ const SignUp = () => {
             </span>
           )}
         </div>
-        <ReCAPTCHA
+        {/* <ReCAPTCHA
           id="capcha"
           sitekey="6Ldj5GopAAAAAM5gr-TubLuBDKs4TZMs8oDEuax0"
           onChange={(val) => setCap(val)}
           style={{ float: "right", marginRight: "10px" }}
-        />
+        /> */}
         <div className="span-text1">
           <span className="condition">already have an account, </span>
           <span className="signin">
@@ -284,10 +293,9 @@ const SignUp = () => {
         </div>
         <div className="signIn-button">
           <button
-            disabled={!cap}
+            disabled={false}
             type="button"
             onClick={(e) => {
-              setVerify(true);
               handleSendEmail(e);
             }}
           >

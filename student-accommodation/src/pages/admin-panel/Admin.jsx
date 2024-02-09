@@ -71,6 +71,7 @@ const Admin = () => {
         <thead>
           <tr>
             <th>Username</th>
+            <th>Phone Number</th>
             <th>Email</th>
             <th>Status</th>
             <th>Action</th>
@@ -78,8 +79,9 @@ const Admin = () => {
         </thead>
         <tbody>
           {users?.map((user) => (
-           user.role !== 'admin'&&  <tr key={user._id}>
+           (user.role !== 'admin' && user.role !== 'student' )&&  <tr key={user._id}>
               <td>{user.firstname}</td>
+              <td>{user.phoneNumber}</td>
               <td>{user.email}</td>
               <td>{user.status}</td>
               <td>

@@ -49,7 +49,7 @@ const NavBar = () => {
                 : ""}
             onClick={() => handleItemClick("admin")}
           >
-            <Link to="/admin">All Users</Link>
+            <Link to="/admin">All Owner</Link>
           </li>}
           <li
             className={

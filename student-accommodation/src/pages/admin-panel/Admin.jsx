@@ -1,13 +1,15 @@
 // Admin.js
 import React, { useState, useEffect } from 'react';
 import './admin.css';
+import { Trash } from '@phosphor-icons/react/dist/ssr';
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [deletedUsers, setDeletedUsers] = useState([]);
+
 
   useEffect(() => {
-    // Fetch all users from the backend when the component mounts
     const fetchUsers = async () => {
       try {
         const response = await fetch('http://localhost:3005/admin/users', {
@@ -53,7 +55,6 @@ const Admin = () => {
       });
 
       if (response.ok) {
-        // Fetch updated user data after approval
         const updatedUsers = await fetch('http://localhost:3005/admin/users')
         setUsers(updatedUsers.users);
         console.log('Users approved successfully');
@@ -65,6 +66,27 @@ const Admin = () => {
     }
   };
 
+  const handleDeleteUser = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:3005/admin/delete-user/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        setDeletedUsers((prevDeletedUsers) => [...prevDeletedUsers, userId]);
+        console.log('User deleted successfully');
+      } else {
+        console.error('Failed to delete user:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error.message);
+    }
+  };
+
+
   return (
     <div className='all-users'>
       <table>
@@ -75,11 +97,13 @@ const Admin = () => {
             <th>Email</th>
             <th>Status</th>
             <th>Action</th>
+            <th>delete</th>
           </tr>
         </thead>
         <tbody>
           {users?.map((user) => (
-           (user.role !== 'admin' && user.role !== 'student' )&&  <tr key={user._id}>
+            !deletedUsers.includes(user._id) && (user.role !== 'admin' && user.role !== 'student') &&
+            <tr key={user._id}>
               <td>{user.firstname}</td>
               <td>{user.phoneNumber}</td>
               <td>{user.email}</td>
@@ -90,6 +114,9 @@ const Admin = () => {
                   checked={selectedUsers.includes(user._id)}
                   onChange={() => handleCheckboxChange(user._id)}
                 />
+              </td>
+              <td>
+                <Trash onClick={() => handleDeleteUser(user._id)} />
               </td>
             </tr>
           ))}

@@ -140,10 +140,13 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        setNotification({
+        role === 'owner' ? setNotification({
           message: 'Your account has been created successfully. Please wait for admin approval.',
           status: 'success',
-        });
+        }) : setNotification({
+          message: 'Your account has been created successfully.',
+          status: 'success',
+        })
         navigate('/signin')
       } else {
         const responseData = await response.json();

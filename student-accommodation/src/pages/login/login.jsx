@@ -40,7 +40,7 @@ const SignInForm = () => {
 
       if (response.ok) {
         const userData = await response.json();
-        if(userData.status === 'pending') {
+        if(userData.status === 'pending' && userData.role === 'owner') {
           setNotification({ message: "can't login until your account active by the owner", status: '4335' });
           return;
         }

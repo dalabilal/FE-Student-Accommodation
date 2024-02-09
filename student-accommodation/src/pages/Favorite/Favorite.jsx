@@ -8,8 +8,6 @@ import {
 } from "@phosphor-icons/react";
 import { Trash } from "@phosphor-icons/react/dist/ssr";
 
-const imageUrl =
-  "https://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain";
 
 const Favorite = () => {
   const [favoriteData, setFavoriteData] = useState([]);
@@ -75,35 +73,33 @@ const Favorite = () => {
   };
 
   return (
-
     <>
       <div className="favorite">
         {favoriteData?.map((data) => (
           <div className="favorate-card" key={data._id}>
-          <div className="title-trash">
-            <h2 className="card-title">{data.name}</h2>
-            <span onClick={() => handleDeleteClick(data._id)}><Trash id="trush" size={30} /></span>
-          </div>
-          {imageUrl &&
+            <div className="title-trash">
+              {console.log(data)}
+              {/* <h2 className="card-title">{data.name}</h2> */}
+              <span  id="trash-icon" onClick={() => handleDeleteClick(data._id)}><Trash size={30} color="#BFB9B9;" /></span>
+            </div>
             <Link to={`/all/${data.dataId}`}>
-              {imageUrl && (
-                <img
-                  src={imageUrl}
-                  alt={data.name}
-                  className="card-image-favorite"
-                />
-              )}
+              <img
+                src={data.image}
+                alt={data.name}
+                className="card-image-favorite"
+              />
             </Link>
-             }
             <div className="card-content-favorite">
               <div className="title-trash-favorite">
                 <h2 className="card-title-favorite">{data.name}</h2>
               </div>
-               <span onClick={() => handleDeleteClick(data.dataId)}>
-                  <Trash id="trash-icon" size={30} />
-                </span>
-              <p className="card-text-favorite">{data.description}</p>
-
+              <span onClick={() => handleDeleteClick(data.dataId)}>
+                <Trash id="trash-icon" size={30} />
+              </span>
+              <p className="card-text-favorite">{data.description.slice(0, 59)}</p>
+              <Link to={`/all/${data.dataId}`} id="seeMore">
+                see more...
+              </Link>
               <ul className="card-details-favorite">
                 <MapPinLine id="MapPinLine-favorite" size={25} weight="bold" />
                 <Phone id="Phone-favorite" size={25} weight="bold" />

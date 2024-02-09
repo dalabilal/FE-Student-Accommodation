@@ -64,7 +64,6 @@ const StrongPassword = ({
               setPasswordsMatch(true);
               setPasswordLocal( e.target.value);
               setPassword( e.target.value);
-              setError("")
             }}
             required
           />
@@ -86,7 +85,6 @@ const StrongPassword = ({
             onChange={(e) => {
               setConfirmPassword(e.target.value);
               setPasswordsMatch(true);
-              setError("");
             }}
             required
           />

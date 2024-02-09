@@ -20,8 +20,10 @@
 
 
 .view-page-group>.image-housing {
-    width: 50%;
-    border-radius: 20px;
+    height: 253px;
+    width: 321px;
+    border-radius: 9px;
+
 }
 
 .view-page-group>.image-housing>.information {
@@ -42,8 +44,9 @@ h2 {
 #cardItem {
     text-decoration: none;
     color: #6d726b;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 16px;
+    font-family: system-ui;
     cursor: pointer;
     box-shadow: #6d726b;
     margin-left: 20px;
@@ -88,6 +91,5 @@ h2 {
     overflow-wrap: break-word;
     height: 50px;
     width: 400px;
-    margin-bottom: 40px;
     padding-bottom: 40px;
 }

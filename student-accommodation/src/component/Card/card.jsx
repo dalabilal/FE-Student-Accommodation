@@ -36,6 +36,7 @@ const Card = ({ name, description, data }) => {
             dataId: data._id,
             name,
             description,
+            image :data.image
           }),
         });
 
@@ -95,7 +96,7 @@ const Card = ({ name, description, data }) => {
         </Link>
 
       <div className="card-content">
-        <p className="card-text">{description}</p>
+        <p className="card-text">{description.slice(0, 59)}</p>
         <Link to={`/all/${data._id}`} id="seeMore">
           see more...
         </Link>

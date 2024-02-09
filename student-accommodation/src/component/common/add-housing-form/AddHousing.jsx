@@ -37,6 +37,7 @@ const AddHousingForm = (props) => {
       sanitizeOptions
     );
     const useID = sessionStorage.getItem("userID");
+    const username = sessionStorage.getItem("username");
 
     const formData = {
       name: name,
@@ -47,6 +48,7 @@ const AddHousingForm = (props) => {
       description: description,
       ownerId: useID,
       image :image,
+      username:username,
     };
 
     const invalidInputDetected = Object.values(formData).some(

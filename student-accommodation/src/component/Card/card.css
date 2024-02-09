@@ -2,7 +2,7 @@
     max-width: 280px;
     margin-left: 10px;
     margin-top: 20px;
-    height: inherit;
+    height: 368px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -115,7 +115,7 @@
 }
 
 .card-text {
-    overflow: hidden;
+    overflow: auto hidden;
 }
 
 #seeMore {

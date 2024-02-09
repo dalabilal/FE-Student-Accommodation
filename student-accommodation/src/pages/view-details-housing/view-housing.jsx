@@ -10,10 +10,9 @@ const ViewHousing = () => {
   const [housingData, setHousingData] = useState(null);
   const [addTerms, setAddTerms] = useState(false);
   const { setNotification } = useNotification();
-  const username = sessionStorage.getItem('username');
   const userId = sessionStorage.getItem('userID');
   const navigate = useNavigate();
-  const { userRole, noUser ,setOwner , owner} = useUser();
+  const { userRole, noUser, setOwner, owner } = useUser();
 
   useEffect(() => {
     const fetchHousingData = async () => {
@@ -52,22 +51,26 @@ const ViewHousing = () => {
           </p>
           <p id="cardItem">Number of room : {housingData.rooms}</p>
           <p id="cardItem">{housingData.location}</p>
-          <p id="cardItem">Added by : {username}</p>
+          <p id="cardItem">Added by : {housingData.username}</p>
           <p id="cardItem">{housingData.phoneNumber}</p>
         </div>
       </div>
       <div className="buttons-container">
         {userRole === 'owner' ? ''
-        : <button
-          onClick={() => noUser ? navigate('/payment') : navigate('/signin')}
-          id='cardB'
-        >
-          Book Now!
-        </button>}
+          : <button
+            onClick={() => noUser ? navigate('/payment') : navigate('/signin')}
+            id='cardB'
+          >
+            Book Now!
+          </button>}
 
-        {owner === userId && <button id='rentalTermsButton' onClick={() => setAddTerms(true)}>Add rental terms</button>}
-
-
+        {owner === userId &&
+          <button
+            id='rentalTermsButton'
+            onClick={() => setAddTerms(true)}
+          >
+            Add rental terms
+          </button>}
         {addTerms && <AddTerms setPopup={setAddTerms} />}
       </div>
     </div>

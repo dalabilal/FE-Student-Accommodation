@@ -88,7 +88,7 @@ const NavBar = () => {
           }
         </ul>
 
-        <span>{username}</span>
+        <span style={{color: "#86a279"}}>{username}</span>
         <div id="UserCircle">
           <UserCircle size={32} onClick={() => setOptions(!Options)} />
           {Options && (

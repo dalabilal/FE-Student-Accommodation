@@ -284,7 +284,7 @@ const SignUp = () => {
         </div>
         <ReCAPTCHA
           id="capcha"
-          sitekey="6Ldj5GopAAAAAM5gr-TubLuBDKs4TZMs8oDEuax0"
+          sitekey="6LcclG0pAAAAANzhYjhczzoDf5f6WXEbg0Yb91vt"
           onChange={(val) => setCap(val)}
           style={{ float: "right", marginRight: "10px" }}
         />

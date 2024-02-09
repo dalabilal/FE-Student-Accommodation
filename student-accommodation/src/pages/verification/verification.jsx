@@ -23,7 +23,7 @@ const Verification = (props) => {
         },
         body: JSON.stringify({
           email: emailVerify,
-          verificationCode: verificationCode,
+          verificationCode: verificationCode
         }),
       });
 

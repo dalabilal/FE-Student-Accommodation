@@ -37,6 +37,7 @@ const SignInForm = () => {
         body: JSON.stringify({ email, password, verificationCode }),
       });
 
+
       if (response.ok) {
         const userData = await response.json();
         if(userData.status === 'pending') {
@@ -52,6 +53,15 @@ const SignInForm = () => {
         navigate("/");
       } else {
         const errorData = await response.json();
+        if (errorData && errorData.message === "You should verifiy yourself") {
+            setEmailVerify(email);
+            navigate("/verification");
+            setNotification({
+              message:
+                "You should verifiy yourself",
+              status: "warning",
+            });
+        } else
         if (errorData && errorData.message === "Invalid credentials") {
           setNotification({
             message: "Invalid email or password, Try again",

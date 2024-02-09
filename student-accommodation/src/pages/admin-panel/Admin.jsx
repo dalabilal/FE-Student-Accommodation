@@ -123,7 +123,7 @@ const Admin = () => {
         </tbody>
       </table>
 
-      <button onClick={handleApproveUsers}>Approve Selected Users</button>
+      <button onClick={handleApproveUsers} id="approve">Approve Selected Users</button>
     </div>
   );
 };

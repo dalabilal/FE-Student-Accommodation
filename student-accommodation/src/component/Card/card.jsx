@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useNotification from "../../hook/notification.hook";
 import { Trash } from "@phosphor-icons/react/dist/ssr";
 
-const Card = ({ name, description, imageUrl, data }) => {
+const Card = ({ name, description, data }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const { noUser } = useUser();
   const navigate = useNavigate();
@@ -90,11 +90,9 @@ const Card = ({ name, description, imageUrl, data }) => {
           </span>
         )}
       </div>
-      {imageUrl && (
         <Link to={`/all/${data._id}`}>
-          <img src={imageUrl} alt={name} className="card-image" />
+          <img src={data.image} alt={name} className="card-image" />
         </Link>
-      )}
 
       <div className="card-content">
         <p className="card-text">{description}</p>

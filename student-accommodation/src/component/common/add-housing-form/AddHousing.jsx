@@ -31,6 +31,7 @@ const AddHousingForm = (props) => {
     const location = sanitizeHtml(e.target.location.value, sanitizeOptions);
     const university = sanitizeHtml(selectedUniversity, sanitizeOptions);
     const rooms = sanitizeHtml(e.target.rooms.value, sanitizeOptions);
+    const image = sanitizeHtml(e.target.image.value, sanitizeOptions);
     const description = sanitizeHtml(
       e.target.description.value,
       sanitizeOptions
@@ -44,7 +45,8 @@ const AddHousingForm = (props) => {
       rooms: rooms,
       university: university,
       description: description,
-      ownerId: useID
+      ownerId: useID,
+      image :image,
     };
 
     const invalidInputDetected = Object.values(formData).some(
@@ -109,6 +111,12 @@ const AddHousingForm = (props) => {
             name="rooms"
             required
           />
+          <Input
+            label="Image"
+            type="text"
+            name="image"
+            required
+          />
           <div className="searchContainer1">
             <div className="input-wrapper">
               <select
@@ -130,7 +138,6 @@ const AddHousingForm = (props) => {
             required
           />
           <div className="bottuns">
-            <input id="choose" type="file" name="files" required />
             <button id="addingButton" type="submit">
               Add
             </button>

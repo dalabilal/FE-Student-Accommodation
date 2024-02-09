@@ -58,7 +58,6 @@ const AllAccomodation = () => {
             key={housing._id}
             name={housing.name}
             description={housing.description}
-            imageUrl="http://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain"
           />
         ))}
       </div>

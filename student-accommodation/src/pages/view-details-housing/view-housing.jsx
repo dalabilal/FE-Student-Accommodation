@@ -5,9 +5,6 @@ import "./view-housing.css";
 import { useUser } from "../../service/UserContext";
 import AddTerms from "../../component/common/add-terms-form/AddTerms";
 
-const imageUrl =
-  "http://th.bing.com/th/id/OIP.OfQ9D-ht_ihNi9sbI7mZlwHaEK?rs=1&pid=ImgDetMain";
-
 const ViewHousing = () => {
   const { id } = useParams();
   const [housingData, setHousingData] = useState(null);
@@ -47,7 +44,7 @@ const ViewHousing = () => {
   return (
     <div className="view-page-group-buttons">
       <div className="view-page-group">
-        <img className="image-housing" src={imageUrl} alt="housing pic" />
+        <img className="image-housing" src={housingData.image} alt="housing pic" />
         <div className="information">
           <h2>{housingData.name}</h2>
           <p className="discriptionParagraph" id="cardItem">

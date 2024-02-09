@@ -282,12 +282,12 @@ const SignUp = () => {
             </span>
           )}
         </div>
-        {/* <ReCAPTCHA
+        <ReCAPTCHA
           id="capcha"
           sitekey="6Ldj5GopAAAAAM5gr-TubLuBDKs4TZMs8oDEuax0"
           onChange={(val) => setCap(val)}
           style={{ float: "right", marginRight: "10px" }}
-        /> */}
+        />
         <div className="span-text1">
           <span className="condition">already have an account, </span>
           <span className="signin">
@@ -296,7 +296,7 @@ const SignUp = () => {
         </div>
         <div className="signIn-button">
           <button
-            disabled={false}
+            disabled={!cap}
             type="button"
             onClick={(e) => {
               handleSendEmail(e);

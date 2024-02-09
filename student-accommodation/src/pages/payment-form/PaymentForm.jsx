@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Input from "../../component/common/input/input.component";
 import useNotification from "../../hook/notification.hook";
 import "./paymentform.css";
+import GooglePayButton from "@google-pay/button-react";
 import { useUser } from "../../service/UserContext";
 
 const PaymentForm = () => {
@@ -136,14 +137,52 @@ const PaymentForm = () => {
               </div>
             </div>
           )}
-
-          <button
-            id="pay-button"
-            type="button"
-            onClick={() => setShowModal(true)}
-          >
-            Pay
-          </button>
+          <GooglePayButton
+        environment="TEST"
+        paymentRequest={{
+          apiVersion: 2,
+          apiVersionMinor: 0,
+          allowedPaymentMethods: [
+            {
+              type: "CARD",
+              parameters: {
+                allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+                allowedCardNetworks: ["MASTERCARD", "VISA"],
+              },
+              tokenizationSpecification: {
+                type: "PAYMENT_GATEWAY",
+                parameters: {
+                  gateway: "example",
+                  gatewayMerchantId: "exampleGatewayMerchantId",
+                },
+              },
+            },
+          ],
+          merchantInfo: {
+            merchantId: "12345678901234567890",
+            merchantName: "Demo Merchant",
+          },
+          transactionInfo: {
+            totalPriceStatus: "FINAL",
+            totalPriceLabel: "Total",
+            totalPrice: "1",
+            currencyCode: "USD",
+            countryCode: "US",
+          },
+          shippingAddressRequired: true,
+          callbackIntents: ["PAYMENT_AUTHORIZATION"],
+        }}
+        onLoadPaymentData={(paymentRequest) => {
+          console.log(paymentRequest);
+        }}
+        onPaymentAuthorized={paymentData =>{
+          console.log('paymentData ' + paymentData);
+          return { transactionState: 'SUCCESS'}
+        }}
+        existingPaymentMethodRequired='false'
+        buttonColor="black"
+        buttonType="buy"
+      ></GooglePayButton>
         </form>
       </div>
       <div className="payment-info">

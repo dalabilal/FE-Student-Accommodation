@@ -53,18 +53,23 @@ const Verification = (props) => {
         onClick={() => navigate("/")}
       />
       <div className="sign-in-form">
-        <div className="title">
+       {popup ? <div className="title">
           <span style={{ fontSize: 20 }}>
-            check your email please and enter the code
+           Now you can sign in or reset your password !
           </span>
-        </div>
+        </div> : <div className="title">
+          <span style={{ fontSize: 20 }}>
+          check your email please and enter the code
+        </span>
+      </div>
+        }
         <form onSubmit={handleVerification}>
           {popup ? (
             <>
-              <button type="button" onClick={() => navigate("/signin")}>
+              <button id="signinagain" type="button" onClick={() => navigate("/signin")}>
                 signin Again
               </button>
-              <button type="button" onClick={() => navigate("/reset")}>
+              <button id="reset-pass" type="button" onClick={() => navigate("/reset")}>
                 reset Password
               </button>
             </>

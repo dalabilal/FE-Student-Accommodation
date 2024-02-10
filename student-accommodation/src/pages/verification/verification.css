@@ -41,6 +41,17 @@
     margin-top: 30px;
 }
 
+#signinagain {
+    margin-top: 78px;
+    width: 134px;
+    margin-left: 10px;
+}
+
+#reset-pass {
+    margin-top: 78px;
+    width: 148px;
+    margin-left: 30px;
+}
 #resendCode {
     margin-top: 254px;
     cursor: pointer;

@@ -12,10 +12,10 @@ const PaymentForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [status, setStatuse] = useState(false);
   const { owner } = useUser();
-
-  const handelPAyment = async (e) => {
+  
+  const handelPAymentGoogle = async (e) => {
     e.preventDefault();
-
+  
     const useid = sessionStorage.getItem("userID");
 
     const payInfo = {
@@ -26,7 +26,7 @@ const PaymentForm = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3005/payment/", {
+      const response = await fetch("http://localhost:3005/payment/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,67 @@ const PaymentForm = () => {
     } catch (error) {
       setNotification({ message: "Server Error", status: "warning" });
     }
+
+   
   };
+  const handelPAyment = async (e) => {
+    e.preventDefault();
+    const holdername = e.target.holdername.value;
+    const cardnum = e.target.cardnum.value;
+    const cvv = e.target.cvv.value;
+    const expDate = e.target.expDate.value;
+  
+    const useid = sessionStorage.getItem("userID");
+
+    if (!isValidCardNumber(cardnum)) {
+      setNotification({
+        message: "Invalid card number. Please enter a 16-digit card number.",
+        status: "error",
+      });
+      return;
+    }
+
+    if (!isValidCVV(cvv)) {
+      setNotification({
+        message: "Invalid CVV. Please enter a 3-digit CVV.",
+        status: "error",
+      });
+      return;
+    }
+
+    const payInfoform = {
+      holdername: holdername,
+      cardnum: cardnum,
+      cvv: cvv,
+      expDate: expDate,
+      useid: useid,
+      housingId: id,
+      ownerId: owner,
+    };
+
+
+    try {
+      const response = await fetch("http://localhost:3005/payment/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payInfoform),
+      });
+      if (response.ok) {
+        setNotification({ message: "payment successfuly", status: "success" });
+        setShowModal(false);
+      } else {
+        setNotification({ message: "faild", status: "error" });
+      }
+    } catch (error) {
+      setNotification({ message: "Server Error", status: "warning" });
+    }
+   
+  };
+
+  const isValidCardNumber = (cardNumber) => /^\d{16}$/.test(cardNumber);
+  const isValidCVV = (cvv) => /^\d{3}$/.test(cvv);
 
   useEffect(() => {
     const fetchHousingData = async () => {
@@ -68,6 +128,34 @@ const PaymentForm = () => {
     <div className="payment-container">
       <div className="payment-form">
         <form className="inner-payment-form" onSubmit={handelPAyment}>
+        <Input
+            className="formInput"
+            label="holder's name :"
+            required
+            name="holdername"
+          />
+          <Input
+            className="formInput"
+            label="Card  Number:"
+            placeholder="___-___-___-___"
+            type="number"
+            name="cardnum"
+            required
+          />
+          <Input
+            className="formInput"
+            label="CVV(security number)"
+            type="number"
+            name="cvv"
+            required
+          />
+          <Input
+            className="formInput"
+            label="Exp date"
+            type="date"
+            name="expDate"
+            required
+          />
           <div id="rental-agreement">
             <input id="check" type="checkbox" required />
             <label id="agreeQ">Are u agree with these terms?</label>
@@ -84,7 +172,8 @@ const PaymentForm = () => {
               </div>
             </div>
           )}
-          <button type="submit">
+          <button type="button" onClick={() => setShowModal(true)}>pay</button>
+          <button type="button">
             <GooglePayButton
               environment="TEST"
               paymentRequest={{
@@ -129,6 +218,7 @@ const PaymentForm = () => {
               }}
               onPaymentAuthorized={(paymentData) => {
                 setStatuse(true);
+                handelPAymentGoogle();
                 setNotification({
                   message: "payment successfuly",
                   status: "success",

@@ -167,9 +167,14 @@ const PaymentForm = () => {
               </div>
             </div>
           )}
-          <button type="button" onClick={() => setShowModal(true)}>
-            pay
+          <button
+          id="paymentbutton"
+           type="button" 
+           onClick={() => setShowModal(true)}
+           >
+            Pay
           </button>
+          <button id="googlePayButton"> 
           <GooglePayButton
             environment="TEST"
             paymentRequest={{
@@ -225,6 +230,7 @@ const PaymentForm = () => {
             buttonColor="black"
             buttonType="buy"
           ></GooglePayButton>
+          </button>
         </form>
       </div>
       <div className="payment-info">

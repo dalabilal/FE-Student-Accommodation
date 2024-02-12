@@ -12,11 +12,15 @@
 .inner-payment-form {
     display: block;
     flex-direction: column;
-    border: 1px solid rgb(163, 193, 149);
     padding: 20px;
     width: 310px;
     border-radius: 15px;
-    /* box-shadow: 2px 2px rgb(113, 114, 114); */
+    display: block;
+    flex-direction: column;
+    padding: 20px;
+    width: 310px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 2px #a3c1957a;
 }
 
 .payment-container {
@@ -142,7 +146,7 @@
     border: none;
     margin-top: 0;
     margin-right: 30px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     margin-left: 8px;
 }
 

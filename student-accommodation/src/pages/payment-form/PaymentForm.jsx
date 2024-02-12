@@ -10,7 +10,7 @@ const PaymentForm = () => {
   const [housingTerms, setHousingTerms] = useState("");
   const id = sessionStorage.getItem("housingID");
   const [showModal, setShowModal] = useState(false);
-  const [status, setStatuse] = useState(false);
+  const [status, setStatuse] = useState(true);
   const { owner } = useUser();
 
   const handelPAymentGoogle = async () => {
@@ -33,10 +33,9 @@ const PaymentForm = () => {
       });
       if (response.ok) {
         // setNotification({ message: "payment successfuly", status: "success" });
-        setShowModal(true);
         setStatuse(true);
       } else {
-        setNotification({ message: "faild", status: "error" });
+        // setNotification({ message: "faild", status: "error" });
       }
     } catch (error) {
       setNotification({ message: "Server Error", status: "warning" });
@@ -174,7 +173,7 @@ const PaymentForm = () => {
            >
             Pay
           </button>
-          <button id="googlePayButton"> 
+          {/* <button button="button" id="googlePayButton">  */}
           <GooglePayButton
             environment="TEST"
             paymentRequest={{
@@ -230,7 +229,7 @@ const PaymentForm = () => {
             buttonColor="black"
             buttonType="buy"
           ></GooglePayButton>
-          </button>
+          {/* </button> */}
         </form>
       </div>
       <div className="payment-info">

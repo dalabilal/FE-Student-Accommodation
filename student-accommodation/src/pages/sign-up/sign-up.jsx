@@ -302,9 +302,9 @@ const SignUp = () => {
             <Link to={"/signin"}>Sign in!</Link>
           </span>
         </div>
-        <div id="rental-agreement">
-            <input id="check1" type="checkbox" required />
-            <label id="agreeQ">I agree to the Terms and all Privacy Policy</label>
+        <div className="span-text12">
+            <input className="input-terms" type="checkbox" required />
+           I agree to the <Link to='/terms'>Terms</Link> and <Link to='/terms'>Privacy Policy</Link>
           </div>
         <div className="signIn-button">
           <button

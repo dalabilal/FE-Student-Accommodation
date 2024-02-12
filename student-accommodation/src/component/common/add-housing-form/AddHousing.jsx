@@ -3,9 +3,11 @@ import Textarea from "../textarea/textarea.component";
 import sanitizeHtml from 'sanitize-html';
 import React, { useState } from "react";
 import "./addhousing.css";
+import useNotification from "../../../hook/notification.hook";
 
 const AddHousingForm = (props) => {
   const [selectedUniversity, setSelectedUniversity] = useState("");
+  const { setNotification } = useNotification(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ const AddHousingForm = (props) => {
       },
       transformTags: {
         script: function (tagName, attribs) {
-          console.log("invalid input")
+          setNotification({ message: "Invalid Input, Script tag not allowed!",status: "error",});
           return { tagName: "div", text: "Script tag not allowed!" };
         },
       },

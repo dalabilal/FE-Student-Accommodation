@@ -41,7 +41,7 @@
     margin-left: 189px;
     /* margin-top: 18px; */
     max-width: 400px;
-    max-height: 708px;
+    max-height:  758px;
     padding: 35px;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -93,7 +93,7 @@
     padding: 15px;
     display: flex;
     align-items: center;
-    margin-top: 5px;
+    margin-top: -25px;
     justify-content: center;
     margin-right: 21px;
 
@@ -245,4 +245,11 @@
 #capcha {
     margin-top: -10px;
     margin-bottom: -15px;
+}
+
+#check1 {
+    margin-left: 58px;
+    padding: 0;
+    position: absolute;
+    left: 350px;
 }

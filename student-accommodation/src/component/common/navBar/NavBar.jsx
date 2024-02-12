@@ -12,7 +12,7 @@ const NavBar = () => {
   const { logoutUser, noUser, userRole } = useUser();
   const username = sessionStorage.getItem('username');
   const location = useLocation();
-  const hideNavBarRoutes = ['/signin', '/signup' , '/verification' , '/reset' , '/sendVerify'];
+  const hideNavBarRoutes = ['/signin', '/signup' , '/verification' , '/reset' , '/sendVerify' , '/terms'];
   const shouldShowNavBar = !hideNavBarRoutes.includes(location.pathname);
 
 

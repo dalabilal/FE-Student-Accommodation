@@ -22,6 +22,7 @@ import GuardFav from './component/guard-fav/guard';
 import Admin from './pages/admin-panel/Admin';
 import GuardAdmin from './component/guard-admin/guardadmin';
 import Allusers from './pages/admin-panel/allusers';
+import Terms from './pages/Terms/Terms';
 
 function App() {
  return (
@@ -42,6 +43,7 @@ function App() {
         <Route path='/sendVerify' element={<EmailVerification/>}/>
         <Route path='/payment' element={<PaymentForm/>}/>
         <Route path='/reset' element={<ResetPassword/>}/>
+        <Route path='/terms' element={<Terms/>}/>
         <Route path='/owners' element={<GuardAdmin permittedRoles={['admin']}><Admin/></GuardAdmin>}/>
         <Route path='/users' element={<GuardAdmin permittedRoles={['admin']}><Allusers/></GuardAdmin>}/>
       </Routes>

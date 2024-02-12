@@ -302,6 +302,10 @@ const SignUp = () => {
             <Link to={"/signin"}>Sign in!</Link>
           </span>
         </div>
+        <div id="rental-agreement">
+            <input id="check1" type="checkbox" required />
+            <label id="agreeQ">I agree to the Terms and all Privacy Policy</label>
+          </div>
         <div className="signIn-button">
           <button
             // disabled={!cap}

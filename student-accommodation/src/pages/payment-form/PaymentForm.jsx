@@ -13,8 +13,7 @@ const PaymentForm = () => {
   const [status, setStatuse] = useState(false);
   const { owner } = useUser();
   
-  const handelPAymentGoogle = async (e) => {
-    e.preventDefault();
+  const handelPAymentGoogle = async () => {
   
     const useid = sessionStorage.getItem("userID");
 
@@ -35,7 +34,8 @@ const PaymentForm = () => {
       });
       if (response.ok) {
         // setNotification({ message: "payment successfuly", status: "success" });
-        setShowModal(false);
+        setShowModal(true);
+        setStatuse(true);
       } else {
         setNotification({ message: "faild", status: "error" });
       }
@@ -173,7 +173,6 @@ const PaymentForm = () => {
             </div>
           )}
           <button type="button" onClick={() => setShowModal(true)}>pay</button>
-          <button type="button">
             <GooglePayButton
               environment="TEST"
               paymentRequest={{
@@ -229,7 +228,6 @@ const PaymentForm = () => {
               buttonColor="black"
               buttonType="buy"
             ></GooglePayButton>
-          </button>
         </form>
       </div>
       <div className="payment-info">

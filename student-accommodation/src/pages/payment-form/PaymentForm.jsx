@@ -12,10 +12,10 @@ const PaymentForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [status, setStatuse] = useState(false);
   const { owner } = useUser();
-  
+
   const handelPAymentGoogle = async (e) => {
     e.preventDefault();
-  
+
     const useid = sessionStorage.getItem("userID");
 
     const payInfo = {
@@ -42,8 +42,6 @@ const PaymentForm = () => {
     } catch (error) {
       setNotification({ message: "Server Error", status: "warning" });
     }
-
-   
   };
   const handelPAyment = async (e) => {
     e.preventDefault();
@@ -51,7 +49,7 @@ const PaymentForm = () => {
     const cardnum = e.target.cardnum.value;
     const cvv = e.target.cvv.value;
     const expDate = e.target.expDate.value;
-  
+
     const useid = sessionStorage.getItem("userID");
 
     if (!isValidCardNumber(cardnum)) {
@@ -80,7 +78,6 @@ const PaymentForm = () => {
       ownerId: owner,
     };
 
-
     try {
       const response = await fetch("http://localhost:3005/payment/", {
         method: "POST",
@@ -98,7 +95,6 @@ const PaymentForm = () => {
     } catch (error) {
       setNotification({ message: "Server Error", status: "warning" });
     }
-   
   };
 
   const isValidCardNumber = (cardNumber) => /^\d{16}$/.test(cardNumber);
@@ -128,7 +124,7 @@ const PaymentForm = () => {
     <div className="payment-container">
       <div className="payment-form">
         <form className="inner-payment-form" onSubmit={handelPAyment}>
-        <Input
+          <Input
             className="formInput"
             label="holder's name :"
             required
@@ -172,8 +168,15 @@ const PaymentForm = () => {
               </div>
             </div>
           )}
-          <button type="button" onClick={() => setShowModal(true)}>pay</button>
-          <button type="button">
+          <button
+            id="paymentbutton"
+            type="button"
+            onClick={() => setShowModal(true)}
+          >
+            Pay
+          </button>
+          <p>or</p>
+          <button id="googlePayButton" type="button">
             <GooglePayButton
               environment="TEST"
               paymentRequest={{
@@ -233,7 +236,7 @@ const PaymentForm = () => {
         </form>
       </div>
       <div className="payment-info">
-        <p id="fees"> Fees per month: {housingTerms.fees}</p>
+        <p id="fees"> Fees per month: {housingTerms.fees} $</p>
         <p id="terms">{housingTerms.term}</p>
       </div>
     </div>

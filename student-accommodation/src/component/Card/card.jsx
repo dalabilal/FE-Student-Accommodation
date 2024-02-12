@@ -17,6 +17,7 @@ const Card = ({ name, description, data }) => {
   const navigate = useNavigate();
   const { setNotification } = useNotification();
   const userID = sessionStorage.getItem("userID");
+  const role = sessionStorage.getItem("userRole");
 
   const handleHeartClick = async () => {
     if (!noUser) {
@@ -101,19 +102,19 @@ const Card = ({ name, description, data }) => {
           see more...
         </Link>
         <p className="card-text">{data.university}</p>
-        <ul className="card-details">
-          <Heart
-            id="heart"
-            size={25}
-            weight={isHeartClicked ? "fill" : "bold"}
-            onClick={handleHeartClick}
-          />
-          <MapPinLine id="MapPinLine" size={25} weight="bold" />
-          <Phone id="Phone" size={25} weight="bold" />
-          <DotsThreeOutlineVertical id="DotsThreeOutlineVertical" size={25} />
-        </ul>
+          <ul className="card-details">
+            {role !== 'owner' &&<Heart
+              id="heart"
+              size={25}
+              weight={isHeartClicked ? "fill" : "bold"}
+              onClick={handleHeartClick}
+            />}
+            <MapPinLine id="MapPinLine" size={25} weight="bold" />
+            <Phone id="Phone" size={25} weight="bold" />
+            <DotsThreeOutlineVertical id="DotsThreeOutlineVertical" size={25} />
+          </ul>
+        </div>
       </div>
-    </div>
   );
 };
 

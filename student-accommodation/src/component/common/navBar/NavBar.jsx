@@ -44,12 +44,21 @@ const NavBar = () => {
           </li>
           {userRole === 'admin' &&  <li
             className={
-              (window.location.pathname === '/' | activeItem === "admin")
+              (window.location.pathname === '/' | activeItem === "owners")
                 ? "active"
                 : ""}
-            onClick={() => handleItemClick("admin")}
+            onClick={() => handleItemClick("owners")}
           >
-            <Link to="/admin">All Owner</Link>
+            <Link to="/owners">All Owner</Link>
+          </li>}
+          {userRole === 'admin' &&  <li
+            className={
+              (window.location.pathname === '/' | activeItem === "users")
+                ? "active"
+                : ""}
+            onClick={() => handleItemClick("users")}
+          >
+            <Link to="/users">All Users</Link>
           </li>}
           <li
             className={
@@ -77,13 +86,13 @@ const NavBar = () => {
           {(userRole === 'owner' && noUser) &&
             <li
               className={
-                (window.location.pathname === '/allusers' | activeItem === "Users")
+                (window.location.pathname === '/allusers' | activeItem === "Tenants")
                   ? "active"
                   : ""
               }
-              onClick={() => handleItemClick("Users")}
+              onClick={() => handleItemClick("Tenants")}
             >
-              <Link to="allusers">Users</Link>
+              <Link to="allusers">Tenants</Link>
             </li>
           }
         </ul>

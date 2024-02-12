@@ -39,7 +39,7 @@ const Favorite = () => {
 
       if (response.ok) {
         setFavoriteData((prevData) =>
-          prevData.filter((item) => item.dataId !== dataId)
+          prevData.filter((item) => item?.dataId !== dataId)
         );
       } else {
         console.error("Failed to delete favorite data:", response.statusText);
@@ -80,9 +80,10 @@ const Favorite = () => {
             <div className="title-trash">
               {console.log(data)}
               {/* <h2 className="card-title">{data.name}</h2> */}
-              <span  id="trash-icon" onClick={() => handleDeleteClick(data._id)}><Trash size={30} color="#BFB9B9;" /></span>
+              <button  id="trash-icon" >sdefd</button>
+             <Trash id="trash-icon" onClick={() => handleDeleteClick(data.dataId)}  size={30} color="#BFB9B9;"/>
             </div>
-            <Link to={`/all/${data.dataId}`}>
+            <Link to={`/all/${data?.dataId}`}>
               <img
                 src={data.image}
                 alt={data.name}
@@ -93,11 +94,8 @@ const Favorite = () => {
               <div className="title-trash-favorite">
                 <h2 className="card-title-favorite">{data.name}</h2>
               </div>
-              <span onClick={() => handleDeleteClick(data.dataId)}>
-                <Trash id="trash-icon" size={30} />
-              </span>
               <p className="card-text-favorite">{data.description.slice(0, 59)}</p>
-              <Link to={`/all/${data.dataId}`} id="seeMore">
+              <Link to={`/all/${data?.dataId}`} id="seeMore">
                 see more...
               </Link>
               <ul className="card-details-favorite">

@@ -101,11 +101,11 @@
 }
 
 #trash-icon {
-    position: absolute;
-    right: -811px;
-    top: 20px;
+    /* position: absolute; */
+    /* top: 20px; */
+    /* left: 292px; */
     fill: #BFB9B9;
-    margin-left: 90px;
+    /* margin-bottom: 146px; */
     cursor: pointer;
   }
 

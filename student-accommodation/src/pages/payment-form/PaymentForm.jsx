@@ -13,9 +13,7 @@ const PaymentForm = () => {
   const [status, setStatuse] = useState(false);
   const { owner } = useUser();
 
-  const handelPAymentGoogle = async (e) => {
-    e.preventDefault();
-
+  const handelPAymentGoogle = async () => {
     const useid = sessionStorage.getItem("userID");
 
     const payInfo = {
@@ -35,7 +33,8 @@ const PaymentForm = () => {
       });
       if (response.ok) {
         // setNotification({ message: "payment successfuly", status: "success" });
-        setShowModal(false);
+        setShowModal(true);
+        setStatuse(true);
       } else {
         setNotification({ message: "faild", status: "error" });
       }
@@ -168,75 +167,68 @@ const PaymentForm = () => {
               </div>
             </div>
           )}
-          <button
-            id="paymentbutton"
-            type="button"
-            onClick={() => setShowModal(true)}
-          >
-            Pay
+          <button type="button" onClick={() => setShowModal(true)}>
+            pay
           </button>
-          <p>or</p>
-          <button id="googlePayButton" type="button">
-            <GooglePayButton
-              environment="TEST"
-              paymentRequest={{
-                apiVersion: 2,
-                apiVersionMinor: 0,
-                allowedPaymentMethods: [
-                  {
-                    type: "CARD",
+          <GooglePayButton
+            environment="TEST"
+            paymentRequest={{
+              apiVersion: 2,
+              apiVersionMinor: 0,
+              allowedPaymentMethods: [
+                {
+                  type: "CARD",
+                  parameters: {
+                    allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+                    allowedCardNetworks: ["MASTERCARD", "VISA"],
+                  },
+                  tokenizationSpecification: {
+                    type: "PAYMENT_GATEWAY",
                     parameters: {
-                      allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-                      allowedCardNetworks: ["MASTERCARD", "VISA"],
-                    },
-                    tokenizationSpecification: {
-                      type: "PAYMENT_GATEWAY",
-                      parameters: {
-                        gateway: "example",
-                        gatewayMerchantId: "exampleGatewayMerchantId",
-                      },
+                      gateway: "example",
+                      gatewayMerchantId: "exampleGatewayMerchantId",
                     },
                   },
-                ],
-                merchantInfo: {
-                  merchantId: "12345678901234567890",
-                  merchantName: "Demo Merchant",
                 },
-                transactionInfo: {
-                  totalPriceStatus: "FINAL",
-                  totalPriceLabel: "Total",
-                  totalPrice: "1",
-                  currencyCode: "USD",
-                  countryCode: "US",
-                },
-                shippingAddressRequired: true,
-                callbackIntents: ["PAYMENT_AUTHORIZATION"],
-              }}
-              onLoadPaymentData={(paymentRequest) => {
-                setStatuse(true);
-                // setNotification({
-                //   message: "payment successfuly",
-                //   status: "success",
-                // });
-              }}
-              onPaymentAuthorized={(paymentData) => {
-                setStatuse(true);
-                handelPAymentGoogle();
-                setNotification({
-                  message: "payment successfuly",
-                  status: "success",
-                });
-                return { transactionState: "SUCCESS" };
-              }}
-              existingPaymentMethodRequired="false"
-              buttonColor="black"
-              buttonType="buy"
-            ></GooglePayButton>
-          </button>
+              ],
+              merchantInfo: {
+                merchantId: "12345678901234567890",
+                merchantName: "Demo Merchant",
+              },
+              transactionInfo: {
+                totalPriceStatus: "FINAL",
+                totalPriceLabel: "Total",
+                totalPrice: "1",
+                currencyCode: "USD",
+                countryCode: "US",
+              },
+              shippingAddressRequired: true,
+              callbackIntents: ["PAYMENT_AUTHORIZATION"],
+            }}
+            onLoadPaymentData={(paymentRequest) => {
+              setStatuse(true);
+              // setNotification({
+              //   message: "payment successfuly",
+              //   status: "success",
+              // });
+            }}
+            onPaymentAuthorized={(paymentData) => {
+              setStatuse(true);
+              handelPAymentGoogle();
+              setNotification({
+                message: "payment successfuly",
+                status: "success",
+              });
+              return { transactionState: "SUCCESS" };
+            }}
+            existingPaymentMethodRequired="false"
+            buttonColor="black"
+            buttonType="buy"
+          ></GooglePayButton>
         </form>
       </div>
       <div className="payment-info">
-        <p id="fees"> Fees per month: {housingTerms.fees} $</p>
+        <p id="fees"> Fees per month: {housingTerms.fees}</p>
         <p id="terms">{housingTerms.term}</p>
       </div>
     </div>

@@ -80,7 +80,7 @@ const Favorite = () => {
             <div className="title-trash">
               {console.log(data)}
               {/* <h2 className="card-title">{data.name}</h2> */}
-              <button  id="trash-icon" >sdefd</button>
+              {/* <button  id="trash-icon" >sdefd</button> */}
              <Trash id="trash-icon" onClick={() => handleDeleteClick(data.dataId)}  size={30} color="#BFB9B9;"/>
             </div>
             <Link to={`/all/${data?.dataId}`}>

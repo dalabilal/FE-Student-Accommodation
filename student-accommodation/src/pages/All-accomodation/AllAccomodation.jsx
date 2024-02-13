@@ -45,8 +45,8 @@ const AllAccomodation = () => {
         <SearchBar onUniversityChange={handleUniversityChange} />
         {noUser && userRole === "owner" && (
           <button className="add-housing" onClick={() => setPopup(!popup)}>
-            <Plus size={40} color="white" />
-            <span>Add Housing</span>
+            {/* <Plus size={40} color="white" /> */}
+            <span>+ Add Housing</span>
           </button>
         )}
       </div>

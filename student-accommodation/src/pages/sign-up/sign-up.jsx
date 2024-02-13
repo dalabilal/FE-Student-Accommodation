@@ -195,7 +195,7 @@ const SignUp = () => {
       setPasswordsMatch(false);
       setEmailExists(false);
     }
-  }, [email, password, confirmPassword]);
+  }, [email, password, confirmPassword, color , error]);
 
   const handleCancelVerification = () => {
     setVerificationCode("");
@@ -290,12 +290,12 @@ const SignUp = () => {
             </span>
           )}
         </div>
-        {/* <ReCAPTCHA
+        <ReCAPTCHA
           id="capcha"
-          sitekey="6LchlW0pAAAAAN6TI_M-BJu8sSnz_DyCx4wYrg6z"
+          sitekey="6Lekv3ApAAAAAGItI679iFinRyDDv2dDmNYU63bu"
           onChange={(val) => setCap(val)}
           style={{ float: "right", marginRight: "10px" }}
-        /> */}
+        />
         <div className="span-text1">
           <span className="condition">already have an account, </span>
           <span className="signin">
@@ -308,7 +308,7 @@ const SignUp = () => {
           </div>
         <div className="signIn-button">
           <button
-            // disabled={!cap}
+            disabled={!cap}
             type="button"
             onClick={(e) => {
               handleSendEmail(e);

@@ -147,16 +147,16 @@ Textarea:focus {
   cursor: pointer;
 }
 
-input {
+/* input {
   width: 250px;
   font-size: small;
-}
+} */
 
 #choose {
   font-size: small;
 }
 
-input::file-selector-button {
+/* input::file-selector-button {
   font-size: small;
   color: rgb(255, 255, 255);
   padding: 0.5em;
@@ -170,4 +170,4 @@ input::file-selector-button {
 
 input::file-selector-button:hover {
   background-color: #a4a5a4;
-}
+} */

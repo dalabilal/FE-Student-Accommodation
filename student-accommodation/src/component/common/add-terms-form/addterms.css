@@ -21,7 +21,7 @@
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 17px;
-  height: 623px;
+  height: 679px;
   width: 358px;
   display: flex;
   align-items: center;
@@ -146,16 +146,16 @@ Textarea:focus {
   cursor: pointer;
 }
 
-input {
+/* input {
   width: 250px;
   font-size: small;
-}
+} */
 
 #choose {
   font-size: small;
 }
 
-input::file-selector-button {
+/* input::file-selector-button {
   font-size: small;
   color: rgb(255, 255, 255);
   padding: 0.5em;
@@ -169,4 +169,4 @@ input::file-selector-button {
 
 input::file-selector-button:hover {
   background-color: #a4a5a4;
-}
+} */
